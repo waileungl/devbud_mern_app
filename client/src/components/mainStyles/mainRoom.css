@@ -1,0 +1,643 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/*==================== BASE ====================*/
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    outline: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+/*==================== VARIABLES CSS ====================*/
+body {
+    --app-background: #eaebf5;
+    --chat-background: #fff;
+    --link-color: #c0c1c5;
+    --navigation-bg: #fff;
+    --navigation-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .1), 0 4px 11px 0 rgba(0, 0, 0, .08);
+    /* --navigation-box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+        0 24px 20px -24px rgba(71, 82, 107, 0.1); */
+    --main-color: #3c3f56;
+    --message-bg: #f3f4f9;
+    --message-bg-2: #3c3f56;
+    --message-text: #2c303a;
+    --placeholder-text: #a2a4bc;
+    --button-bg: #fff;
+    --sidebar-on-hover: #3c3f56;
+}
+
+/*========== Variables Dark theme ==========*/
+body.dark {
+    --app-background: #262a42;
+    --navigation-box-shadow: 0px 0px 8px 0px #282b33;
+    --chat-background: #3c3f56;
+    --message-bg: #2c3046;
+    --message-text: rgba(255, 255, 255, 0.8);
+    --placeholder-text: #fff;
+    --navigation-bg: #3c3f56;
+    --button-bg: #3c3f56;
+    --main-color: #6f74ff;
+    --message-bg-2: #6f74ff;
+}
+
+/*==================== LAYOUT ====================*/
+.app-container {
+    background-color: var(--app-background);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    transition: 0.2s;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/*==================== Scroll bar ====================*/
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+    height: 10px;
+    /* Height of the scrollbar */
+}
+
+/* Style the thumb (the moving part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+    background: #b3b3b37c;
+    /* Background color of the thumb */
+    border-radius: 10px;
+    /* Round the corners of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    /* Background color of the thumb */
+    border-radius: 10px;
+    /* Round the corners of the thumb */
+}
+
+/* Style the track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+    background: var(--chat-background);
+    /* Background color of the track */
+}
+
+/* Style the buttons (the arrows that allow you to move the scrollbar up and down) */
+::-webkit-scrollbar-button {
+    display: none;
+    /* Hide the buttons */
+}
+
+/*==================== Navigation ====================*/
+.left-side {
+    position: relative;
+    padding: 16px;
+    flex-basis: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navigation-bg);
+    border-radius: 10px;
+    box-shadow: var(--navigation-box-shadow);
+}
+
+.room-nav-link {
+    padding: 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+
+.room-nav-link:hover {
+    background-color: var(--sidebar-on-hover);
+    transition: 0.4s ease-in;
+    cursor: pointer;
+}
+
+.icon img {
+    width: 24px;
+    height: 24px;
+    color: var(--link-color);
+    transition: 0.3s ease-in;
+}
+
+.right-side {
+    margin-left: auto;
+    flex-basis: 400px;
+    height: 100%;
+    padding: 16px 16px 16px 16px;
+    position: relative;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
+}
+
+.right-side.show {
+    display: block;
+    transform: translateX(0);
+}
+
+/*==================== Main App: video && code editor ====================*/
+.app-main {
+    flex: 1;
+    width: 100%;
+    padding: 16px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-header {
+    height: 10.8%;
+    width: 100%;
+    /* font-size: 1.1rem; */
+    letter-spacing: -0.5px;
+    color: #151111;
+    border-bottom: 1px solid #c0c1c575;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header-left{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.main-header-left h3{
+    padding: 5px 25px 5px 25px;
+    background-color: #a2a4bc5e;
+    border-radius: 8px;
+    font-weight: 400;
+}
+
+.current-time{
+    padding: 10px;
+    color: var(--main-color);
+}
+
+/* ======================collapsible invitation link=============================== */
+
+header {
+    background-color: #F3F3F3;
+    display: flex;
+    /* align-items: baseline;
+    padding: .5rem;
+    gap: 1rem; */
+}
+
+.link {
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: #777;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown.active>.link,
+.link:hover {
+    color: white
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + .25rem);
+    background-color: white;
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    z-index: 10;
+}
+
+.invite-button {
+    background-image: url('./header_icon/user-plus.png');
+    background-color: var(--main-color);
+    padding: 12px 16px 12px 40px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-position: center left 12px;
+    background-size: 20px;
+    font-size: 14px;
+}
+.invite-button:hover {
+    color: white;
+}
+
+.invitation-link-wrapper{
+    display: flex;
+}
+
+#copy-btn{
+    margin-left: 5px;
+    background-image: url('./header_icon/copy.png');
+    background-color: var(--main-color);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    font-size: 12px;
+}
+
+#copy-btn:active{
+    background-image: url('./header_icon/copy-clicked.png');
+    position: relative;
+    left: 1px;
+    top: 1px;
+}
+
+.dropdown-menu h4 {
+    font-weight: 300;
+    font-size: 0.7rem;
+}
+
+.dropdown-menu input {
+    font-weight: 200;
+    padding: 5px;
+    font-size: 0.7rem;
+    border: 1px solid #f5f5f5;
+}
+
+.dropdown.active>.link+.dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.information-grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 2rem;
+}
+
+.dropdown-links {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+/* ======================Code editor Component=============================== */
+/* .compiler-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+
+.code-editor {
+    font-size: 0.8rem;
+    width: 1300px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    height: auto;
+    color: grey;
+    min-height: 500px;
+}
+
+/* ======================Video Component=============================== */
+/* --------For video participant display frame-------- */
+.video-call-wrapper {
+    width: 100%;
+    height: 100%;
+    /* border-radius: 16px; */
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.video-full-container {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.hideSelf {
+    display: none;
+}
+
+.video-participant {
+    /* 4 video div in one page */
+    width: 49.8%;
+    height: 49.6%;
+    /* 6 video div in one page */
+    /* width: 32%;
+    height: 48%; */
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.participant-action {
+    position: absolute;
+    display: flex;
+    left: 12px;
+    top: 12px;
+}
+
+.btn-mute,
+.btn-on,
+.btn-camera {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background-color: rgba(0, 15, 47, 0.5);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
+    border: none;
+    z-index: 10;
+}
+
+/* .btn-mute {
+    background-image: url('../videoStream_components/toggleVideoIcon/mic-off-white.png');
+    margin-right: 4px;
+}
+
+.btn-on {
+    background-image: url('../videoStream_components/toggleVideoIcon/mic-on-white.png');
+    margin-right: 4px;
+} */
+
+.btn-camera {
+    background-image: url('../videoStream_components/toggleVideoIcon/fullscreen-white.png');
+}
+
+.name-tag {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 12px;
+    color: #fff;
+    background-color: rgba(0, 15, 47, 0.5);
+    border-radius: 4px;
+    padding: 4px 12px;
+    z-index: 10;
+}
+
+/* --------For video action -------- */
+
+.video-call-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 64px;
+    max-width: 500px;
+}
+
+.video-action-button {
+    background-repeat: no-repeat;
+    background-size: 24px;
+    border: none;
+    height: 58px;
+    padding: 17px;
+    margin: 0 8px;
+    box-shadow: var(--navigation-box-shadow);
+    border-radius: 8px;
+    width: 58px;
+    cursor: pointer;
+    outline: none;
+    background-color: var(--button-bg);
+    color: black;
+}
+
+.video-action-button.endcall {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff1932' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-phone-missed'%3E%3Cline x1='23' y1='1' x2='17' y2='7'/%3E%3Cline x1='17' y1='1' x2='23' y2='7'/%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
+    color: #ff1932;
+    width: auto;
+    font-size: 14px;
+    padding-left: 42px;
+    padding-right: 12px;
+    background-size: 20px;
+    background-position: center left 12px;
+}
+
+.video-action-button:hover {
+    background-color: #3c3f5613;
+}
+
+
+/*==================== Chat Component ====================*/
+
+.right-side.show {
+    display: block;
+    transform: translateX(0);
+}
+
+.chat-container {
+    background-color: var(--chat-background);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ----------Chat header ------------ */
+
+.chat-header {
+    padding: 16px;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 9%;
+}
+
+.chat-header-button {
+    background-image: url('./chat_app_icon/user-voice.png');
+    background-color: var(--main-color);
+    padding: 12px 16px 12px 40px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-position: center left 12px;
+    background-size: 20px;
+    font-size: 14px;
+}
+
+
+
+
+
+/* ---------Chat Area ----------- */
+
+.chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    
+}
+
+.message-wrapper {
+    display: flex;
+    padding: 16px 0;
+}
+
+.message-wrapper.reverse {
+    flex-direction: row-reverse;
+}
+
+.message-wrapper.reverse .message {
+    background-color: var(--message-bg-2);
+    color: #fff;
+    margin-left: auto;
+    border-radius: 16px 0 16px 16px;
+}
+
+.message-wrapper.reverse .profile-picture {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+.message-wrapper.reverse .name {
+    text-align: right;
+}
+
+.message-content-self {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+
+.name {
+    margin: 0;
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--message-text);
+}
+
+.name-self {
+    display: flex;
+    justify-content: flex-end;
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--message-text);
+}
+
+.message {
+    margin-top: 8px;
+    background-color: var(--message-bg);
+    padding: 8px 16px;
+    border-radius: 0 12px 12px 12px;
+    font-size: 12px;
+    line-height: 16px;
+    /* max-width: calc(100% - 32px); */
+    color: var(--message-text);
+}
+
+.message-self {
+    margin-top: 8px;
+    background-color: var(--message-bg);
+    padding: 8px 16px;
+    border-radius: 12px 0px 12px 12px;
+    font-size: 12px;
+    line-height: 16px;
+    /* max-width: calc(100% - 32px); */
+    color: var(--message-text);
+}
+
+
+.message__body__bot {
+    color: #bdbdbd;
+    margin: auto;
+    font-size: 0.6rem;
+}
+
+/* ------Text input area ------- */
+
+.chat-typing-area-wrapper {
+    padding: 16px;
+}
+
+.dark .chat-typing-area {
+    box-shadow: none;
+}
+
+.chat-typing-area {
+    display: flex;
+    border-radius: 10px;
+    padding: 8px;
+    /* box-shadow: var(--navigation-box-shadow); */
+    background-color: var(--message-bg);
+}
+
+.chat-input {
+    border: none;
+    font-size: 14px;
+    line-height: 24px;
+    outline: none;
+    color: var(--message-text);
+    flex: 1;
+    background-color: transparent;
+}
+
+.chat-input::placeholder {
+    color: var(--placeholder-text);
+}
+
+
+.send-button {
+    color: #fff;
+    background-color: var(--main-color);
+    border-radius: 8px;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.send-button svg {
+    width: 20px;
+    height: 20px;
+}
