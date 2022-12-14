@@ -18,7 +18,8 @@ button:hover {
 
 /*==================== VARIABLES CSS ====================*/
 body {
-    --app-background: #eaebf5;
+    /* --app-background: #eaebf5; */
+    --app-background: rgb(240, 240, 240);
     --chat-background: #fff;
     --link-color: #c0c1c5;
     --navigation-bg: #fff;

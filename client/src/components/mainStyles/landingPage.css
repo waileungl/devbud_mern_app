@@ -17,7 +17,7 @@ main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #eaebf5;
+  background-color: rgb(240, 240, 240);
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -76,16 +76,38 @@ form.sign-up-form {
 .logo {
   display: flex;
   align-items: center;
+  height: 40px;
 }
 
+.back-home-header-button {
+  /* background-image: url('./landing_page_carousel/back-arrow.png'); */
+  background-color: rgb(240, 240, 240);
+  /* padding: 10px 10px 15px 20px; */
+  width: 23px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-position: center left 12px;
+  background-size: 20px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.back-home-header-button:hover{
+  background-color: rgb(206, 206, 206);
+  width: 1.4rem;
+  transition: 0.5s;
+}
+
+/* 
 .logo img {
   width: 27px;
   margin-right: 0.3rem;
-}
+} */
 
 .logo h4 {
   font-size: 1.1rem;
-  margin-top: -9px;
   letter-spacing: -0.5px;
   color: #151111;
 }

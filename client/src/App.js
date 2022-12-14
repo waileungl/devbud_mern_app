@@ -54,7 +54,7 @@ function App() {
         <Route path="/room" element={
           !joined && <LandingPage createRoom={createRoom} userName={userName} setUserName={setUserName} roomName={roomName} setRoomName={setRoomName} joinRoom={joinRoom} invitationLink={invitationLink} setinvitationLink={setinvitationLink} />
         } />
-        <Route path="/room/:ROOMID" element={<Room joined={joined} setJoined={setJoined} userID={userID} userName={userName} roomName={roomName} />} />
+        <Route path="/room/:ROOMID" element={<Room joined={joined} setJoined={setJoined} userID={userID} userName={userName} roomName={roomName} setUserName={setUserName} setRoomName={setRoomName} setinvitationLink={setinvitationLink}/>} />
         {/* <Route path="/*" element={<>Invalid invalid invitation link! <br/><Link to={'/'}>Back to create Room Page</Link></>} /> */}
       </Routes>
     </>

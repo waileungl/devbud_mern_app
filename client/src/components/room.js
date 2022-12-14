@@ -29,7 +29,7 @@ var memberCount;
 
 const Room = props => {
     const { ROOMID } = useParams();
-    const { joined, setJoined, userID, userName, roomName } = props;
+    const { joined, setJoined, userID, userName, setRoomName, setinvitationLink, setUserName } = props;
     const [code, setCode] = useState("console.log('hello')")
     const [text, setText] = useState('')
     const [messages, setMessages] = useState([])
@@ -204,7 +204,10 @@ const Room = props => {
         await rtcClient.leave();
         rtcClient.removeAllListeners();
         setJoined(false);
-        navigate('/')
+        setRoomName("")
+        setUserName("")
+        setinvitationLink("")
+        navigate('/room')
     }
 
     window.addEventListener('beforeunload', leaveChannel)

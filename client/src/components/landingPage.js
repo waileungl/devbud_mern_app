@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import './mainStyles/landingPage.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import imageOne from './mainStyles/landing_page_carousel/image1.png'
 import imageTwo from './mainStyles/landing_page_carousel/image2.png'
 import imageThree from './mainStyles/landing_page_carousel/image3.png'
-
+import backHomeArrow from './mainStyles/landing_page_carousel/back-arrow.png'
 
 const LandingPage = props => {
     const { createRoom, userName, setUserName, joinRoom, invitationLink, setinvitationLink, roomName, setRoomName } = props
@@ -14,8 +14,8 @@ const LandingPage = props => {
     const inputCreateRoomName = useRef(null)
     const inputJoinName = useRef(null)
     const inputInvitation = useRef(null)
-    
-    function moveSlider(e){
+
+    function moveSlider(e) {
         const bullets = document.querySelectorAll(".bullets span");
         const images = document.querySelectorAll(".image");
 
@@ -43,8 +43,9 @@ const LandingPage = props => {
                         <form action="index.html" autoComplete="off" className="sign-in-form landing-form" onSubmit={createRoom}>
                             <div className="logo">
                                 <Link to='/'>
-                                <h4>Devbud.</h4>
+                                    <img className="back-home-header-button" src={backHomeArrow} />
                                 </Link>
+                                <h4>Devbud.</h4>
                             </div>
 
                             <div className="heading">

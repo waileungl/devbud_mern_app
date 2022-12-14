@@ -44,9 +44,8 @@ export default function VideoControl(props) {
         rtcClient.removeAllListeners();
         tracks[0].close();
         tracks[1].close();
-        leaveRTMchannel();
         setJoined(false);
-        navigate('/room')
+        leaveRTMchannel();
     };
 
     return (
