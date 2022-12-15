@@ -27,7 +27,6 @@ const MainEditor = props => {
                     className='code-editor'
                 />
             </div>
-
         </>
     )
 }

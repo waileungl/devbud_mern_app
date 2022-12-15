@@ -1,8 +1,6 @@
 const fs = require("fs")
 const express = require('express')
 const cors = require('cors');
-const PythonShell = require('python-shell').PythonShell;
-
 //mongoDB
 const DB = 'devBud';
 

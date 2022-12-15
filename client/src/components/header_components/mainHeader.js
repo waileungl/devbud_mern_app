@@ -59,5 +59,4 @@ const MainHeader = ({ roomNameTitle, ROOMID }) => {
     )
 }
 
-
 export default MainHeader;

@@ -1,5 +1,4 @@
 
-import { useNavigate } from "react-router-dom";
 import '../mainStyles/mainRoom.css'
 
 // all the icon needed
@@ -12,8 +11,6 @@ import exitFullScreen from './toggleVideoIcon/exitFullscreen.png'
 
 export default function VideoControl(props) {
     const { rtcClient, tracks, setJoined, videoDiv, trackState, setTrackState, leaveRTMchannel } = props;
-    
-    const navigate = useNavigate();
 
     const mute = async (mediaType) => {
         if (mediaType === "audio") {

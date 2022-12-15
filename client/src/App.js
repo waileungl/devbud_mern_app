@@ -3,7 +3,6 @@ import Room from './components/room';
 import {
   Routes,
   Route,
-  Link,
   useNavigate
 } from "react-router-dom";
 import uuid from 'react-uuid';

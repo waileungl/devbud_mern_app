@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../mainStyles/mainRoom.css'
 
-var displayNameByID;
+
 const VideoPlayer = props => {
     const[userNameOnDiv, setUserNameOnDiv] = useState('')
     const { user, users, trackState, rtmClient } = props

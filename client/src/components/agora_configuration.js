@@ -1,8 +1,8 @@
 import AgoraRTC from 'agora-rtc-sdk-ng';
-import AgoraRTM, { RtmClient } from 'agora-rtm-sdk'
+import AgoraRTM from 'agora-rtm-sdk'
 
 // Initial configuration
-export const APP_ID = "1186a57258e94a27b56062e6ce07095e";
+export const APP_ID = "73153c2b05904f79a80ec9ba54084ad5";
 export const TOKEN = null;
 export const videoRoomID = 'video';
 export const dataRoomID = 'data';
