@@ -30,7 +30,7 @@ var memberCount;
 const Room = props => {
     const { ROOMID } = useParams();
     const { joined, setJoined, userID, userName, setRoomName, setinvitationLink, setUserName } = props;
-    const [code, setCode] = useState("console.log('hello')")
+    const [code, setCode] = useState(" ")
     const [text, setText] = useState('')
     const [messages, setMessages] = useState([])
     const [codeRoom, setCodeRoom] = useState({})

@@ -101,6 +101,9 @@ const LandingPage = props => {
 
                         <form action="index.html" autoComplete="off" className="sign-up-form landing-form" onSubmit={joinRoom}>
                             <div className="logo">
+                                <Link to='/'>
+                                    <img className="back-home-header-button" src={backHomeArrow} />
+                                </Link>
                                 <h4>Devbud.</h4>
                             </div>
 
