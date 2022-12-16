@@ -11,10 +11,13 @@ if(!fs.existsSync(dirCompiler)){
 }
 
 const generateFile = async (format, code) => {
+    console.log("start to generate the compiler file with the format")
     var jobId = uuid();
+    if(format === 'python') format = 'py'
     const filename = `${jobId}.${format}`
     const filepath = path.join(dirCompiler, filename);
     await fs.writeFileSync(filepath, code);
+    console.log("the compiler file is generated on", filepath, "code is :", code)
     return filepath;
 }
 

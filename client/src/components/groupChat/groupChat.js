@@ -17,9 +17,6 @@ const Groupchat = props => {
 
     const sendMessageToChannel = (e) => {
         e.preventDefault();
-        const today = new Date();
-        const curr_min = today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes();
-        const time = today.getHours() + ":" + curr_min
         if (text === '') return;
         let messagesToChannel = JSON.stringify({ 'type': 'chat', 'message': text, 'displayName': userName })
         chatChannel.sendMessage({ text: messagesToChannel });
@@ -27,7 +24,6 @@ const Groupchat = props => {
             text: text,
             displayName: userName,
             userID,
-            currentTime: time
         });
         setText('');
     };

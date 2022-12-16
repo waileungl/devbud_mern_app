@@ -1,25 +1,30 @@
+// -- React Hook import
 import { useParams } from "react-router";
 import React, { useState, useEffect } from 'react';
-import { usertmClient } from './agora_configuration';
-import Compiler from './codeEditor_components/compiler';
-import Groupchat from './groupChat_components/groupChat';
-import Video from "./videoStream_components/video";
 import { useNavigate } from "react-router-dom";
 
-// ---RTC import
+// -- dependence import
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+
+// -- Component import
+import MainHeader from "./roomHeader/mainHeader";
+import Video from "./videoChat/video";
+import Compiler from './codeEditor/compiler';
+import Groupchat from './groupChat/groupChat';
+
+// -- Agora(RTC, RTM) import
 import AgoraRTC from 'agora-rtc-sdk-ng';
-
 import { APP_ID, TOKEN, usertcClient } from './agora_configuration';
+import { usertmClient } from './agora_configuration';
 
-
+// -- CSS import
 import videoChatIcon from './mainStyles/navigation_icons/videoChat.png'
-import homeIcon from './mainStyles/navigation_icons/home.png'
 import codeIcon from './mainStyles/navigation_icons/code.png'
 import './mainStyles/mainRoom.css';
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import MainHeader from "./header_components/mainHeader";
+
 
 var codeChannel;
+var outputChannel;
 var chatChannel;
 var rtmClient = usertmClient();
 var rtcClient = usertcClient();
@@ -27,16 +32,17 @@ var nameByID;
 var roomNameTitle;
 var memberCount;
 
-const Room = props => {
+const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationLink, setUserName }) => {
     const { ROOMID } = useParams();
-    const { joined, setJoined, userID, userName, setRoomName, setinvitationLink, setUserName } = props;
     const [code, setCode] = useState(" ")
+    const [output, setOutput] = useState("")
     const [text, setText] = useState('')
     const [messages, setMessages] = useState([])
     const [codeRoom, setCodeRoom] = useState({})
+    const [outputRoom, setOutputRoom] = useState({})
     const [count, setCount] = useState('')
-    const navigate = useNavigate();
     const [displayVideo, setDisplayVideo] = useState(true)
+    const navigate = useNavigate();
 
     // RTC hook
     const [localTracks, setLocalTracks] = useState([]);
@@ -45,11 +51,11 @@ const Room = props => {
     var videoRoomID = "video" + ROOMID
     var chatRoomID = "chat" + ROOMID
     var codeRoomID = "code" + ROOMID
+    var outputRoomID = "ouput" + ROOMID
 
     var videoDiv = useFullScreenHandle();
 
     useEffect(() => {
-
         // validation
         if (userName === undefined || userName === "" || !ROOMID.includes("@")) {
             setJoined(false)
@@ -64,10 +70,20 @@ const Room = props => {
             codeChannel = await rtmClient.createChannel(codeRoomID);
             await codeChannel.join();
             codeChannel.on('ChannelMessage', codeFromOther => {
-                setCode(codeFromOther)
+                setCode(codeFromOther);
             });
             // Have to store that into a hook otherwise it won't pass to the next level component
             setCodeRoom(codeChannel)
+        }
+
+        const outputRoomConnect = async () => {
+            outputChannel = await rtmClient.createChannel(outputRoomID);
+            await outputChannel.join();
+            outputChannel.on('ChannelMessage', outputFromOther => {
+                setOutput(outputFromOther.text)
+            });
+            // Have to store that into a hook otherwise it won't pass to the next level component
+            setOutputRoom(outputChannel)
         }
 
         const chatRoomConnect = async () => {
@@ -130,6 +146,7 @@ const Room = props => {
             await rtmClient.addOrUpdateLocalUserAttributes({ 'name': userName })
             codeRoomConnect();
             chatRoomConnect();
+            outputRoomConnect();
         }
 
         login();
@@ -193,7 +210,6 @@ const Room = props => {
                 ]);
                 rtcClient.publish(tracks);
             });
-
     }, []);
 
 
@@ -215,6 +231,8 @@ const Room = props => {
     if (!joined) {
         leaveChannel();
     }
+
+    // variable for navigation bar icons
     const backgroundColorForVideoChat = displayVideo ? '#3c3f56' : 'white';
     const backgroundColorForCodeEditor = !displayVideo ? '#3c3f56' : 'white';
 
@@ -243,7 +261,7 @@ const Room = props => {
                         <MainHeader roomNameTitle={roomNameTitle} ROOMID={ROOMID} />
                         {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} />}
 
-                        {!displayVideo && <Compiler codeChannel={codeRoom} code={code} setCode={setCode} />}
+                        {!displayVideo && <Compiler codeChannel={codeRoom} code={code} setCode={setCode} output={output} setOutput={setOutput} outputChannel={outputRoom}/>}
                     </div>
 
                     {/* >>>>>>>>Chat room<<<<<<<< */}
