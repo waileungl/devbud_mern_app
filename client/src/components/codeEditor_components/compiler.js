@@ -9,7 +9,7 @@ const Compiler = props => {
     const { code, setCode, codeChannel } = props
 
 
-    const [language, setLanguage] = useState("py")
+    const [language, setLanguage] = useState("js")
     const [result, setResult] = useState("#Your output will show up here")
     // use socket from io, in default return an anonymous function that calls io and passes in our server port(8000)
     const [socket] = useState(() => io(':8000'))
@@ -63,9 +63,9 @@ const Compiler = props => {
                     value={language}
                     onChange={e => { setLanguage(e.target.value) }}
                 >
-                    <option value="py">Python</option>
+                    <option value="python">Python</option>
                     <option value="java">Java</option>
-                    <option value="js">javascript</option>
+                    <option value="js">Javascript</option>
                 </select>
                 <button onClick={submitCode} style={{ zIndex: "100" }}>Run</button>
                 <MainEditor language={language} codeChannel={codeChannel} code={code} setCode={setCode} />

@@ -11,7 +11,7 @@ const MainEditor = props => {
         setCode(e.target.value)
     }
 
-    if (language === "py") placeholderForCodeEditor = "Please enter Python code."
+    if (language === "python") placeholderForCodeEditor = "Please enter Python code."
     else if (language === "java") placeholderForCodeEditor = "Please enter Java code."
     else if (language === "js") placeholderForCodeEditor = "Please enter Js code."
 
