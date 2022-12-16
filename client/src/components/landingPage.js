@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './mainStyles/landingPage.css'
 import { Link } from 'react-router-dom'
 
@@ -14,13 +14,51 @@ const LandingPage = props => {
     const inputCreateRoomName = useRef(null)
     const inputJoinName = useRef(null)
     const inputInvitation = useRef(null)
+    const [currentSlider, setCurrentSlider] = useState("1")
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if(currentSlider === "1"){
+                setCurrentSlider("2")
+                moveSliderByTime("2")
+            }
+            if(currentSlider === "2"){
+                setCurrentSlider("3")
+                moveSliderByTime("3")
+            }
+            if(currentSlider === "3"){
+                setCurrentSlider("1")
+                moveSliderByTime("1")
+            }
+        }, 2000)
+        return () => clearTimeout(timer)
+    }, [currentSlider])
+
+    const moveSliderByTime = (i) => {
+        const bullets = document.querySelectorAll(".bullets span");
+        const images = document.querySelectorAll(".image");
+
+        let currentImage = document.querySelector(`#landing-img-${i}`);
+        console.log("currentImage", currentImage);
+        images.forEach((img) => img.classList.remove("show"));
+        currentImage.classList.add("show");
+        
+        let currentSlide = document.querySelector(`#slide-${i}`);
+        const textSlider = document.querySelector(".text-group");
+        textSlider.style.transform = `translateY(${-(i - 1) * 2.2}rem)`;
+        console.log("currentSlide", currentSlide);
+        bullets.forEach((bull) => bull.classList.remove("active"));
+        currentSlide.classList.add("active");
+    }
+
+
 
     function moveSlider(e) {
         const bullets = document.querySelectorAll(".bullets span");
         const images = document.querySelectorAll(".image");
 
         let index = e.target.dataset.value;
-
+        setCurrentSlider(index)
         let currentImage = document.querySelector(`.img-${index}`);
         images.forEach((img) => img.classList.remove("show"));
         currentImage.classList.add("show");
@@ -160,9 +198,9 @@ const LandingPage = props => {
 
                     <div className="carousel">
                         <div className="images-wrapper">
-                            <img src={imageOne} className="image img-1 show" alt="" />
-                            <img src={imageTwo} className="image img-2" alt="" />
-                            <img src={imageThree} className="image img-3" alt="" />
+                            <img src={imageOne} className="image img-1 show" alt="" id="landing-img-1"/>
+                            <img src={imageTwo} className="image img-2" alt="" id="landing-img-2"/>
+                            <img src={imageThree} className="image img-3" alt="" id="landing-img-3"/>
                         </div>
 
                         <div className="text-slider">
@@ -175,9 +213,9 @@ const LandingPage = props => {
                             </div>
 
                             <div className="bullets">
-                                <span onClick={(e) => moveSlider(e)} className="active" data-value="1"></span>
-                                <span onClick={(e) => moveSlider(e)} data-value="2"></span>
-                                <span onClick={(e) => moveSlider(e)} data-value="3"></span>
+                                <span onClick={(e) => moveSlider(e)} className="active" data-value="1" id="slide-1"></span>
+                                <span onClick={(e) => moveSlider(e)} data-value="2" id="slide-2"></span>
+                                <span onClick={(e) => moveSlider(e)} data-value="3" id="slide-3"></span>
                             </div>
                         </div>
                     </div>
