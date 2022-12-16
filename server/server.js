@@ -27,6 +27,7 @@ require('./routes/dev.routes')(app);
 
 const server = app.listen(port, () => console.log(`>>>>listening on port ${port}<<<<`))
 
+console.log("this is server>>>>>>>", server);
 // To use socket we have to pass in our server as a param
 const io = require("socket.io")(server, {
     cors: {
@@ -34,14 +35,8 @@ const io = require("socket.io")(server, {
     }
 })
 
-console.log(">>>>>>>>>>IO IS SET UP", io, "--------------------the code above is io")
-// different types of socket calls
+// console.log(">>>>>>>>>>IO IS SET UP", io, "--------------------the code above is io")
 
-// emitters - "I have this thing and emitting it (sending something to somewhere)"
-
-//  on(onChange/onClick => on specific event and then trigger something) - trigger - for listening for a particular even
-
-// At this point, the server start connection by using the built-in key word 'connection' and pass back a call back function
 io.on("connection", (socket) => {
     console.log("socket.io connected client:", socket.id);
 
