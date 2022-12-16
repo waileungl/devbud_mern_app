@@ -3,13 +3,10 @@ const cors = require('cors');
 //mongoDB
 const DB = 'devBud';
 
-
-const { Socket } = require("socket.io");
-
 const app = express()
 const port = 8000
 
-app.use(cors());
+app.use(cors({origin: '*'}));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
@@ -23,7 +20,7 @@ require('./routes/dev.routes')(app);
 const server = app.listen(port, () => console.log(`>>>>listening on port ${port}<<<<`))
 
 // To use socket we have to pass in our server as a param
-const io = require("socket.io")(server, {cors: true})
+const io = require("socket.io")(server, { cors: true })
 
 console.log(">>>>>>>>>>IO IS SET UP", io, "--------------------the code above is io")
 // different types of socket calls
@@ -40,7 +37,7 @@ io.on("connection", (socket) => {
     // listen for the messege from the client
     socket.on("result sending to socket", (dataFromClient) => {
         console.log(`receiving result from user! ouput : ${dataFromClient}`);
-        
+
         // send it over to whoever connected
         io.emit("result sending back from socket", dataFromClient)
         console.log(`trying to emit the result to all other user! ouput: ${dataFromClient}`);
