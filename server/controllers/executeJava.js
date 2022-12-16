@@ -17,7 +17,7 @@ const executeJava = (filepath, language) => {
     // to extract out the file name shown below
     // D:\coding dojo\MERN Group Project\collaborative-leetcode-clone\server\compiler\87f31f59-06ee-44ea-9bb1-9e476f783ca7.java
     // const jobId = path.basename(filepath).split(".")[0]
-    console.log("try to execute the code ");
+    console.log("try to execute the code on", filepath);
     return new Promise((resolve, reject) => {
         if(language === "js") language = "node"
         exec(`${language} ${filepath}`, (error, stdout, stderr) => {

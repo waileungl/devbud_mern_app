@@ -17,7 +17,7 @@ const generateFile = async (format, code) => {
     const filename = `${jobId}.${format}`
     const filepath = path.join(dirCompiler, filename);
     await fs.writeFileSync(filepath, code);
-    console.log("the compiler file is generated")
+    console.log("the compiler file is generated on", filepath, "code is :", code)
     return filepath;
 }
 

@@ -407,7 +407,7 @@ header {
 } */
 
 .btn-camera {
-    background-image: url('../videoStream_components/toggleVideoIcon/fullscreen-white.png');
+    background-image: url('../videoChat/toggleVideoIcon/fullscreen-white.png');
 }
 
 .name-tag {

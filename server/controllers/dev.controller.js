@@ -71,8 +71,8 @@ const errorHandler = (error) => {
 // COMPILE (CREATE)
 module.exports.compileDev = async (req, res) => {
   const language = req.body.language;
-  const code = req.body.code;
-  console.log('Reciving post request from client')
+  const code = req.body.codeToServer;
+  console.log(`Reciving post request from client, language: ${language}, code: ${code}`)
   // prevent empty code send by user
   if (code === undefined) {
       console.log("The code from client is empty");
@@ -99,4 +99,3 @@ module.exports.compileDev = async (req, res) => {
       res.json({ error });
   }
 };
-
