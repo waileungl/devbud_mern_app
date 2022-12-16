@@ -28,7 +28,11 @@ require('./routes/dev.routes')(app);
 const server = app.listen(port, () => console.log(`>>>>listening on port ${port}<<<<`))
 
 // To use socket we have to pass in our server as a param
-const io = require("socket.io")(server, { cors: true })
+const io = require("socket.io")(server, {
+    cors: {
+        origin: '*',
+    }
+})
 
 console.log(">>>>>>>>>>IO IS SET UP", io, "--------------------the code above is io")
 // different types of socket calls
