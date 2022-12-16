@@ -12,7 +12,7 @@ app.use(express.json());
 
 // Set the Referrer-Policy header in all HTTP responses
 app.use((req, res, next) => {
-    res.setHeader('Referrer-Policy', 'no-referrer');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     next();
 });
 
