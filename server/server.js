@@ -6,9 +6,15 @@ const DB = 'devBud';
 const app = express()
 const port = 8000
 
-app.use(cors({origin: '*'}));
+app.use(cors({ origin: '*' }));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+
+// Set the Referrer-Policy header in all HTTP responses
+app.use((req, res, next) => {
+    res.setHeader('Referrer-Policy', 'no-referrer');
+    next();
+});
 
 // --- CONNECT TO DB USING MONGOOSE ---
 require('./config/mongoose.config')(DB);
