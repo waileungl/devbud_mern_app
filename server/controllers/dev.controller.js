@@ -6,7 +6,6 @@ module.exports.findAllDevs = (req, res) => {
   Dev.find()
     .then((allDevs) => {
       // IMPORTANT what we return here is what we will receive in REACT!
-      //   res.json({ ninjas: allDevs, status: 'ok' }); // Same as below, the one below is ES7 format
       res.json(allDevs); // returns an []
     })
     .catch((err) =>

@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+// import axios from 'axios';
 import DevCard from './DevCard';
-import DevModal from './DevModal';
 
-const DevList = () => {
-  const [devs, setDevs] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:8000/api/devs')
-      .then((res) => {
-        setDevs(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
+const DevList = ({ devs }) => {
   return (
     <div>
       <div className='w-full py-12 px-4'>

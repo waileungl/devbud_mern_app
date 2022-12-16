@@ -25,9 +25,11 @@ const DevModal = ({ handleClose, oneDev }) => {
         </h2>
 
         <div className='px-10 align-middle'>
-          <div className='grid grid-cols-3 text-lg mb-4'>
+          <div className='grid grid-cols-3 text-lg mb-4 h-1/3'>
             <p className='font-semibold'>Description</p>
-            <p className='col-span-2'>{oneDev.bio}</p>
+            <p className='h-full col-span-2 break-words overflow-auto'>
+              {oneDev.bio}
+            </p>
           </div>
 
           <div className='grid grid-cols-3 text-lg mb-4'>
@@ -42,7 +44,7 @@ const DevModal = ({ handleClose, oneDev }) => {
 
           <div className='grid grid-cols-3 text-lg mb-4'>
             <p className='font-semibold'>Experience</p>
-            <p className='col-span-2'>{oneDev.yearsOfExp + ' ' + 'years'}</p>
+            <p className='col-span-2'>{`${oneDev.yearsOfExp} years`}</p>
           </div>
 
           <div className='grid grid-cols-3 text-lg mb-4'>
