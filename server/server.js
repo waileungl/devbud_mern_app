@@ -42,9 +42,10 @@ const errorHandler = (error) => {
 app.post('/compile', async (req, res) => {
     const language = req.body.language;
     const code = req.body.code;
-
+    console.log('Reciving post request from client')
     // prevent empty code send by user
     if (code === undefined) {
+        console.log("The code from client is empty");
         return res.status(400).json({
             success: false,
             error: "Your code is empty!"
@@ -52,13 +53,17 @@ app.post('/compile', async (req, res) => {
     }
     try {
         // generate the specific language compiler file
+        console.log("entering the generate file function...");
         var filepath = await generateFile(language, code);
+        console.log("the compiler file generation is completed! Next is to execute the code");
         // execute the compile file from the filepath
         const output = await executeJava(filepath, language);
+        console.log("the compiler file is executed! Next is to delete the compiler file");
         await deleteFile(filepath);
 
         return res.json({ output })
     } catch (err) {
+        console.log("OOP! There is error, Your compiler file is not even generated")
         await deleteFile(filepath);
         const error = errorHandler(await err)
         res.json({ error });
@@ -70,6 +75,7 @@ const server = app.listen(port, () => console.log(`>>>>listening on port ${port}
 // To use socket we have to pass in our server as a param
 const io = require("socket.io")(server, {cors: true})
 
+console.log(">>>>>>>>>>IO IS SET UP", io, "--------------------the code above is io")
 // different types of socket calls
 
 // emitters - "I have this thing and emitting it (sending something to somewhere)"
@@ -83,19 +89,20 @@ io.on("connection", (socket) => {
 
     // 1) socket for code editor /
     // listen for the messege from the client
-    socket.on("user typing code", (dataFromClient) => {
-        console.log(dataFromClient);
+    // socket.on("user typing code", (dataFromClient) => {
+    //     console.log(dataFromClient);
 
-        // send it over to whoever connected
-        io.emit("code sending back", dataFromClient)
-    })
+    //     // send it over to whoever connected
+    //     io.emit("code sending back", dataFromClient)
+    // })
 
     // 2) socket for complied code result
     // listen for the messege from the client
     socket.on("result sending to socket", (dataFromClient) => {
-        console.log(dataFromClient);
-
+        console.log(`receiving result from user! ouput : ${dataFromClient}`);
+        
         // send it over to whoever connected
         io.emit("result sending back from socket", dataFromClient)
+        console.log(`trying to emit the result to all other user! ouput: ${dataFromClient}`);
     })
 })
