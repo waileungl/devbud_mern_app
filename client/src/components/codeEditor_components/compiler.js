@@ -13,7 +13,7 @@ const Compiler = props => {
     const [result, setResult] = useState("#Your output will show up here")
     // use socket from io, in default return an anonymous function that calls io and passes in our server port(8000)
     const [socket] = useState(() => io('http://172.31.17.232:8000'))
-
+    //
     useEffect(() => {
         socket.on('connect', () => {
             console.log('Connected to server');
