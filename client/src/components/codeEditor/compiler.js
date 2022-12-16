@@ -5,7 +5,7 @@ import axios from "axios";
 
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
-const Compiler = ({ code, setCode, codeChannel, output, setOutput, outputChannel }) => {
+const Compiler = ({ code, codeChannel, output, setOutput, outputChannel }) => {
     const [codeToServer, setCodeToServer] = useState("")
     const [language, setLanguage] = useState("js")
 

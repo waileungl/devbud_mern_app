@@ -15,7 +15,7 @@ const Video = props => {
         <>
             <div className='video-call-wrapper'>
                 {users.map((user) => (
-                    <VideoPlayer key={user.uid} user={user} idx={user.uid} users={users} trackState={trackState} rtmClient={rtmClient}/>
+                    <VideoPlayer key={user.uid} user={user} idx={user.uid} users={users} rtmClient={rtmClient}/>
                 ))}
             </div>
 

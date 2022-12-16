@@ -2,12 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import '../mainStyles/mainRoom.css'
 
 
-const VideoPlayer = props => {
+const VideoPlayer = ({ user, users, rtmClient }) => {
     const[userNameOnDiv, setUserNameOnDiv] = useState('')
-    const { user, users, trackState, rtmClient } = props
     const ref = useRef();
 
-    
     useEffect(() => {
         const getDisplayName = async(id) => {
             const displayNameByID = await rtmClient.getUserAttributesByKeys(id, ['name'])
