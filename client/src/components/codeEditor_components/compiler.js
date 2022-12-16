@@ -32,7 +32,7 @@ const Compiler = props => {
         console.log("trying to send testcode to backend", language);
         try {
             axios
-                .post('http://localhost:8000/compile', { code, language })
+                .post('http://localhost:8000/api/compile', { code, language })
                 .then((res) => {
                     if (res.data.error) {
                         resultSocketHandler(res.data.error)
