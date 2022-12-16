@@ -4,7 +4,7 @@ const cors = require('cors');
 const DB = 'devBud';
 
 const app = express()
-const port = 8000
+const port = 80
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }))

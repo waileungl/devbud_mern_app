@@ -12,7 +12,7 @@ const Compiler = props => {
     const [language, setLanguage] = useState("py")
     const [result, setResult] = useState("#Your output will show up here")
     // use socket from io, in default return an anonymous function that calls io and passes in our server port(8000)
-    const [socket] = useState(() => io(':8000'))
+    const [socket] = useState(() => io(':80'))
     //
     useEffect(() => {
         socket.on('connect', () => {
