@@ -5,10 +5,12 @@ const Features = () => {
   return (
     <div name='features' className='w-full py-24 mt-32'>
       <div className='max-w-[1240px] mx-auto px-2'>
-        <h2 className='text-5xl font-bold text-center'>All-In-One Platform</h2>
-        <p className='text-2xl py-8 text-gray-600 text-center'>
+        <h2 className='text-4xl md:text-5xl font-bold text-center'>
+          All-In-One Platform
+        </h2>
+        <p className='text-lg md:text-2xl py-8 text-gray-600 text-center'>
           DEVBUD. is an All-In-One platform that allows instructors and students
-          to maximize thier learnign effort and use their time more efficiently.
+          to maximize thier learning effort and use their time more efficiently.
           Below is a list of all the features that users have access to.
         </p>
 
