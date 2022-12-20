@@ -87,7 +87,7 @@ const LandingPage = props => {
                             </div>
 
                             <div className="heading">
-                                <h2>Create a Dev room</h2>
+                                <h3>Create a Dev room</h3>
                                 <h6>Have an invitation link?</h6>
                                 <div className="toggle" onClick={switchMode}>Join room</div>
                             </div>
@@ -146,7 +146,7 @@ const LandingPage = props => {
                             </div>
 
                             <div className="heading">
-                                <h2>Join a room</h2>
+                                <h3>Join a room</h3>
                                 <h6>No invitation link?</h6>
                                 <div className="toggle" onClick={switchMode}>Create Room</div>
                             </div>

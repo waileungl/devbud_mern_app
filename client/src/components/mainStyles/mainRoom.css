@@ -97,6 +97,54 @@ body.dark {
     /* Hide the buttons */
 }
 
+/*==================== Mode switch ====================*/
+.mode-switch {
+    z-index: 1;
+    position: absolute;
+    top: 20px;
+    left: 36px;
+    background-color: var(--chat-background);
+    border: none;
+    color: #ddd;
+    outline: none;
+    cursor: pointer;
+    box-shadow: var(--navigation-box-shadow);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    transform-origin: center;
+}
+
+.mode-switch svg {
+    width: 0;
+    height: 24px;
+    transition: all 0.3s ease-in;
+    transform-origin: center;
+}
+
+.mode-switch .moon {
+    opacity: 0;
+}
+
+.mode-switch .sun {
+    width: 24px;
+}
+
+.dark .moon {
+    opacity: 1;
+    width: 24px;
+}
+
+.dark .sun {
+    opacity: 0;
+    width: 0;
+}
+
+
+
 /*==================== Navigation ====================*/
 .left-side {
     position: relative;
@@ -175,20 +223,20 @@ body.dark {
     align-items: center;
 }
 
-.main-header-left{
+.main-header-left {
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
-.main-header-left h3{
+.main-header-left h3 {
     padding: 5px 25px 5px 25px;
     background-color: #a2a4bc5e;
     border-radius: 8px;
     font-weight: 400;
 }
 
-.current-time{
+.current-time {
     padding: 10px;
     color: var(--main-color);
 }
@@ -250,15 +298,16 @@ header {
     background-size: 20px;
     font-size: 14px;
 }
+
 .invite-button:hover {
     color: white;
 }
 
-.invitation-link-wrapper{
+.invitation-link-wrapper {
     display: flex;
 }
 
-#copy-btn{
+#copy-btn {
     margin-left: 5px;
     background-image: url('./header_icon/copy.png');
     background-color: var(--main-color);
@@ -272,7 +321,7 @@ header {
     font-size: 12px;
 }
 
-#copy-btn:active{
+#copy-btn:active {
     background-image: url('./header_icon/copy-clicked.png');
     position: relative;
     left: 1px;
@@ -310,14 +359,14 @@ header {
 }
 
 /* ======================Code editor Component=============================== */
-/* .compiler-container{
+.compiler-container{
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-} */
+}
 
 
 .code-editor {
@@ -513,7 +562,7 @@ header {
     flex: 1;
     overflow-y: auto;
     padding: 16px;
-    
+
 }
 
 .message-wrapper {

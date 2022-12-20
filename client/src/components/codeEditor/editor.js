@@ -17,7 +17,7 @@ const MainEditor = ({ language, codeChannel, code, setCodeToServer }) => {
 
     return (
         <>
-            <div style={{ overflow: 'auto', height: '500px' }}>
+            <div style={{ overflow: 'auto', height: '500px', width:"100%" }}>
                 <CodeEditor
                     value={code.text}
                     language={language}
@@ -27,7 +27,7 @@ const MainEditor = ({ language, codeChannel, code, setCodeToServer }) => {
                     // className='code-editor'
                     style={{
                         fontSize: '0.8rem',
-                        width: '1300px',
+                        width: '100%',
                         borderRadius: '20px',
                         backgroundColor: '#f5f5f5',
                         height: 'auto',
