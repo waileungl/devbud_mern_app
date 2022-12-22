@@ -1,10 +1,8 @@
 
 import '../mainStyles/mainRoom.css'
-import React, { useState, useEffect } from 'react';
-// all the icon needed
-import enterFullScreen from './toggleVideoIcon/fullscreen.png'
-import exitFullScreen from './toggleVideoIcon/exitFullscreen.png'
+import React from 'react';
 
+// react-icons
 import { CgScreen } from 'react-icons/cg';
 import { FiCameraOff } from 'react-icons/fi';
 import { FiCamera } from 'react-icons/fi';
@@ -22,12 +20,24 @@ export default function VideoControl(props) {
 
     const mute = async (mediaType) => {
         if (mediaType === "audio") {
+            const clickMic = document.querySelector(".microphone-btn");
+            if(!trackState.audio){
+                clickMic.classList.add('btn-selected')
+            }else{
+                clickMic.classList.remove('btn-selected')
+            }
             await tracks[0].setEnabled(!trackState.audio);
             setTrackState(ps => {
                 return { ...ps, audio: !ps.audio };
             });
         }
         if (mediaType === "video") {
+            const clickCam = document.querySelector(".camera-btn");
+            if(!trackState.video){
+                clickCam.classList.add('btn-selected')
+            }else{
+                clickCam.classList.remove('btn-selected')
+            }
             await tracks[1].setEnabled(!trackState.video);
             setTrackState(ps => {
                 return { ...ps, video: !ps.video };
@@ -57,7 +67,7 @@ export default function VideoControl(props) {
     const toggleScreenShare = async () => {
         if (screenShareState) {
             const shareScreenBtn = document.querySelector("#share-screen")
-            shareScreenBtn.classList.remove("screen-sharing");
+            shareScreenBtn.classList.remove("btn-selected");
             if (trackState.video === false) {
                 await tracks[1].setEnabled(!trackState.video);
                 setTrackState(ps => {
@@ -74,7 +84,7 @@ export default function VideoControl(props) {
                 });
             }
             const shareScreenBtn = document.querySelector("#share-screen")
-            shareScreenBtn.classList.add("screen-sharing");
+            shareScreenBtn.classList.add("btn-selected");
             shareScreenHandler()
         }
     }

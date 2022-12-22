@@ -236,9 +236,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
         leaveChannel();
     }
 
-    // variable for navigation bar icons
-    const backgroundColorForVideoChat = displayVideo ? '#3c3f56' : 'white';
-    const backgroundColorForCodeEditor = !displayVideo ? '#3c3f56' : 'white';
+
 
     // switch to dark-mode
     const switchModeHandler = () => {
@@ -256,6 +254,30 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
         console.log("expand");
         rightSide.classList.add('show');
         expandBtn.classList.remove('show');
+    }
+
+    const clickDisplayVideo = () => {
+        setDisplayVideo(true);
+        const navVid = document.querySelector('#nav-vid')
+        const navCode = document.querySelector('#nav-code')
+        const navTopVid = document.querySelector('#nav-top-vid')
+        const navTopCode = document.querySelector('#nav-top-code')
+        navVid.classList.add('nav-selected')
+        navCode.classList.remove('nav-selected')
+        navTopVid.classList.add('nav-selected')
+        navTopCode.classList.remove('nav-selected')
+    }
+
+    const clickCodeEditor = () => {
+        setDisplayVideo(false)
+        const navVid = document.querySelector('#nav-vid')
+        const navCode = document.querySelector('#nav-code')
+        const navTopVid = document.querySelector('#nav-top-vid')
+        const navTopCode = document.querySelector('#nav-top-code')
+        navCode.classList.add('nav-selected')
+        navVid.classList.remove('nav-selected')
+        navTopCode.classList.add('nav-selected')
+        navTopVid.classList.remove('nav-selected')
     }
 
     return (
@@ -299,14 +321,10 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                     {/* >>>>>>>>Vertical side bar<<<<<<<< */}
                     <div className="left-side">
                         <div className="navigation">
-                            <div className="room-nav-link icon" title="Video chat" style={{ backgroundColor: backgroundColorForVideoChat }} onClick={() => {
-                                setDisplayVideo(true);
-                            }}>
+                            <div className="room-nav-link icon nav-selected" title="Video chat" id='nav-vid' onClick={() => clickDisplayVideo()}>
                                 <img src={videoChatIcon} alt='videoChat' />
                             </div>
-                            <div className="room-nav-link icon" title="Code editor" style={{ backgroundColor: backgroundColorForCodeEditor }} onClick={() => {
-                                setDisplayVideo(false)
-                            }} >
+                            <div className="room-nav-link icon" title="Code editor" id='nav-code' onClick={() => clickCodeEditor()} >
                                 <img src={codeIcon} alt='codeIcon' />
                             </div>
                         </div>
@@ -348,14 +366,10 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                         </button>
 
                         <div className="navigation">
-                            <div className="room-top-nav-link" title="Video chat" style={{ backgroundColor: backgroundColorForVideoChat }} onClick={() => {
-                                setDisplayVideo(true)
-                            }}>
+                            <div className="room-top-nav-link" title="Video chat" id='nav-top-vid' onClick={() => clickDisplayVideo()}>
                                 <img src={videoChatIcon} alt='videoChat' />
                             </div>
-                            <div className="room-top-nav-link" title="Code editor" style={{ backgroundColor: backgroundColorForCodeEditor }} onClick={() => {
-                                setDisplayVideo(false)
-                            }} >
+                            <div className="room-top-nav-link" title="Code editor" id='nav-top-code' onClick={() => clickCodeEditor()} >
                                 <img src={codeIcon} alt='codeIcon' />
                             </div>
                         </div>
