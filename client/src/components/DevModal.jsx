@@ -13,7 +13,7 @@ const DevModal = ({ handleClose, oneDev }) => {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className='w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
+        className='w- md:w-3/4 lg:w-[40%] shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
       >
         <img
           className='w-40 mx-auto mt-[-3rem] rounded-xl object-cover'
