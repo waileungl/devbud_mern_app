@@ -29,10 +29,12 @@ body {
         0 24px 20px -24px rgba(71, 82, 107, 0.1); */
     --main-color: #3c3f56;
     --message-bg: #f3f4f9;
+    --header-bottom-bg: #dfdfdf;
     --message-bg-2: #3c3f56;
     --message-text: #2c303a;
     --placeholder-text: #a2a4bc;
     --button-bg: #fff;
+    --button-selected:#3c3f56;
     --sidebar-on-hover: #3c3f56;
     --code-editor-box-backgroud-color: #f3f4f9;
     --code-editor-box-font-color: rgb(47, 47, 47);
@@ -44,12 +46,14 @@ body.dark {
     --navigation-box-shadow: 0px 0px 8px 0px #282b33;
     --chat-background: #3c3f56;
     --message-bg: #2c3046;
+    --header-bottom-bg: #32364e;
     --message-text: rgba(255, 255, 255, 0.8);
     --placeholder-text: #fff;
     --navigation-bg: #3c3f56;
     --button-bg: #3c3f56;
     --main-color: #6f74ffca;
     --message-bg-2: #6f74ffca;
+    --button-selected:#6f74ffca;
     --code-editor-box-backgroud-color: #3c3f56;
     --code-editor-box-font-color: #fff;
     /* color: rgba(255, 255, 255, 0.8); */
@@ -201,9 +205,9 @@ body.dark {
     transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
 }
 
-/* .nav-selected{
+.nav-selected{
     background-color: var(--main-color) !important;
-} */
+}
 
 /*==================== Main App: video && code editor ====================*/
 .app-main {
@@ -222,7 +226,7 @@ body.dark {
     /* font-size: 1.1rem; */
     letter-spacing: -0.5px;
     color: #151111;
-    border-bottom: 1px solid #c0c1c575;
+    border-bottom: 1px solid var(--header-bottom-bg);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -468,6 +472,7 @@ header {
     padding: 2px 10px 2px 10px;
     border-radius: 8px;
     box-shadow: var(--btn-shadow);
+    color: var(--message-text);
 }
 
 /* ======================Video Component=============================== */
@@ -608,11 +613,6 @@ header {
     font-weight: lighter;
 }
 
-
-.screen-sharing{
-    background-color: red;
-}
-
 .video-action-button.endcall {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff1932' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-phone-missed'%3E%3Cline x1='23' y1='1' x2='17' y2='7'/%3E%3Cline x1='17' y1='1' x2='23' y2='7'/%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
     color: #ff1932;
@@ -624,8 +624,17 @@ header {
     background-position: center left 12px;
 }
 
+
 .video-action-button:hover {
-    background-color: #3c3f5613;
+    background-color: var(--button-selected);
+    color: #fff;
+    transition: 0.4s
+}
+
+.btn-selected{
+    background-color: var(--button-selected);
+    color: #fff;
+    transition: 0.4s
 }
 
 
@@ -671,6 +680,10 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 9.5%;
+}
+
+.chat-header>p{
+    color: var(--message-text);
 }
 
 body.dark .chat-header {
