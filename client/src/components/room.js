@@ -45,6 +45,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
     const [outputRoom, setOutputRoom] = useState({})
     const [count, setCount] = useState('')
     const [displayVideo, setDisplayVideo] = useState(true)
+    const [trackState, setTrackState] = useState({ video: true, audio: true });
     const navigate = useNavigate();
 
     // RTC hook
@@ -366,7 +367,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                         </button>
 
                         <div className="navigation">
-                            <div className="room-top-nav-link" title="Video chat" id='nav-top-vid' onClick={() => clickDisplayVideo()}>
+                            <div className="room-top-nav-link nav-selected" title="Video chat" id='nav-top-vid' onClick={() => clickDisplayVideo()}>
                                 <img src={videoChatIcon} alt='videoChat' />
                             </div>
                             <div className="room-top-nav-link" title="Code editor" id='nav-top-code' onClick={() => clickCodeEditor()} >
@@ -397,7 +398,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                     {/* >>>>>>>>Video Chat & Code editor<<<<<<<< */}
                     <div className="app-main">
                         <MainHeader roomNameTitle={roomNameTitle} ROOMID={ROOMID} />
-                        {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} />}
+                        {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} trackState={trackState} setTrackState={setTrackState}/>}
 
                         {!displayVideo && <Compiler codeChannel={codeRoom} code={code} setCode={setCode} output={output} setOutput={setOutput} outputChannel={outputRoom} />}
                     </div>

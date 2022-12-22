@@ -10,8 +10,8 @@ const NotFound = () => {
                 <Typed
                     className='md:text-5xl sm:text-4xl text-lg font-bold text-gray-400 md:pl-4 pl-2'
                     strings={['404 Not Found']}
-                    typeSpeed={100}
-                    backSpeed={100}
+                    typeSpeed={70}
+                    backSpeed={70}
                     loop
                 />
                 <Link to='/'>

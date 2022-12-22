@@ -10,8 +10,7 @@ import AgoraRTC from 'agora-rtc-sdk-ng';
 var localScreenTrack;
 
 const Video = props => {
-    const { setJoined, rtcClient, localTracks, users, videoDiv, leaveRTMchannel, rtmClient } = props
-    const [trackState, setTrackState] = useState({ video: true, audio: true });
+    const { setJoined, rtcClient, localTracks, users, videoDiv, leaveRTMchannel, rtmClient, trackState, setTrackState } = props
     const [screenShareState, setScreenShareState] = useState(false)
 
     const shareScreenHandler = async () => {

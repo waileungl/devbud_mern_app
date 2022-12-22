@@ -1,6 +1,6 @@
 
 import '../mainStyles/mainRoom.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // react-icons
 import { CgScreen } from 'react-icons/cg';
@@ -8,7 +8,7 @@ import { FiCameraOff } from 'react-icons/fi';
 import { FiCamera } from 'react-icons/fi';
 import { BiMicrophoneOff } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
-import { RiFullscreenFill } from 'react-icons/ri';
+import { RiFullscreenFill, RiLayoutRightLine } from 'react-icons/ri';
 import { RiFullscreenExitLine } from 'react-icons/ri';
 
 
@@ -17,6 +17,22 @@ import { useNavigate } from "react-router-dom";
 export default function VideoControl(props) {
     const { rtcClient, tracks, setJoined, videoDiv, trackState, setTrackState, leaveRTMchannel, shareScreenHandler, closeShareScreenHandler, screenShareState } = props;
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const clickMic = document.querySelector(".microphone-btn");
+        if(!trackState.audio){
+            clickMic.classList.remove('btn-selected')
+        }else{
+            clickMic.classList.add('btn-selected')
+        }
+
+        const clickCam = document.querySelector(".camera-btn");
+        if(!trackState.video){
+            clickCam.classList.remove('btn-selected')
+        }else{
+            clickCam.classList.add('btn-selected')
+        }
+    }, [])
 
     const mute = async (mediaType) => {
         if (mediaType === "audio") {
@@ -66,9 +82,11 @@ export default function VideoControl(props) {
 
     const toggleScreenShare = async () => {
         if (screenShareState) {
-            const shareScreenBtn = document.querySelector("#share-screen")
+            const shareScreenBtn = document.querySelector("#share-screen") 
             shareScreenBtn.classList.remove("btn-selected");
             if (trackState.video === false) {
+                const clickCam = document.querySelector(".camera-btn");
+                clickCam.classList.add('btn-selected')
                 await tracks[1].setEnabled(!trackState.video);
                 setTrackState(ps => {
                     return { ...ps, video: !ps.video };
@@ -77,14 +95,17 @@ export default function VideoControl(props) {
             closeShareScreenHandler();
         }
         if (!screenShareState) {
+            const shareScreenBtn = document.querySelector("#share-screen")
+            shareScreenBtn.classList.add("btn-selected");
             if (trackState.video === false) {
+                const clickCam = document.querySelector(".camera-btn");
+                clickCam.classList.add('btn-selected')
                 await tracks[1].setEnabled(!trackState.video);
                 setTrackState(ps => {
                     return { ...ps, video: !ps.video };
                 });
             }
-            const shareScreenBtn = document.querySelector("#share-screen")
-            shareScreenBtn.classList.add("btn-selected");
+
             shareScreenHandler()
         }
     }
