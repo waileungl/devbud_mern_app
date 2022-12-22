@@ -12,10 +12,13 @@ const AboutUs = () => {
   return (
     <div name='about' className='w-full py-[9rem] px-4'>
       <div className='max-w-[1240px] mx-auto px-2'>
-        <h2 className='text-5xl font-bold text-center'>Meet the Team</h2>
-        <p className='text-2xl py-8 text-gray-600 text-center'>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
-          aspernatur odio assumenda vitae veritatis consequuntur?
+        <h2 className='text-4xl md:text-5xl font-bold text-center'>
+          Meet the Team
+        </h2>
+        <p className='text-lg md:text-2xl py-8 text-gray-600 text-center'>
+          We are a team of self-taught developers. Our goal with DEVBUD. is to
+          create a space where aspiring and beginner developers can network and
+          work with experienced developers to imporve their coding skills.
         </p>
         {/* <div className='grid md:grid-cols-2 gap-8 mt-10'> */}
         <div className='flex flex-col md:flex-row justify-center gap-12 mt-10'>

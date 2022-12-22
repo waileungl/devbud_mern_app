@@ -15,39 +15,44 @@ const Navbar2 = () => {
       <Link className='text-3xl font-bold mr-4 sm:text-4xl' to='/'>
         DEVBUD.
       </Link>
-      <ul className='hidden md:flex'>
-        {/* LINK W/ SMOOTH SCROLL  */}
-        <LinkScroll
-          to='steps'
-          smooth={true}
-          offset={-100}
-          duration={500}
-          className='p-4 hover:scale-105 nav-link'
-        >
-          How It Works
-        </LinkScroll>
-        <LinkScroll
-          to='features'
-          smooth={true}
-          offset={0}
-          duration={500}
-          className='p-4 hover:scale-105 nav-link'
-        >
-          Features
-        </LinkScroll>
-        <LinkScroll
-          to='about'
-          smooth={true}
-          offset={0}
-          duration={500}
-          className='p-4 hover:scale-105 nav-link'
-        >
-          About Us
-        </LinkScroll>
+      <div className='flex items-center'>
+        <ul className='hidden mr-4 md:flex'>
+          {/* LINK W/ SMOOTH SCROLL  */}
+          <LinkScroll
+            to='steps'
+            smooth={true}
+            offset={-100}
+            duration={500}
+            className='p-4 hover:scale-105 nav-link'
+          >
+            How It Works
+          </LinkScroll>
+          <LinkScroll
+            to='features'
+            smooth={true}
+            offset={0}
+            duration={500}
+            className='p-4 hover:scale-105 nav-link'
+          >
+            Features
+          </LinkScroll>
+          <LinkScroll
+            to='about'
+            smooth={true}
+            offset={0}
+            duration={500}
+            className='p-4 hover:scale-105 nav-link'
+          >
+            About Us
+          </LinkScroll>
+        </ul>
         <Link to='/room'>
-          <li className='p-4 hover:scale-105 nav-link'>Create Room</li>
+          {/* <li className='p-4 hover:scale-105 nav-link'>Create Room</li> */}
+          <button className='hidden md:flex rounded-md px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
+            Code Space
+          </button>
         </Link>
-      </ul>
+      </div>
 
       <div onClick={handleNav} className='block md:hidden'>
         {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
@@ -81,7 +86,7 @@ const Navbar2 = () => {
             </li>
           </LinkScroll>
           <Link to='/room'>
-            <li className='p-4 border-b nav-link'>Create Room</li>
+            <li className='p-4 border-b nav-link'>Code Space</li>
           </Link>
         </ul>
       </div>

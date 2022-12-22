@@ -13,7 +13,7 @@ const DevModal = ({ handleClose, oneDev }) => {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className='w-full md:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
+        className='w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
       >
         <img
           className='w-40 mx-auto mt-[-3rem] rounded-xl object-cover'
@@ -26,15 +26,15 @@ const DevModal = ({ handleClose, oneDev }) => {
 
         <div className='px-10 align-middle'>
           <div className='grid grid-cols-3 text-lg mb-4 h-1/3'>
-            <p className='font-semibold'>Description</p>
-            <p className='h-full col-span-2 break-words overflow-auto'>
+            <p className='text-sm md:text-lg font-semibold'>Description</p>
+            <p className='text-sm md:text-lg h-full col-span-2 break-words overflow-auto'>
               {oneDev.bio}
             </p>
           </div>
 
           <div className='grid grid-cols-3 text-lg mb-4'>
-            <p className='font-semibold'>Languages</p>
-            <p className='col-span-2'>
+            <p className='text-sm md:text-lg font-semibold'>Languages</p>
+            <p className='text-sm md:text-lg col-span-2'>
               {' '}
               {oneDev.javaScript ? 'JavaScript |' : ''}{' '}
               {oneDev.python ? 'Python |' : ''} {oneDev.java ? 'Java |' : ''}{' '}
@@ -43,13 +43,13 @@ const DevModal = ({ handleClose, oneDev }) => {
           </div>
 
           <div className='grid grid-cols-3 text-lg mb-4'>
-            <p className='font-semibold'>Experience</p>
-            <p className='col-span-2'>{`${oneDev.yearsOfExp} years`}</p>
+            <p className='text-sm md:text-lg font-semibold'>Experience</p>
+            <p className='text-sm md:text-lg col-span-2'>{`${oneDev.yearsOfExp} years`}</p>
           </div>
 
           <div className='grid grid-cols-3 text-lg mb-4'>
-            <p className='font-semibold'>Education</p>
-            <p className='col-span-2'>
+            <p className='text-sm md:text-lg font-semibold'>Education</p>
+            <p className='text-sm md:text-lg col-span-2'>
               {oneDev.education ? oneDev.education : 'N/A'}
             </p>
           </div>

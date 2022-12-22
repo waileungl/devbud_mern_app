@@ -12,7 +12,7 @@ const DevCard = (props) => {
       <div className=' md:w-[700px] w-[80%] bg-white mx-auto my-6 p-10 rounded-xl shadow-xl relative md:pl-60 pt-52 md:pt-10 mt-14 md:mt-6 hover:scale-105 ease-out duration-500 '>
         <div className='absolute md:-left-8 left-0 md:h-full md:top-0 -top-8 md:w-[250px] flex items-center justify-center w-full'>
           <img
-            className='rounded-xl shadow-lg w-[90%] h-52 object-cover max-h-[85%]'
+            className='w-[70%] rounded-xl shadow-lg md:w-[90%] h-52 object-cover max-h-[85%]'
             src={oneDev.profilePic === '' ? defaultPic : oneDev.profilePic}
             alt='profile-pic'
             //   src={oneDev.profilePic}

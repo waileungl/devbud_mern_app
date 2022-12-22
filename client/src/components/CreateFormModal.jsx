@@ -54,7 +54,7 @@ const CreateFormModal = ({ handleClose, open, loaded, setLoaded }) => {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className='w-full md:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
+        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
       >
         <form>
           <h2 className='text-3xl font-bold text-center py-4 mt-4'>
@@ -98,7 +98,9 @@ const CreateFormModal = ({ handleClose, open, loaded, setLoaded }) => {
               />
             </div>
             <div className='w-1/2'>
-              <label for='yearsOfExp'>Years of Experience</label>
+              <label for='yearsOfExp' className='text-sm md:text-base'>
+                Years of Experience
+              </label>
               <input
                 className='border border-grey-400 block py-2 px-4 w-full rounded'
                 type='number'
