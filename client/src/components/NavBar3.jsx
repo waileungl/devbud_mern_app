@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CreateFormModal from './CreateFormModal';
 
-export const NavBar3 = ({ loaded, setLoaded }) => {
-  const [openModal, setOpenModal] = useState(false);
+export const NavBar3 = ({ loaded, setLoaded, openModal, setOpenModal }) => {
   // const [nav, setNav] = useState(true);
 
   // const handleNav = () => {
@@ -28,12 +26,12 @@ export const NavBar3 = ({ loaded, setLoaded }) => {
         </ul>
       </div>
 
-      <CreateFormModal
+      {/* <CreateFormModal
         loaded={loaded}
         setLoaded={setLoaded}
         open={openModal}
         handleClose={() => setOpenModal(false)}
-      />
+      /> */}
     </>
   );
 };
