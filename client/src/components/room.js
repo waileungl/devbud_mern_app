@@ -32,6 +32,9 @@ var nameByID;
 var roomNameTitle;
 var memberCount;
 
+var rightSide;
+var expandBtn;
+
 const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationLink, setUserName }) => {
     const { ROOMID } = useParams();
     const [code, setCode] = useState(" ")
@@ -210,6 +213,8 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                 ]);
                 rtcClient.publish(tracks);
             });
+        rightSide = document.querySelector('.right-side');
+        expandBtn = document.querySelector('.expand-btn');
     }, []);
 
 
@@ -223,7 +228,6 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
         setRoomName("")
         setUserName("")
         setinvitationLink("")
-        navigate('/room')
     }
 
     window.addEventListener('beforeunload', leaveChannel)
@@ -241,6 +245,19 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
         const body = document.querySelector('body');
         body.classList.toggle('dark');
     }
+
+    const closeGroupChat = () => {
+        console.log("close");
+        rightSide.classList.remove('show');
+        expandBtn.classList.add('show');
+    }
+
+    const expandGroupChat = () => {
+        console.log("expand");
+        rightSide.classList.add('show');
+        expandBtn.classList.remove('show');
+    }
+
     return (
         <>
             <FullScreen handle={videoDiv}>
@@ -283,7 +300,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                     <div className="left-side">
                         <div className="navigation">
                             <div className="room-nav-link icon" title="Video chat" style={{ backgroundColor: backgroundColorForVideoChat }} onClick={() => {
-                                setDisplayVideo(true)
+                                setDisplayVideo(true);
                             }}>
                                 <img src={videoChatIcon} alt='videoChat' />
                             </div>
@@ -293,6 +310,74 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                                 <img src={codeIcon} alt='codeIcon' />
                             </div>
                         </div>
+                    </div>
+
+                    {/* >>>>>>>>Phone size Top nav bar<<<<<<<< */}
+                    <div className="top-side">
+                        <button className="mode-switch-top" onClick={() => switchModeHandler()}>
+                            {/* sun */}
+                            <svg
+                                fill="none"
+                                stroke="#fbb046"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="feather feather-sun sun"
+                                viewBox="0 0 24 24"
+                            >
+                                <defs />
+                                <circle cx="12" cy="12" r="5" />
+                                <path
+                                    d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+                                />
+                            </svg>
+
+                            {/* moon */}
+                            <svg
+                                fill="none"
+                                stroke="#ffffff"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="feather feather-moon moon"
+                                viewBox="0 0 24 24"
+                            >
+                                <defs />
+                                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                            </svg>
+                        </button>
+
+                        <div className="navigation">
+                            <div className="room-top-nav-link" title="Video chat" style={{ backgroundColor: backgroundColorForVideoChat }} onClick={() => {
+                                setDisplayVideo(true)
+                            }}>
+                                <img src={videoChatIcon} alt='videoChat' />
+                            </div>
+                            <div className="room-top-nav-link" title="Code editor" style={{ backgroundColor: backgroundColorForCodeEditor }} onClick={() => {
+                                setDisplayVideo(false)
+                            }} >
+                                <img src={codeIcon} alt='codeIcon' />
+                            </div>
+                        </div>
+
+                        <button className="expand-btn" onClick={() => expandGroupChat()}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                class="feather feather-message-circle"
+                            >
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                                />
+                            </svg>
+                        </button>
                     </div>
 
                     {/* >>>>>>>>Video Chat & Code editor<<<<<<<< */}
@@ -305,6 +390,25 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
 
                     {/* >>>>>>>>Chat room<<<<<<<< */}
                     <div className="right-side">
+                        <button className="btn-close-right" onClick={() => closeGroupChat()}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="feather feather-x-circle"
+                                viewBox="0 0 24 24"
+                            >
+                                <defs></defs>
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M15 9l-6 6M9 9l6 6"></path>
+                            </svg>
+                        </button>
+
                         <div className="chat-container">
                             <div className="chat-header">
                                 <p>Group chat</p>
@@ -313,6 +417,26 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                             <Groupchat text={text} setText={setText} userID={userID} userName={userName} messages={messages} setMessages={setMessages} chatChannel={chatChannel} />
                         </div>
                     </div>
+
+                    {/* >>>>>>>>Chat room<<<<<<<< */}
+                    <button className="expand-btn-right" onClick={() => expandGroupChat()}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            class="feather feather-message-circle"
+                        >
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                            />
+                        </svg>
+                    </button>
                 </div>
             </FullScreen>
         </>

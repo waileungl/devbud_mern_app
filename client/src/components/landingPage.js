@@ -81,7 +81,7 @@ const LandingPage = props => {
                         <form action="index.html" autoComplete="off" className="sign-in-form landing-form" onSubmit={createRoom}>
                             <div className="logo">
                                 <Link to='/'>
-                                    <img className="back-home-header-button" src={backHomeArrow} />
+                                    <img className="back-home-header-button" src={backHomeArrow} alt='back' />
                                 </Link>
                                 <h4>Devbud.</h4>
                             </div>
@@ -140,7 +140,7 @@ const LandingPage = props => {
                         <form action="index.html" autoComplete="off" className="sign-up-form landing-form" onSubmit={joinRoom}>
                             <div className="logo">
                                 <Link to='/'>
-                                    <img className="back-home-header-button" src={backHomeArrow} />
+                                    <img className="back-home-header-button" src={backHomeArrow} alt='back'/>
                                 </Link>
                                 <h4>Devbud.</h4>
                             </div>
@@ -178,6 +178,7 @@ const LandingPage = props => {
                                         className="input-field"
                                         autoComplete="off"
                                         required
+                                        minLength="10"
                                         value={invitationLink}
                                         onChange={(e) => setinvitationLink(e.target.value)}
                                         onFocus={() => inputInvitation.current.classList.add('active')}

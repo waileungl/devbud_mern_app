@@ -1,16 +1,24 @@
 
 import '../mainStyles/mainRoom.css'
-
+import React, { useState, useEffect } from 'react';
 // all the icon needed
-import micOn from './toggleVideoIcon/mic-on.png'
-import micOff from './toggleVideoIcon/mic-off.png'
-import camOn from './toggleVideoIcon/cam-on.png'
-import camOff from './toggleVideoIcon/cam-off.png'
 import enterFullScreen from './toggleVideoIcon/fullscreen.png'
 import exitFullScreen from './toggleVideoIcon/exitFullscreen.png'
 
+import { CgScreen } from 'react-icons/cg';
+import { FiCameraOff } from 'react-icons/fi';
+import { FiCamera } from 'react-icons/fi';
+import { BiMicrophoneOff } from 'react-icons/bi';
+import { BiMicrophone } from 'react-icons/bi';
+import { RiFullscreenFill } from 'react-icons/ri';
+import { RiFullscreenExitLine } from 'react-icons/ri';
+
+
+import { useNavigate } from "react-router-dom";
+
 export default function VideoControl(props) {
-    const { rtcClient, tracks, setJoined, videoDiv, trackState, setTrackState, leaveRTMchannel } = props;
+    const { rtcClient, tracks, setJoined, videoDiv, trackState, setTrackState, leaveRTMchannel, shareScreenHandler, closeShareScreenHandler, screenShareState } = props;
+    const navigate = useNavigate();
 
     const mute = async (mediaType) => {
         if (mediaType === "audio") {
@@ -28,15 +36,16 @@ export default function VideoControl(props) {
     };
 
     const fullScreenHandler = () => {
-        if(document.fullscreenElement){
+        if (document.fullscreenElement) {
             videoDiv.exit()
         }
-        if(!document.fullscreenElement){
+        if (!document.fullscreenElement) {
             videoDiv.enter()
         }
     }
 
     const leaveChannel = async () => {
+        navigate('/room')
         await rtcClient.leave();
         rtcClient.removeAllListeners();
         tracks[0].close();
@@ -45,13 +54,49 @@ export default function VideoControl(props) {
         leaveRTMchannel();
     };
 
+    const toggleScreenShare = async () => {
+        if (screenShareState) {
+            const shareScreenBtn = document.querySelector("#share-screen")
+            shareScreenBtn.classList.remove("screen-sharing");
+            if (trackState.video === false) {
+                await tracks[1].setEnabled(!trackState.video);
+                setTrackState(ps => {
+                    return { ...ps, video: !ps.video };
+                });
+            }
+            closeShareScreenHandler();
+        }
+        if (!screenShareState) {
+            if (trackState.video === false) {
+                await tracks[1].setEnabled(!trackState.video);
+                setTrackState(ps => {
+                    return { ...ps, video: !ps.video };
+                });
+            }
+            const shareScreenBtn = document.querySelector("#share-screen")
+            shareScreenBtn.classList.add("screen-sharing");
+            shareScreenHandler()
+        }
+    }
+
     return (
         <>
-
-            <img className="video-action-button" onClick={() => mute("video")} src={trackState.video ? camOn : camOff} alt='cam' />
-            <img className="video-action-button" onClick={() => mute("audio")} src={trackState.audio ? micOn : micOff} alt='mic' />
-            <img className="video-action-button" onClick={() => fullScreenHandler()} src={document.fullscreenElement ? exitFullScreen: enterFullScreen} alt='fullscreen' />
-            <button className="video-action-button endcall"  onClick={() => leaveChannel()}>Leave</button>
+            <div className="video-action-button camera-btn" onClick={() => mute("video")} title="Camera">
+                {trackState.video && <FiCamera />}
+                {!trackState.video && <FiCameraOff />}
+            </div>
+            <div className="video-action-button microphone-btn" onClick={() => mute("audio")} title="Microphone">
+                {trackState.audio && <BiMicrophone />}
+                {!trackState.audio && <BiMicrophoneOff />}
+            </div>
+            <div className="video-action-button full-screen-btn" onClick={() => fullScreenHandler()} title="Full screen">
+                {document.fullscreenElement && <RiFullscreenExitLine />}
+                {!document.fullscreenElement && <RiFullscreenFill />}
+            </div>
+            <div className="video-action-button" id='share-screen' onClick={() => toggleScreenShare()} title="Share screen">
+                <CgScreen />
+            </div>
+            <button className="video-action-button endcall" onClick={() => leaveChannel()}>Leave</button>
         </>
     )
 } 

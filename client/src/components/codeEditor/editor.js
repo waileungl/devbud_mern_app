@@ -17,23 +17,14 @@ const MainEditor = ({ language, codeChannel, code, setCodeToServer }) => {
 
     return (
         <>
-            <div style={{ overflow: 'auto', height: '500px', width:"100%" }}>
+            <div className='editor-wrapper'>
                 <CodeEditor
                     value={code.text}
                     language={language}
                     placeholder={placeholderForCodeEditor}
                     onChange={onChangeHandler}
                     padding={20}
-                    // className='code-editor'
-                    style={{
-                        fontSize: '0.8rem',
-                        width: '100%',
-                        borderRadius: '20px',
-                        backgroundColor: '#f5f5f5',
-                        height: 'auto',
-                        color: 'grey',
-                        minHeight: '500px'
-                    }}
+                    className='code-editor-box'
                 />
             </div>
         </>

@@ -10,6 +10,10 @@ import LandingPage from './components/landingPage';
 import Main from './views/Main';
 import FindDev from './views/FindDev';
 
+// login and registration
+import LoginForm from './components/Login';
+import SignupForm from './components/SignUp';
+
 function App() {
   //JOIN VIDEO CHAT ROOM 
   const [joined, setJoined] = useState(false)
@@ -49,6 +53,8 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Main />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/sign-up' element={<SignupForm />} />
         <Route path='/devs' element={<FindDev />} />
         <Route path="/room" element={
           !joined && <LandingPage createRoom={createRoom} userName={userName} setUserName={setUserName} roomName={roomName} setRoomName={setRoomName} joinRoom={joinRoom} invitationLink={invitationLink} setinvitationLink={setinvitationLink} />
