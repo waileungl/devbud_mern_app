@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DevForm from './DevForm';
+import SignupForm from './SignupForm';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useMultistepForm } from './UseMultistepForm';
-import SignupForm from './SignupForm';
 
-const FormModal = ({ open, setOpenModal }) => {
+const INITIAL_DATA = {
+  email: '',
+  password: '',
+  firstName: '',
+  lastName: '',
+  profilePic: '',
+  education: '',
+  yearsOfExp: '',
+  bio: '',
+  javaScript: false,
+  python: false,
+  java: false,
+  cSharp: false,
+};
+
+const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
+  const [data, setData] = useState(INITIAL_DATA);
+  const [confirmPass, setConfirmPass] = useState('');
+
+  //   This fucntion will help us update the variables form the inputs, like setState
+  function updateFields(fields) {
+    setData((prev) => {
+      return { ...prev, ...fields };
+    });
+  }
+
   const {
     steps,
     currentStepIndex,
@@ -14,11 +39,37 @@ const FormModal = ({ open, setOpenModal }) => {
     isLastStep,
     back,
     next,
-  } = useMultistepForm([<SignupForm />, <DevForm />]);
+  } = useMultistepForm([
+    <SignupForm
+      {...data}
+      updateFields={updateFields}
+      confirmPass={confirmPass}
+      setConfirmPass={setConfirmPass}
+    />,
+    <DevForm {...data} updateFields={updateFields} />,
+  ]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    next();
+
+    if (!isLastStep) return next();
+    // Make axios call here
+    updateFields({
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      profilePic: '',
+      education: '',
+      yearsOfExp: '',
+      bio: '',
+      javaScript: false,
+      python: false,
+      java: false,
+      cSharp: false,
+    });
+    setCurrentStepIndex(0);
+    setOpenModal(false);
   };
 
   if (!open) return null;
@@ -26,6 +77,21 @@ const FormModal = ({ open, setOpenModal }) => {
   return (
     <div
       onClick={() => {
+        updateFields({
+          email: '',
+          password: '',
+          firstName: '',
+          lastName: '',
+          profilePic: '',
+          education: '',
+          yearsOfExp: '',
+          bio: '',
+          javaScript: false,
+          python: false,
+          java: false,
+          cSharp: false,
+        });
+        setConfirmPass('');
         setCurrentStepIndex(0);
         setOpenModal(false);
       }}
@@ -46,6 +112,21 @@ const FormModal = ({ open, setOpenModal }) => {
             <div className='font-medium text-2xl cursor-pointer'>
               <AiOutlineClose
                 onClick={() => {
+                  updateFields({
+                    email: '',
+                    password: '',
+                    firstName: '',
+                    lastName: '',
+                    profilePic: '',
+                    education: '',
+                    yearsOfExp: '',
+                    bio: '',
+                    javaScript: false,
+                    python: false,
+                    java: false,
+                    cSharp: false,
+                  });
+                  setConfirmPass('');
                   setCurrentStepIndex(0);
                   setOpenModal(false);
                 }}

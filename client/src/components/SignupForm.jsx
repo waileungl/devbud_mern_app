@@ -1,8 +1,16 @@
 import React, { useRef } from 'react';
 // import '../components/mainStyles/landingPage.css';
 
-const SignupForm = () => {
+const SignupForm = ({
+  email,
+  password,
+  confirmPass,
+  setConfirmPass,
+  updateFields,
+}) => {
   //   const emailInput = useRef(null);
+
+  console.log(password, confirmPass);
 
   return (
     <>
@@ -13,7 +21,7 @@ const SignupForm = () => {
           Please create an account.
         </p>
       </div>
-      <hr className='mb-4' />
+      {/* <hr className='mb-4' /> */}
 
       {/* Form inputs */}
       <div>
@@ -26,16 +34,15 @@ const SignupForm = () => {
             minLength={5}
             className='border border-grey-400 block py-2 px-4 w-full rounded '
             type='text'
-            name='profilePic'
+            name='email'
+            value={email}
+            onChange={(e) => updateFields({ email: e.target.value })}
             // onFocus={() => emailInput.current.classList.add('active')}
             // onBlur={(e) => {
             //   if (e.target.value !== '') return;
             //   emailInput.current.classList.remove('active');
             // }}
             // ref={emailInput}
-
-            // value={profilePic}
-            // onChange={(e) => setProfilePic(e.target.value)}
           />
         </div>
         <div className='mb-3'>
@@ -46,23 +53,29 @@ const SignupForm = () => {
             required
             className='border border-grey-400 block py-2 px-4 w-full rounded'
             type='password'
-            name='profilePic'
-            // value={profilePic}
-            // onChange={(e) => setProfilePic(e.target.value)}
+            name='password'
+            value={password}
+            onChange={(e) => updateFields({ password: e.target.value })}
           />
         </div>
+
         <div className='mb-3'>
           <label className='font-normal text-gray-600' for='profilePic'>
             Confirm Password
           </label>
           <input
             required
-            className='border border-grey-400 block py-2 px-4 w-full rounded'
+            className='border border-grey-400 block py-2 px-4 w-full rounded '
             type='password'
-            name='profilePic'
-            // value={profilePic}
-            // onChange={(e) => setProfilePic(e.target.value)}
+            name='confirmPassword'
+            value={confirmPass}
+            onChange={(e) => setConfirmPass(e.target.value)}
           />
+          {password !== confirmPass ? (
+            <div className='text-red-500 text-sm'>Passsword does not match</div>
+          ) : (
+            <div> </div>
+          )}
         </div>
       </div>
       {/* </form> */}

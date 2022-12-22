@@ -28,7 +28,12 @@ const FindDev = () => {
         setLoaded={setLoaded}
       />
       <DevList devs={devs} />
-      <FormModal open={openModal} setOpenModal={setOpenModal} />
+      <FormModal
+        open={openModal}
+        setOpenModal={setOpenModal}
+        loaded={loaded}
+        setLoaded={setLoaded}
+      />
     </div>
   );
 };

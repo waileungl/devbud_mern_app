@@ -1,13 +1,26 @@
 import React from 'react';
 
-const DevForm = () => {
+const DevForm = ({
+  firstName,
+  lastName,
+  profilePic,
+  education,
+  bio,
+  yearsOfExp,
+  javaScript,
+  python,
+  java,
+  cSharp,
+  updateFields,
+}) => {
   return (
     <div>
       {/* <form> */}
       <h2 className='text-2xl md:text-3xl font-bold text-center py-4'>
         Tell Us About Yourself!
       </h2>
-      <hr className='mb-4' />
+
+      {/* <hr className='mb-4' /> */}
 
       {/* Form inputs */}
       <div className='flex space-x-4 mb-3'>
@@ -20,8 +33,8 @@ const DevForm = () => {
             className='border border-grey-400 block py-2 px-4 w-full rounded'
             type='text'
             name='firstName'
-            //   value={firstName}
-            //   onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+            onChange={(e) => updateFields({ firstName: e.target.value })}
           />
         </div>
         <div className='w-1/2'>
@@ -33,8 +46,8 @@ const DevForm = () => {
             className='border border-grey-400 block py-2 px-4 w-full rounded'
             type='text'
             name='lastName'
-            //   value={lastName}
-            //   onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+            onChange={(e) => updateFields({ lastName: e.target.value })}
           />
         </div>
       </div>
@@ -48,8 +61,8 @@ const DevForm = () => {
             className='border border-grey-400 block py-2 px-4 w-full rounded'
             type='text'
             name='education'
-            //   value={education}
-            //   onChange={(e) => setEducation(e.target.value)}
+            value={education}
+            onChange={(e) => updateFields({ education: e.target.value })}
           />
         </div>
         <div className='w-1/2'>
@@ -65,8 +78,8 @@ const DevForm = () => {
             type='number'
             min='0'
             name='yearsOfExp'
-            //   value={yearsOfExp}
-            //   onChange={(e) => setYearsOfExp(e.target.value)}
+            value={yearsOfExp}
+            onChange={(e) => updateFields({ yearsOfExp: e.target.value })}
           />
         </div>
       </div>
@@ -79,8 +92,8 @@ const DevForm = () => {
           className='border border-grey-400 block py-2 px-4 w-full rounded'
           type='text'
           name='profilePic'
-          // value={profilePic}
-          // onChange={(e) => setProfilePic(e.target.value)}
+          value={profilePic}
+          onChange={(e) => updateFields({ profilePic: e.target.value })}
         />
       </div>
 
@@ -93,8 +106,8 @@ const DevForm = () => {
             <input
               type='checkbox'
               name='javaScript'
-              // checked={javaScript}
-              // onChange={(e) => setJavaScript(e.target.checked)}
+              checked={javaScript}
+              onChange={(e) => updateFields({ javaScript: e.target.checked })}
             />
             <label for='javeScript' className='ml-1'>
               JavaScript
@@ -104,8 +117,8 @@ const DevForm = () => {
             <input
               type='checkbox'
               name='python'
-              // checked={python}
-              // onChange={(e) => setPython(e.target.checked)}
+              checked={python}
+              onChange={(e) => updateFields({ python: e.target.checked })}
             />
             <label for='python' className='ml-1'>
               Python
@@ -115,8 +128,8 @@ const DevForm = () => {
             <input
               type='checkbox'
               name='java'
-              // checked={java}
-              // onChange={(e) => setJava(e.target.checked)}
+              checked={java}
+              onChange={(e) => updateFields({ java: e.target.checked })}
             />
             <label for='java' className='ml-1'>
               Java
@@ -126,8 +139,8 @@ const DevForm = () => {
             <input
               type='checkbox'
               name='cSharp'
-              // checked={cSharp}
-              // onChange={(e) => setCSharp(e.target.checked)}
+              checked={cSharp}
+              onChange={(e) => updateFields({ cSharp: e.target.checked })}
             />
             <label for='cSharp' className='ml-1'>
               C#
@@ -145,8 +158,8 @@ const DevForm = () => {
           className='border border-grey-400 block py-2 px-4 w-full rounded'
           name='bio'
           rows='6'
-          // value={bio}
-          // onChange={(e) => setBio(e.target.value)}
+          value={bio}
+          onChange={(e) => updateFields({ bio: e.target.value })}
         />
       </div>
       {/* </form> */}
