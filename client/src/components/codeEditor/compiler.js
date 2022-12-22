@@ -3,6 +3,8 @@ import MainEditor from './editor'
 import { React, useState } from 'react';
 import axios from "axios";
 
+import { FaPlay } from 'react-icons/fa';
+
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
 const Compiler = ({ code, codeChannel, output, setOutput, outputChannel }) => {
@@ -32,34 +34,36 @@ const Compiler = ({ code, codeChannel, output, setOutput, outputChannel }) => {
     return (
         <>
             <div className='compiler-container'>
-                <h4>Code editor</h4>
-                <label>Language:</label>
-
-                <select
-                    value={language}
-                    onChange={e => { setLanguage(e.target.value) }}
-                >
-                    <option value="python">Python</option>
-                    <option value="java">Java</option>
-                    <option value="js">Javascript</option>
-                </select>
-                <button onClick={submitCode}>Run</button>
-                <MainEditor language={language} codeChannel={codeChannel} code={code} setCodeToServer={setCodeToServer}/>
-                <h4>output:</h4>
-                <CodeEditor
-                    value={output}
-                    placeholder="#Your output will show up here"
-                    padding={20}
-                    style={{
-                        fontSize: '0.8rem',
-                        width: '1300px',
-                        borderRadius: '20px',
-                        backgroundColor: '#f5f5f5',
-                        height: 'auto',
-                        color: 'grey',
-                        minHeight: '150px'
-                    }}
-                />
+                <div className='compiler-container-top'>
+                    <nav className='compiler-header'>
+                        {/* <h4>Select Language:</h4> */}
+                        <div className='compiler-select-menu-wrapper'>
+                            {/* <label>Language:</label> */}
+                            <select
+                                className='compiler-select-menu'
+                                value={language}
+                                onChange={e => { setLanguage(e.target.value) }}
+                            >
+                                <option className='compiler-select-menu-option' value="python">Python</option>
+                                <option className='compiler-select-menu-option' value="java">Java</option>
+                                <option className='compiler-select-menu-option' value="js">Javascript</option>
+                            </select>
+                        </div>
+                        <button onClick={submitCode} className="compile-btn"><FaPlay className='w-[0.5rem] mr-[5px]' />Run</button>
+                    </nav>
+                    <MainEditor language={language} codeChannel={codeChannel} code={code} setCodeToServer={setCodeToServer} />
+                </div>
+                <div className='compiler-container-bottom'>
+                    {/* <h4>Output:</h4> */}
+                    <div className='output-wrapper'>
+                        <CodeEditor
+                            value={output}
+                            placeholder="#Your output will show up here"
+                            padding={20}
+                            className="code-output-box"
+                        />
+                    </div>
+                </div>
             </div>
         </>
     )
