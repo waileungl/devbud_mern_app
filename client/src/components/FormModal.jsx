@@ -52,12 +52,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-
     if (!isLastStep) return next();
-<<<<<<< HEAD
-    // Make axios call here
-=======
->>>>>>> db332ec00904f119a8f416ecdf192da807c1be6c
 
     updateFields({
       email: '',
@@ -73,9 +68,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       java: false,
       //   cSharp: false,
     });
-<<<<<<< HEAD
-    setConfirmPass('');
-=======
+
     // Make axios call here
     axios
       .post('http://localhost:8000/api/devs', data)
@@ -87,7 +80,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       .catch((err) => {
         console.log(err);
       });
->>>>>>> db332ec00904f119a8f416ecdf192da807c1be6c
+    setConfirmPass('');
     setCurrentStepIndex(0);
     setOpenModal(false);
   };
@@ -179,14 +172,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
               </button>
             )}
             {!isFirstStep && (
-              <button
-<<<<<<< HEAD
-                // type='submit'
-                // onClick={handleSubmit}
-=======
->>>>>>> db332ec00904f119a8f416ecdf192da807c1be6c
-                className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'
-              >
+              <button className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'>
                 Submit
               </button>
             )}
