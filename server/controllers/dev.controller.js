@@ -2,9 +2,8 @@ const Dev = require('../models/dev.model');
 
 // generate file component
 const { generateFile } = require('./generateFile');
-const { executeJava } = require('./executeJava')
+const { executeJava } = require('./executeJava');
 const { deleteFile } = require('./deleteFile');
-
 
 // READ ALL
 module.exports.findAllDevs = (req, res) => {
@@ -53,7 +52,7 @@ module.exports.deleteDev = (req, res) => {
 
 //For compiling
 const errorHandler = (error) => {
-  err = String(error.error)
+  err = String(error.error);
   // let hiddenStart = "";
   // let hiddenEnd = "";
   // for (let i = 0; i < err.length; i++) {
@@ -64,37 +63,45 @@ const errorHandler = (error) => {
   //     }
   // }
   // errMessege = err.replace(err.substring(hiddenStart, hiddenEnd), "");
-  return err
-}
+  return err;
+};
 
 // COMPILE (CREATE)
 module.exports.compileDev = async (req, res) => {
   const language = req.body.language;
   const code = req.body.codeToServer;
-  console.log(`Reciving post request from client, language: ${language}, code: ${code}`)
+  console.log(
+    `Reciving post request from client, language: ${language}, code: ${code}`
+  );
   // prevent empty code send by user
   if (code === undefined) {
-      console.log("The code from client is empty");
-      return res.status(400).json({
-          success: false,
-          error: "Your code is empty!"
-      })
+    console.log('The code from client is empty');
+    return res.status(400).json({
+      success: false,
+      error: 'Your code is empty!',
+    });
   }
   try {
-      // generate the specific language compiler file
-      console.log("entering the generate file function...");
-      var filepath = await generateFile(language, code);
-      console.log("the compiler file generation is completed! Next is to execute the code");
-      // execute the compile file from the filepath
-      const output = await executeJava(filepath, language);
-      console.log("the compiler file is executed! Next is to delete the compiler file");
-      await deleteFile(filepath);
+    // generate the specific language compiler file
+    console.log('entering the generate file function...');
+    var filepath = await generateFile(language, code);
+    console.log(
+      'the compiler file generation is completed! Next is to execute the code'
+    );
+    // execute the compile file from the filepath
+    const output = await executeJava(filepath, language);
+    console.log(
+      'the compiler file is executed! Next is to delete the compiler file'
+    );
+    await deleteFile(filepath);
 
-      return res.json({ output })
+    return res.json({ output });
   } catch (err) {
-      console.log("OOP! There is error, Your compiler file is not even generated")
-      await deleteFile(filepath);
-      const error = errorHandler(await err)
-      res.json({ error });
+    console.log(
+      'OOP! There is error, Your compiler file is not even generated'
+    );
+    await deleteFile(filepath);
+    const error = errorHandler(await err);
+    res.json({ error });
   }
 };

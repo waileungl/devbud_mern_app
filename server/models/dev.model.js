@@ -6,6 +6,7 @@ const DevSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: [true, 'Email already exists!'],
     },
     password: {
       type: String,

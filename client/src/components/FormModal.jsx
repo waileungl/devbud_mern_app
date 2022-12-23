@@ -69,7 +69,6 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       //   cSharp: false,
     });
 
-    // Make axios call here
     axios
       .post('http://localhost:8000/api/devs', data)
       .then((res) => {
