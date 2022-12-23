@@ -10,7 +10,6 @@ const DevForm = ({
   javaScript,
   python,
   java,
-  cSharp,
   updateFields,
 }) => {
   return (
@@ -135,7 +134,7 @@ const DevForm = ({
               Java
             </label>
           </div>
-          <div>
+          {/* <div>
             <input
               type='checkbox'
               name='cSharp'
@@ -145,7 +144,7 @@ const DevForm = ({
             <label for='cSharp' className='ml-1'>
               C#
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
 

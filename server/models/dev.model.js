@@ -3,6 +3,14 @@ const mongoose = require('mongoose');
 
 const DevSchema = new mongoose.Schema(
   {
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
     profilePic: {
       type: String,
       required: false,
@@ -42,10 +50,10 @@ const DevSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    cSharp: {
-      type: Boolean,
-      default: false,
-    },
+    // cSharp: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   { timestamps: true }
 );

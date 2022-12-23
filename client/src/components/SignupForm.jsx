@@ -10,8 +10,6 @@ const SignupForm = ({
 }) => {
   //   const emailInput = useRef(null);
 
-  console.log(password, confirmPass);
-
   return (
     <>
       {/* <form> */}
@@ -51,6 +49,7 @@ const SignupForm = ({
           </label>
           <input
             required
+            minLength={6}
             className='border border-grey-400 block py-2 px-4 w-full rounded'
             type='password'
             name='password'

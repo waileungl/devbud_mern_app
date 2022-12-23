@@ -16,7 +16,6 @@ const INITIAL_DATA = {
   javaScript: false,
   python: false,
   java: false,
-  cSharp: false,
 };
 
 const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
@@ -54,6 +53,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
 
     if (!isLastStep) return next();
     // Make axios call here
+
     updateFields({
       email: '',
       password: '',
@@ -66,8 +66,9 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       javaScript: false,
       python: false,
       java: false,
-      cSharp: false,
+      //   cSharp: false,
     });
+    setConfirmPass('');
     setCurrentStepIndex(0);
     setOpenModal(false);
   };
@@ -89,7 +90,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
           javaScript: false,
           python: false,
           java: false,
-          cSharp: false,
+          //   cSharp: false,
         });
         setConfirmPass('');
         setCurrentStepIndex(0);
@@ -124,7 +125,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
                     javaScript: false,
                     python: false,
                     java: false,
-                    cSharp: false,
+                    // cSharp: false,
                   });
                   setConfirmPass('');
                   setCurrentStepIndex(0);
@@ -160,6 +161,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
             )}
             {!isFirstStep && (
               <button
+                // type='submit'
                 // onClick={handleSubmit}
                 className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'
               >
