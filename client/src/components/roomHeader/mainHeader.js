@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const MainHeader = ({ roomNameTitle, ROOMID }) => {
+const MainHeader = ({ roomNameTitle, ROOMID, setInviteBtnLoadingState }) => {
     const [time, setTime] = useState(new Date().toLocaleString());
     const textToCopy = useRef(null);
 
@@ -21,16 +21,22 @@ const MainHeader = ({ roomNameTitle, ROOMID }) => {
                 dropdown.classList.remove("active")
             })
         })
+        setInviteBtnLoadingState(false);
+    }, [])
 
+    useEffect(() => {
         const interval = setInterval(() => {
             setTime(new Date().toLocaleTimeString());
         }, 1000);
-        return () => clearInterval(interval);
-    }, [time])
+        
+        
+        return () => {
+            clearInterval(interval);
+        }
+    })
 
     const copyHandler = () => {
         let text = textToCopy.current
-        console.log(text);
         text.select();
 
         // Use the execCommand method to copy the text to the clipboard

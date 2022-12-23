@@ -42,10 +42,10 @@ const DevSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    cSharp: {
-      type: Boolean,
-      default: false,
-    },
+    // cSharp: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   { timestamps: true }
 );
