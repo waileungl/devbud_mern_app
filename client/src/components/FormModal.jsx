@@ -17,7 +17,6 @@ const INITIAL_DATA = {
   javaScript: false,
   python: false,
   java: false,
-  cSharp: false,
 };
 
 const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
@@ -53,7 +52,6 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-
     if (!isLastStep) return next();
 
     updateFields({
@@ -68,8 +66,9 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       javaScript: false,
       python: false,
       java: false,
-      cSharp: false,
+      //   cSharp: false,
     });
+
     // Make axios call here
     axios
       .post('http://localhost:8000/api/devs', data)
@@ -81,6 +80,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       .catch((err) => {
         console.log(err);
       });
+    setConfirmPass('');
     setCurrentStepIndex(0);
     setOpenModal(false);
   };
@@ -102,7 +102,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
           javaScript: false,
           python: false,
           java: false,
-          cSharp: false,
+          //   cSharp: false,
         });
         setConfirmPass('');
         setCurrentStepIndex(0);
@@ -137,7 +137,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
                     javaScript: false,
                     python: false,
                     java: false,
-                    cSharp: false,
+                    // cSharp: false,
                   });
                   setConfirmPass('');
                   setCurrentStepIndex(0);
@@ -172,9 +172,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
               </button>
             )}
             {!isFirstStep && (
-              <button
-                className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'
-              >
+              <button className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'>
                 Submit
               </button>
             )}
