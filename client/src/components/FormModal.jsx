@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import DevForm from './DevForm';
 import SignupForm from './SignupForm';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -51,8 +52,12 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+
     if (!isLastStep) return next();
+<<<<<<< HEAD
     // Make axios call here
+=======
+>>>>>>> db332ec00904f119a8f416ecdf192da807c1be6c
 
     updateFields({
       email: '',
@@ -68,7 +73,21 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       java: false,
       //   cSharp: false,
     });
+<<<<<<< HEAD
     setConfirmPass('');
+=======
+    // Make axios call here
+    axios
+      .post('http://localhost:8000/api/devs', data)
+      .then((res) => {
+        console.log(res.data);
+        setLoaded(!loaded);
+        // createDev(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+>>>>>>> db332ec00904f119a8f416ecdf192da807c1be6c
     setCurrentStepIndex(0);
     setOpenModal(false);
   };
@@ -161,8 +180,11 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
             )}
             {!isFirstStep && (
               <button
+<<<<<<< HEAD
                 // type='submit'
                 // onClick={handleSubmit}
+=======
+>>>>>>> db332ec00904f119a8f416ecdf192da807c1be6c
                 className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'
               >
                 Submit

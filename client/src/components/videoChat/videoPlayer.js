@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import '../mainStyles/mainRoom.css'
 
 
-const VideoPlayer = ({ user, users, rtmClient }) => {
+const VideoPlayer = ({ user, users, rtmClient, setLoadingState }) => {
     const [userNameOnDiv, setUserNameOnDiv] = useState('')
     const ref = useRef();
 
@@ -14,6 +14,7 @@ const VideoPlayer = ({ user, users, rtmClient }) => {
 
         getDisplayName(user.uid);
         user.videoTrack.play(ref.current)
+        setLoadingState(false)
     }, [])
 
     const zoomInHandler = () => {
