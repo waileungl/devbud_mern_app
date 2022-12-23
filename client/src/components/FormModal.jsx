@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import DevForm from './DevForm';
 import SignupForm from './SignupForm';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -52,8 +53,9 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+
     if (!isLastStep) return next();
-    // Make axios call here
+
     updateFields({
       email: '',
       password: '',
@@ -68,6 +70,17 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       java: false,
       cSharp: false,
     });
+    // Make axios call here
+    axios
+      .post('http://localhost:8000/api/devs', data)
+      .then((res) => {
+        console.log(res.data);
+        setLoaded(!loaded);
+        // createDev(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setCurrentStepIndex(0);
     setOpenModal(false);
   };
@@ -160,7 +173,6 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
             )}
             {!isFirstStep && (
               <button
-                // onClick={handleSubmit}
                 className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'
               >
                 Submit

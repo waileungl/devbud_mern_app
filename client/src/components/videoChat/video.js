@@ -10,7 +10,7 @@ import AgoraRTC from 'agora-rtc-sdk-ng';
 var localScreenTrack;
 
 const Video = props => {
-    const { setJoined, rtcClient, localTracks, users, videoDiv, leaveRTMchannel, rtmClient, trackState, setTrackState } = props
+    const { setJoined, rtcClient, localTracks, users, videoDiv, leaveRTMchannel, rtmClient, trackState, setTrackState, setScreenShareTrackState, setLoadingState, errMessage, videChatErr } = props
     const [screenShareState, setScreenShareState] = useState(false)
 
     const shareScreenHandler = async () => {
@@ -21,6 +21,7 @@ const Video = props => {
         }   
 
         localScreenTrack = await AgoraRTC.createScreenVideoTrack()
+        setScreenShareTrackState(localScreenTrack)
         localScreenTrack.play('local-screen-share')
         await rtcClient.unpublish([localTracks[1]])
         await rtcClient.publish([localScreenTrack])
@@ -40,17 +41,18 @@ const Video = props => {
         <div className='video-component-container'>
             <div className='video-call-wrapper'>
                 {!screenShareState && users.map((user) => (
-                    <VideoPlayer key={user.uid} user={user} idx={user.uid} users={users} rtmClient={rtmClient} />
+                    <VideoPlayer key={user.uid} user={user} idx={user.uid} users={users} rtmClient={rtmClient} setLoadingState={setLoadingState}/>
                 ))}
                 {screenShareState && <div
                     id='local-screen-share'
                     className='video-full-container'
                 ></div>}
+                {videChatErr && errMessage}
             </div>
 
-            <div className="video-call-actions">
-                <VideoControl rtcClient={rtcClient} tracks={localTracks} setJoined={setJoined} videoDiv={videoDiv} trackState={trackState} setTrackState={setTrackState} leaveRTMchannel={leaveRTMchannel} shareScreenHandler={shareScreenHandler} closeShareScreenHandler={closeShareScreenHandler} screenShareState={screenShareState}/>
-            </div>
+            {!videChatErr && <div className="video-call-actions">
+                <VideoControl rtcClient={rtcClient} tracks={localTracks} setJoined={setJoined} videoDiv={videoDiv} trackState={trackState} setTrackState={setTrackState} leaveRTMchannel={leaveRTMchannel} shareScreenHandler={shareScreenHandler} closeShareScreenHandler={closeShareScreenHandler} screenShareState={screenShareState} />
+            </div>}
         </div>
     )
 }

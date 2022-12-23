@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 
 // -- dependence import
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import ReactLoading from 'react-loading';
 
 // -- Component import
 import MainHeader from "./roomHeader/mainHeader";
 import Video from "./videoChat/video";
 import Compiler from './codeEditor/compiler';
 import Groupchat from './groupChat/groupChat';
+import VideoError from "./videoChat/videoError";
 
 // -- Agora(RTC, RTM) import
 import AgoraRTC from 'agora-rtc-sdk-ng';
@@ -21,6 +23,7 @@ import { usertmClient } from './agora_configuration';
 import videoChatIcon from './mainStyles/navigation_icons/videoChat.png'
 import codeIcon from './mainStyles/navigation_icons/code.png'
 import './mainStyles/mainRoom.css';
+
 
 
 var codeChannel;
@@ -45,7 +48,11 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
     const [outputRoom, setOutputRoom] = useState({})
     const [count, setCount] = useState('')
     const [displayVideo, setDisplayVideo] = useState(true)
+    const [screenShareTrack, setScreenShareTrackState] = useState({})
     const [trackState, setTrackState] = useState({ video: true, audio: true });
+    const [loadingState, setLoadingState] = useState(true)
+    const [errMessage, setErrMessage] = useState(null)
+    const [videChatErr, setVideChatErr] = useState(false)
     const navigate = useNavigate();
 
     // RTC hook
@@ -213,7 +220,13 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                     },
                 ]);
                 rtcClient.publish(tracks);
-            });
+            })
+            .catch(err =>{
+                setLoadingState(false)
+                console.log("You need to turn on the camera!");
+                setErrMessage(<VideoError leaveRoom={leaveRoom}/>)
+                setVideChatErr(true)
+            })
         rightSide = document.querySelector('.right-side');
         expandBtn = document.querySelector('.expand-btn');
     }, []);
@@ -230,6 +243,12 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
         setUserName("")
         setinvitationLink("")
     }
+
+    const leaveRoom = async () => {
+        navigate('/room')
+        setJoined(false);
+        leaveChannel();
+    };
 
     window.addEventListener('beforeunload', leaveChannel)
 
@@ -283,6 +302,9 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
 
     return (
         <>
+            <div className={`loading-cover ${loadingState ? 'visible' : ''}`}>
+                <ReactLoading type={"bubbles"} color={"#3c3f56"} height={'12%'} width={'12%'} />
+            </div>
             <FullScreen handle={videoDiv}>
                 <div className="app-container">
                     {/* >>>>>>day/night mode switch btn<<<<<<<<*/}
@@ -398,9 +420,9 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                     {/* >>>>>>>>Video Chat & Code editor<<<<<<<< */}
                     <div className="app-main">
                         <MainHeader roomNameTitle={roomNameTitle} ROOMID={ROOMID} />
-                        {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} trackState={trackState} setTrackState={setTrackState}/>}
+                        {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} trackState={trackState} setTrackState={setTrackState} setScreenShareTrackState={setScreenShareTrackState} setLoadingState={setLoadingState} errMessage={errMessage} videChatErr={videChatErr}/>}
 
-                        {!displayVideo && <Compiler codeChannel={codeRoom} code={code} setCode={setCode} output={output} setOutput={setOutput} outputChannel={outputRoom} />}
+                        {!displayVideo && <Compiler codeChannel={codeRoom} code={code} setCode={setCode} output={output} setOutput={setOutput} outputChannel={outputRoom} screenShareTrack={screenShareTrack} rtcClient={rtcClient} />}
                     </div>
 
                     {/* >>>>>>>>Chat room<<<<<<<< */}
@@ -427,13 +449,13 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                         <div className="chat-container">
                             <div className="chat-header">
                                 <p>Group chat</p>
-                                <button className="chat-header-button" onClick={() => setDisplayVideo(true)}>Participants: {count}</button>
+                                <div className="chat-header-button">Participants: {count}</div>
                             </div>
                             <Groupchat text={text} setText={setText} userID={userID} userName={userName} messages={messages} setMessages={setMessages} chatChannel={chatChannel} />
                         </div>
                     </div>
 
-                    {/* >>>>>>>>Chat room<<<<<<<< */}
+                    {/* >>>>>>>>Chat room expand button<<<<<<<< */}
                     <button className="expand-btn-right" onClick={() => expandGroupChat()}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

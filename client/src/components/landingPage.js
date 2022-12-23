@@ -39,14 +39,12 @@ const LandingPage = props => {
         const images = document.querySelectorAll(".image");
 
         let currentImage = document.querySelector(`#landing-img-${i}`);
-        console.log("currentImage", currentImage);
         images.forEach((img) => img.classList.remove("show"));
-        currentImage.classList.add("show");
-        
+        currentImage.classList.add("show"); 
         let currentSlide = document.querySelector(`#slide-${i}`);
         const textSlider = document.querySelector(".text-group");
         textSlider.style.transform = `translateY(${-(i - 1) * 2.2}rem)`;
-        console.log("currentSlide", currentSlide);
+
         bullets.forEach((bull) => bull.classList.remove("active"));
         currentSlide.classList.add("active");
     }
@@ -207,9 +205,9 @@ const LandingPage = props => {
                         <div className="text-slider">
                             <div className="text-wrap">
                                 <div className="text-group">
-                                    <h2>Create your own room</h2>
-                                    <h2>Practice coding skill</h2>
-                                    <h2>Invite friends to join</h2>
+                                    <h2>Create your room</h2>
+                                    <h2>Practice coding</h2>
+                                    <h2>Invite friends</h2>
                                 </div>
                             </div>
 

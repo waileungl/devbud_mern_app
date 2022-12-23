@@ -26,7 +26,7 @@ const MainHeader = ({ roomNameTitle, ROOMID }) => {
             setTime(new Date().toLocaleTimeString());
         }, 1000);
         return () => clearInterval(interval);
-    }, [])
+    }, [time])
 
     const copyHandler = () => {
         let text = textToCopy.current
