@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 // -- dependence import
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import ReactLoading from 'react-loading';
 
 // -- Component import
 import MainHeader from "./roomHeader/mainHeader";
@@ -221,10 +220,10 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                 ]);
                 rtcClient.publish(tracks);
             })
-            .catch(err =>{
+            .catch(err => {
                 setLoadingState(false)
                 console.log("You need to turn on the camera!");
-                setErrMessage(<VideoError leaveRoom={leaveRoom}/>)
+                setErrMessage(<VideoError leaveRoom={leaveRoom} />)
                 setVideChatErr(true)
             })
         rightSide = document.querySelector('.right-side');
@@ -303,7 +302,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
     return (
         <>
             <div className={`loading-cover ${loadingState ? 'visible' : ''}`}>
-                <ReactLoading type={"bubbles"} color={"#3c3f56"} height={'12%'} width={'12%'} />
+                <svg className='animate-spin h-8 w-8 md:h-14 w-14' fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M10 3C6.13401 3 3 6.13401 3 10C3 10.2761 2.77614 10.5 2.5 10.5C2.22386 10.5 2 10.2761 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10C18 14.4183 14.4183 18 10 18C9.72386 18 9.5 17.7761 9.5 17.5C9.5 17.2239 9.72386 17 10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3Z" fill="#212121" /></svg><p className="text-lg md:text-3xl ml-2">Connecting...</p>
             </div>
             <FullScreen handle={videoDiv}>
                 <div className="app-container">
@@ -420,7 +419,7 @@ const Room = ({ joined, setJoined, userID, userName, setRoomName, setinvitationL
                     {/* >>>>>>>>Video Chat & Code editor<<<<<<<< */}
                     <div className="app-main">
                         <MainHeader roomNameTitle={roomNameTitle} ROOMID={ROOMID} />
-                        {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} trackState={trackState} setTrackState={setTrackState} setScreenShareTrackState={setScreenShareTrackState} setLoadingState={setLoadingState} errMessage={errMessage} videChatErr={videChatErr}/>}
+                        {displayVideo && <Video userID={userID} joined={joined} setJoined={setJoined} videoRoomID={videoRoomID} userName={userName} rtcClient={rtcClient} localTracks={localTracks} users={users} videoDiv={videoDiv} leaveRTMchannel={leaveChannel} rtmClient={rtmClient} trackState={trackState} setTrackState={setTrackState} setScreenShareTrackState={setScreenShareTrackState} setLoadingState={setLoadingState} errMessage={errMessage} videChatErr={videChatErr} />}
 
                         {!displayVideo && <Compiler codeChannel={codeRoom} code={code} setCode={setCode} output={output} setOutput={setOutput} outputChannel={outputRoom} screenShareTrack={screenShareTrack} rtcClient={rtcClient} />}
                     </div>

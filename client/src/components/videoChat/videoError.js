@@ -16,12 +16,12 @@ const VideoError = ({leaveRoom}) => {
                     </h1>
                     <ul className='md:text-2xl sm:text-1xl text-sm text-grey-100 text-center'>
                         <li className='my-1' >
-                            1.Allow the site to access your camera & audio
+                            1. Allow the site to access your camera & audio
                             <br/>
                             (Browser setting <AiOutlineArrowRight className='inline-block'/> Permissions <AiOutlineArrowRight className='inline-block'/> Camera / audio)
                         </li>
                         <li className='my-1' >
-                            2.Try to open this website on your other browsers / Devices (Phone and tablet supported)
+                            2. Try to open this website on your other browsers / Devices (Phone and tablet supported)
                         </li>
                     </ul>
                     <button className='w-[200px] rounded-md font-medium my-10 mx-auto py-3 text-white border bg-black hover:bg-white hover:text-black hover:border-black' onClick={() => leaveRoom()}>
