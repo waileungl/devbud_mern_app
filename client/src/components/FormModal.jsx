@@ -6,14 +6,14 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useMultistepForm } from './UseMultistepForm';
 
 const INITIAL_DATA = {
-  email: '',
-  password: '',
-  firstName: '',
-  lastName: '',
-  profilePic: '',
-  education: '',
-  yearsOfExp: '',
-  bio: '',
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  profilePic: "",
+  education: "",
+  yearsOfExp: "",
+  bio: "",
   javaScript: false,
   python: false,
   java: false,
@@ -22,6 +22,8 @@ const INITIAL_DATA = {
 const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
+  const [formValid, setFormValid] = useState(true)
+
 
   //   This fucntion will help us update the variables form the inputs, like setState
   function updateFields(fields) {
@@ -39,12 +41,14 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
     isLastStep,
     back,
     next,
+    stay,
   } = useMultistepForm([
     <SignupForm
       {...data}
       updateFields={updateFields}
       confirmPass={confirmPass}
       setConfirmPass={setConfirmPass}
+      setFormValid={setFormValid}
     />,
     <DevForm {...data} updateFields={updateFields} />,
   ]);
@@ -52,6 +56,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    if(!formValid) return stay();
     if (!isLastStep) return next();
 
     updateFields({
@@ -69,11 +74,12 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
       //   cSharp: false,
     });
 
+
     // Make axios call here
     axios
       .post('http://localhost:8000/api/devs', data)
       .then((res) => {
-        console.log(res.data);
+        console.log("response here>>>>>>>>>>>", res.data);
         setLoaded(!loaded);
         // createDev(res.data);
       })

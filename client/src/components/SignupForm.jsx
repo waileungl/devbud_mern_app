@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
-// import '../components/mainStyles/landingPage.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 
 const SignupForm = ({
   email,
@@ -7,8 +8,28 @@ const SignupForm = ({
   confirmPass,
   setConfirmPass,
   updateFields,
+  setFormValid
 }) => {
-  //   const emailInput = useRef(null);
+  const [emailValidWarn, setEmailValidWarn] = useState(false)
+
+
+  const emailValidation = (email) => {
+    const emailToCheck = { email: `${email}`}
+    axios
+    .post('http://localhost:8000/api/register', emailToCheck)
+    .then((res) => {
+      if(res.data.exist){
+        setFormValid(false)
+        setEmailValidWarn(true)
+      }else{
+        setFormValid(true)
+        setEmailValidWarn(false)
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
   return (
     <>
@@ -34,14 +55,19 @@ const SignupForm = ({
             type='text'
             name='email'
             value={email}
-            onChange={(e) => updateFields({ email: e.target.value })}
-            // onFocus={() => emailInput.current.classList.add('active')}
-            // onBlur={(e) => {
-            //   if (e.target.value !== '') return;
-            //   emailInput.current.classList.remove('active');
-            // }}
-            // ref={emailInput}
+            onChange={(e) => { updateFields({ email: e.target.value }); emailValidation(e.target.value) }}
+          // onFocus={() => emailInput.current.classList.add('active')}
+          // onBlur={(e) => {
+          //   if (e.target.value !== '') return;
+          //   emailInput.current.classList.remove('active');
+          // }}
+          // ref={emailInput}
           />
+          {emailValidWarn ? (
+            <div className='text-red-500 text-sm'>Email address already exist!</div>
+          ) : (
+            <div> </div>
+          )}
         </div>
         <div className='mb-3'>
           <label className='font-normal text-gray-600' for='profilePic'>
@@ -68,9 +94,14 @@ const SignupForm = ({
             type='password'
             name='confirmPassword'
             value={confirmPass}
-            onChange={(e) => setConfirmPass(e.target.value)}
+            onChange={(e) => {
+              setConfirmPass(e.target.value);
+              if(password !== confirmPass){
+                setFormValid(false)
+              }
+            }}
           />
-          {password !== confirmPass ? (
+          { (password !== confirmPass) ? (
             <div className='text-red-500 text-sm'>Passsword does not match</div>
           ) : (
             <div> </div>

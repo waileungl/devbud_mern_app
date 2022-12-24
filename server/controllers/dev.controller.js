@@ -28,11 +28,27 @@ module.exports.findOneDev = (req, res) => {
 
 // CREATE
 module.exports.createDev = (req, res) => {
-  //   console.log('req.body =', req.body);
+    
   Dev.create(req.body)
     .then((newlyCreatedDev) => res.json({ dev: newlyCreatedDev }))
     .catch((err) => res.json({ message: 'Something went wrong', error: err }));
 };
+
+// Email Validation
+module.exports.emailValidation = (req, res) => {
+  console.log("email to check", req.body.email)
+  Dev.findOne(req.body)
+    .then(result => {
+      console.log("result from mongoDB", result);
+      if(result === null){
+        res.status(200).send({ exist: false });
+      }else{
+        res.status(200).send({ exist: true });
+      }
+    })
+    .catch((err) => console.log("Error occur!!", err));
+}
+
 
 // UPDATE
 module.exports.updateExistingDev = (req, res) => {
