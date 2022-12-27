@@ -1,5 +1,13 @@
 const Dev = require('../models/dev.model');
 
+// Login JWT authentication
+const { v4: uuid } = require('uuid');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = uuid()
+
+//import Bcrypt
+const bcrypt = require("bcryptjs")
+
 // generate file component
 const { generateFile } = require('./generateFile');
 const { executeJava } = require('./executeJava');
@@ -25,29 +33,80 @@ module.exports.findOneDev = (req, res) => {
     .catch((err) => res.json({ message: 'Something went wrong', error: err }));
 };
 
-// CREATE
-module.exports.createDev = (req, res) => {
-    
-  Dev.create(req.body)
-    .then((newlyCreatedDev) => res.json({ dev: newlyCreatedDev }))
+// Registration
+module.exports.createDev = async (req, res) => {
+  const encryptedPassword = await bcrypt.hash(req.body.password, 10)
+  const newDevUser = {
+    email: req.body.email,
+    password: encryptedPassword,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    profilePic: req.body.profilePic,
+    education: req.body.education,
+    yearsOfExp: req.body.yearsOfExp,
+    bio: req.body.bio,
+    javaScript: req.body.javaScript,
+    python: req.body.python,
+    java: req.body.java,
+  }
+  Dev.create(newDevUser)
+    .then((newlyCreatedDev) => res.json({
+      dev: {
+        firstName: newlyCreatedDev.firstName,
+        lastName: newlyCreatedDev.lastName,
+        profilePic: newlyCreatedDev.profilePic,
+        education: newlyCreatedDev.education,
+        yearsOfExp: newlyCreatedDev.yearsOfExp,
+        bio: newlyCreatedDev.bio,
+        javaScript: newlyCreatedDev.javaScript,
+        python: newlyCreatedDev.python,
+        java: newlyCreatedDev.java,
+        createdAt: newlyCreatedDev.createdAt,
+        updatedAt: newlyCreatedDev.updatedAt,
+        _id: newlyCreatedDev._id
+      }
+    }))
     .catch((err) => res.json({ message: 'Something went wrong', error: err }));
 };
 
 // Email Validation
 module.exports.emailValidation = (req, res) => {
-  console.log("email to check", req.body.email)
   Dev.findOne(req.body)
     .then(result => {
-      console.log("result from mongoDB", result);
-      if(result === null){
+      if (result === null) {
         res.status(200).send({ exist: false });
-      }else{
+      } else {
         res.status(200).send({ exist: true });
       }
     })
     .catch((err) => console.log("Error occur!!", err));
 }
 
+// User login
+module.exports.loginOneDev = async (req, res) => {
+  const { email, password } = req.body;
+
+  //Email Validation
+  const loginDev = await Dev.findOne({ email: email });
+  if (!loginDev) {
+    console.log("no such user");
+    return res.json({ error: "Invalid email or password" })
+  }
+
+  //Bcrypted password validation
+  if (await bcrypt.compare(password, loginDev.password)) {
+    const token = jwt.sign({}, JWT_SECRET)
+    if (res.status(201)) {
+      console.log("Login success!")
+      return res.json({ status: "ok", token: token, userId: loginDev._id })
+    }else{
+      return res.json({ error: "error", data: token })
+    }
+  }
+  res.json({
+    error: "Invalid email or password"
+  })
+}
 
 // UPDATE
 module.exports.updateExistingDev = (req, res) => {
@@ -55,7 +114,9 @@ module.exports.updateExistingDev = (req, res) => {
     new: true,
     runValidators: true,
   })
-    .then((updatedDev) => res.json({ dev: updatedDev }))
+    .then((updatedDev) => {
+      res.json({ dev: updatedDev });
+    })
     .catch((err) => res.json({ message: 'Something went wrong', error: err }));
 };
 

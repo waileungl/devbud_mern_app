@@ -33,16 +33,12 @@ const SignupForm = ({
 
   return (
     <>
-      {/* <form> */}
       <div className='text-center py-4'>
         <h2 className='text-2xl md:text-3xl font-bold'>Hello There!</h2>
         <p className='text-sm md:text-lg text-gray-600'>
           Please create an account.
         </p>
       </div>
-      {/* <hr className='mb-4' /> */}
-
-      {/* Form inputs */}
       <div>
         <div className='mb-3'>
           <label className='font-normal text-gray-600' for='profilePic'>
@@ -64,7 +60,7 @@ const SignupForm = ({
           // ref={emailInput}
           />
           {emailValidWarn ? (
-            <div className='text-red-500 text-sm'>Email address already exist!</div>
+            <div className='text-red-500 text-sm mt-2 animate-bounce'>Email address already exist!</div>
           ) : (
             <div> </div>
           )}
@@ -96,13 +92,15 @@ const SignupForm = ({
             value={confirmPass}
             onChange={(e) => {
               setConfirmPass(e.target.value);
-              if(password !== confirmPass){
+              if(password !== e.target.value){
                 setFormValid(false)
+              }else{
+                setFormValid(true)
               }
             }}
           />
           { (password !== confirmPass) ? (
-            <div className='text-red-500 text-sm'>Passsword does not match</div>
+            <div className='text-red-500 text-sm mt-2 animate-bounce'>Passsword does not match</div>
           ) : (
             <div> </div>
           )}

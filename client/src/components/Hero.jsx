@@ -4,7 +4,7 @@ import { Link, Routes, Route } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className=''>
+    <div className='' id='home'>
       <div className='max-w-[900px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
         {/* <p className='font-bold p-1'>GROWING WITH OTHERS</p> */}
         <h1 className='md:text-7xl sm:text-6xl text-4xl font-bold md:py-5'>

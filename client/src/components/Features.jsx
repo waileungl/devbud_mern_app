@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineCheck } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Features = () => {
   return (
@@ -17,7 +18,7 @@ const Features = () => {
         {/* Cards container */}
         <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4'>
           {/* Individual Cards */}
-          <div className='flex shadow-xl'>
+          <div className='flex shadow-xl pt-4'>
             <div>
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
@@ -31,7 +32,7 @@ const Features = () => {
           </div>
 
           {/* Individual Cards */}
-          <div className='flex shadow-xl'>
+          <div className='flex shadow-xl pt-4'>
             <div>
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
@@ -45,7 +46,7 @@ const Features = () => {
           </div>
 
           {/* Individual Cards */}
-          <div className='flex shadow-xl'>
+          <div className='flex shadow-xl pt-4'>
             <div>
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
@@ -59,7 +60,7 @@ const Features = () => {
           </div>
 
           {/* Individual Cards */}
-          <div className='flex shadow-xl'>
+          <div className='flex shadow-xl pt-4'>
             <div>
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
@@ -72,6 +73,11 @@ const Features = () => {
             </div>
           </div>
         </div>
+        <Link to='/room'>
+          <button className='mx-auto md:flex rounded-md  mt-10 px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
+            Try it now
+          </button>
+        </Link>
       </div>
     </div>
   );

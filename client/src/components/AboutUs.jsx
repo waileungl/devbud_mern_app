@@ -24,12 +24,13 @@ const AboutUs = () => {
         <div className='flex flex-col md:flex-row justify-center gap-12 mt-10'>
           {/* Individual Card  */}
           <div className='w-full md:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white hover:scale-105 duration-300'>
-            <img
-              className='w-40 mx-auto mt-[-3rem] rounded-xl object-cover'
-              src={willZhan}
-              alt='profile-pic'
-            />
-            <h2 className='text-3xl font-bold text-center py-8'>
+            <div className='w-48 h-48 mx-auto mt-[-3rem] rounded-xl object-cover truncate'>
+              <img
+                src={willZhan}
+                alt='profile-pic'
+              />
+            </div>
+            <h2 className='text-3xl font-bold text-center py-6'>
               William Zhan
             </h2>
             <p className='text-center text-lg mb-6'>
@@ -41,7 +42,7 @@ const AboutUs = () => {
               <a href='https://www.linkedin.com/in/william-zhan/'>
                 <AiFillLinkedin className='text-3xl' />
               </a>
-              <a href='#'>
+              <a href='https://github.com/williamzhanshum'>
                 <AiOutlineGithub className='text-3xl' />
               </a>
               <a href='#'>
@@ -52,23 +53,21 @@ const AboutUs = () => {
 
           {/* Individual Card  */}
           <div className='w-full md:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white hover:scale-105 duration-300'>
-            <img
-              className='w-40 mx-auto mt-[-3rem] rounded-xl object-cover'
-              src={willLiu}
-              alt='profile-pic'
-            />
-            <h2 className='text-3xl font-bold text-center py-8'>William Liu</h2>
+            <div className='w-48 h-48 mx-auto mt-[-3rem] rounded-xl object-cover truncate'>
+              <img
+                src={willLiu}
+                alt='profile-pic'
+              />
+            </div>
+            <h2 className='text-3xl font-bold text-center py-6'>William Liu</h2>
             <p className='text-center text-lg mb-6'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex labore
-              minus magni quod molestias autem voluptatem officia recusandae
-              qui. Aliquid minima et iusto excepturi quod libero, voluptatem
-              facilis qui magnam!
+              I'm Will, a motivated and detail-oriented web developer with experience in building and maintaining websites and web applications. Mainly do MERN and Python Flask. I am eager to learn and develop any application that interests me.
             </p>
             <div className='flex p-4 align-middle justify-center gap-10'>
-              <a href='#'>
+              <a href='https://www.linkedin.com/in/willliu06'>
                 <AiFillLinkedin className='text-3xl' />
               </a>
-              <a href='#'>
+              <a href='https://github.com/waileungl'>
                 <AiOutlineGithub className='text-3xl' />
               </a>
               <a href='#'>

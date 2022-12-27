@@ -3,13 +3,20 @@ import axios from 'axios';
 import DevList from '../components/DevList';
 import { NavBar3 } from '../components/NavBar3';
 import FormModal from '../components/FormModal';
+import LoginModal from '../components/LoginModal';
+import EditProfileModal from '../components/EditProfileModal';
 
 const FindDev = () => {
   const [devs, setDevs] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
+  const [loginToken, setLoginToken] = useState("");
 
   useEffect(() => {
+    setLoginToken(localStorage.getItem('jwt'));
+
     axios
       .get('http://localhost:8000/api/devs')
       .then((res) => {
@@ -17,15 +24,21 @@ const FindDev = () => {
         // console.log(res.data);
       })
       .catch((err) => console.error(err));
-  }, [loaded]);
+  }, [loaded, openEditProfileModal]);
 
   return (
     <div>
       <NavBar3
         openModal={openModal}
         setOpenModal={setOpenModal}
+        openLoginModal={openLoginModal}
+        setOpenLoginModal={setOpenLoginModal}
         loaded={loaded}
         setLoaded={setLoaded}
+        loginToken={loginToken}
+        setLoginToken={setLoginToken}
+        openEditProfileModal={openEditProfileModal}
+        setOpenEditProfileModal={setOpenEditProfileModal}
       />
       <DevList devs={devs} />
       <FormModal
@@ -33,6 +46,20 @@ const FindDev = () => {
         setOpenModal={setOpenModal}
         loaded={loaded}
         setLoaded={setLoaded}
+        setLoginToken={setLoginToken}
+      />
+      <LoginModal
+        openLoginModal={openLoginModal}
+        setOpenLoginModal={setOpenLoginModal}
+        loaded={loaded}
+        setLoaded={setLoaded}
+        setLoginToken={setLoginToken}
+      />
+      <EditProfileModal
+        openEditProfileModal={openEditProfileModal}
+        setOpenEditProfileModal={setOpenEditProfileModal}
+        loginToken={loginToken}
+        setLoginToken={setLoginToken}
       />
     </div>
   );

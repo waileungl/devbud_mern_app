@@ -19,7 +19,7 @@ const INITIAL_DATA = {
   java: false,
 };
 
-const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
+const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken }) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
   const [formValid, setFormValid] = useState(true)
@@ -56,38 +56,54 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if(!formValid) return stay();
+    if (!formValid) return stay();
     if (!isLastStep) return next();
-
-    updateFields({
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      profilePic: '',
-      education: '',
-      yearsOfExp: '',
-      bio: '',
-      javaScript: false,
-      python: false,
-      java: false,
-      //   cSharp: false,
-    });
-
 
     axios
       .post('http://localhost:8000/api/devs', data)
       .then((res) => {
         console.log("response here>>>>>>>>>>>", res.data);
-        setLoaded(!loaded);
-        // createDev(res.data);
+        
+        const loginData = {
+          email: data.email,
+          password: data.password
+        }
+    
+        axios
+          .post('http://localhost:8000/api/login', loginData)
+          .then((res) => {
+            localStorage.setItem('jwt', res.data.token);
+            localStorage.setItem('userId', res.data.userId);
+            setLoginToken(localStorage.getItem('jwt'));
+            setConfirmPass('');
+            setCurrentStepIndex(0);
+            updateFields({
+              email: '',
+              password: '',
+              firstName: '',
+              lastName: '',
+              profilePic: '',
+              education: '',
+              yearsOfExp: '',
+              bio: '',
+              javaScript: false,
+              python: false,
+              java: false,
+              //   cSharp: false,
+            });
+            setLoaded(!loaded);
+            setOpenModal(false);
+        
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
-    setConfirmPass('');
-    setCurrentStepIndex(0);
-    setOpenModal(false);
+
+
   };
 
   if (!open) return null;

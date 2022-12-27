@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const NavBar3 = ({ loaded, setLoaded, openModal, setOpenModal }) => {
-  // const [nav, setNav] = useState(true);
-
-  // const handleNav = () => {
-  //   setNav(!nav);
-  // };
+export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginModal, loginToken, setLoginToken, openEditProfileModal, setOpenEditProfileModal }) => {
 
   return (
     <>
@@ -14,24 +9,49 @@ export const NavBar3 = ({ loaded, setLoaded, openModal, setOpenModal }) => {
         <Link className='text-3xl font-bold mr-4 sm:text-4xl' to='/'>
           DEVBUD.
         </Link>
-        <ul className='flex'>
+        {!loginToken &&
+          <ul className='flex'>
+            <button
+              onClick={() => {
+                setOpenModal(!openModal);
+              }}
+              className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black '
+            >
+              Become a Tutor
+            </button>
+            <button
+              onClick={() => {
+                setOpenLoginModal(!openLoginModal);
+              }}
+              className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black ml-2'
+            >
+              Login
+            </button>
+          </ul>
+        }
+        {
+          loginToken && 
+          <ul className='flex'>
           <button
             onClick={() => {
-              setOpenModal(!openModal);
+              setOpenEditProfileModal(!openEditProfileModal);
             }}
-            className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black'
+            className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black '
           >
-            Become a Tutor
+            My Profile
+          </button>
+          <button
+            onClick={() => {
+              localStorage.removeItem('jwt');
+              setLoginToken("");
+            }}
+            className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black ml-2'
+          >
+            Logout
           </button>
         </ul>
+        }
       </div>
-
-      {/* <CreateFormModal
-        loaded={loaded}
-        setLoaded={setLoaded}
-        open={openModal}
-        handleClose={() => setOpenModal(false)}
-      /> */}
     </>
   );
 };
