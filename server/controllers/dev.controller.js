@@ -98,7 +98,7 @@ module.exports.loginOneDev = async (req, res) => {
     const token = jwt.sign({}, JWT_SECRET)
     if (res.status(201)) {
       console.log("Login success!")
-      return res.json({ status: "ok", token: token, userId: loginDev._id })
+      return res.json({ status: "ok", token: token, userId: loginDev._id, userName: loginDev.firstName })
     }else{
       return res.json({ error: "error", data: token })
     }

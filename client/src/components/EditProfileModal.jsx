@@ -14,7 +14,7 @@ const USER_DATA = {
   java: false,
 };
 
-const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, loginToken, setLoginToken }) => {
+const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOpenSuccessModal, setLoginToken, setWelcomeWords }) => {
   const [userData, setUserData] = useState(USER_DATA)
   const userId = localStorage.getItem('userId');
   
@@ -51,7 +51,9 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
     axios
       .put(`http://localhost:8000/api/devs/${userId}`, userData)
       .then(() => {
+        setWelcomeWords("Saved!")
         setOpenEditProfileModal(!openEditProfileModal)
+        setOpenSuccessModal(true)
       })
       .catch((err) => {
         console.log(err);
@@ -62,9 +64,11 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
     axios
       .delete(`http://localhost:8000/api/devs/${userId}`)
       .then(() => {
-        setOpenEditProfileModal(!openEditProfileModal)
         localStorage.removeItem('jwt');
         setLoginToken("");
+        setWelcomeWords("Your account has been deleted!");
+        setOpenEditProfileModal(!openEditProfileModal)
+        setOpenSuccessModal(true)
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +80,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
       className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
     >
       <div
-        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
+        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-1 sm:p-4 my-4 rounded-lg bg-white'
       >
         <form onSubmit={onSubmit}>
           {/* This is the page number and close button  */}
@@ -100,7 +104,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
             {/* Form inputs */}
             <div className='flex space-x-4 mb-3'>
               <div className='w-1/2'>
-                <label className='font-normal text-gray-600' for='firstName'>
+                <label className='text-sm sm:text-base font-normal text-gray-600' for='firstName'>
                   First Name
                 </label>
                 <input
@@ -113,7 +117,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
                 />
               </div>
               <div className='w-1/2'>
-                <label className='font-normal text-gray-600' for='lastName'>
+                <label className='text-sm sm:text-base font-normal text-gray-600' for='lastName'>
                   Last Name
                 </label>
                 <input
@@ -129,7 +133,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
 
             <div className='flex space-x-4 mb-3'>
               <div className='w-1/2'>
-                <label className='font-normal text-gray-600' for='education'>
+                <label className='text-sm sm:text-base font-normal text-gray-600' for='education'>
                   Education
                 </label>
                 <input
@@ -143,7 +147,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
               <div className='w-1/2'>
                 <label
                   for='yearsOfExp'
-                  className='text-sm md:text-base font-normal text-gray-600'
+                  className='text-[0.7rem] sm:text-base font-normal text-gray-600'
                 >
                   Years of Experience
                 </label>
@@ -160,7 +164,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
             </div>
 
             <div className='mb-3'>
-              <label className='font-normal text-gray-600' for='profilePic'>
+              <label className='text-sm sm:text-base font-normal text-gray-600' for='profilePic'>
                 Profile Picture Link
               </label>
               <input
@@ -173,7 +177,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
             </div>
 
             <div className='mb-3'>
-              <p className='mb-1 font-normal text-gray-600'>
+              <p className='text-sm sm:text-base mb-1 font-normal text-gray-600'>
                 Select your prefered languages:
               </p>
               <div className='flex justify-start gap-4'>
@@ -181,6 +185,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
                   <input
                     type='checkbox'
                     name='javaScript'
+                    className='w-3 h-3'
                     checked={userData.javaScript}
                     onChange={(e) => updateFields({ javaScript: e.target.checked })}
                   />
@@ -192,6 +197,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
                   <input
                     type='checkbox'
                     name='python'
+                    className='w-3 h-3'
                     checked={userData.python}
                     onChange={(e) => updateFields({ python: e.target.checked })}
                   />
@@ -203,6 +209,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
                   <input
                     type='checkbox'
                     name='java'
+                    className='w-3 h-3'
                     checked={userData.java}
                     onChange={(e) => updateFields({ java: e.target.checked })}
                   />
@@ -210,27 +217,16 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
                     Java
                   </label>
                 </div>
-                {/* <div>
-            <input
-              type='checkbox'
-              name='cSharp'
-              checked={cSharp}
-              onChange={(e) => updateFields({ cSharp: e.target.checked })}
-            />
-            <label for='cSharp' className='ml-1'>
-              C#
-            </label>
-          </div> */}
               </div>
             </div>
 
             <div>
-              <label className='font-normal text-gray-600' for='bio'>
+              <label className='text-sm sm:text-base font-normal text-gray-600' for='bio'>
                 Short Bio
               </label>
               <textarea
                 required
-                className='border border-grey-400 block py-2 px-4 w-full rounded'
+                className='border border-grey-400 block py-2 px-4 w-full rounded h-[100px] md:h-[200px]'
                 name='bio'
                 rows='6'
                 value={userData.bio}
@@ -243,14 +239,14 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, login
 
 
           {/* These are the buttons */}
-          <div className='flex p-4 align-middle justify-center gap-10'>
+          <div className='flex p-4 align-middle justify-center gap-2 sm:gap-10'>
             <input
               type='button'
               onClick={() => selfDestroy()}
-              className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black cursor-pointer'
+              className='rounded-md px-4 sm:px-8 py-1 sm:py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black cursor-pointer'
               value="Delete Account"
             />
-            <button className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black' type='submit'>
+            <button className='rounded-md px-4 sm:px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black' type='submit'>
               Save
             </button>
           </div>

@@ -19,7 +19,7 @@ const INITIAL_DATA = {
   java: false,
 };
 
-const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken }) => {
+const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOpenSuccessModal, setWelcomeWords }) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
   const [formValid, setFormValid] = useState(true)
@@ -93,7 +93,8 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken }) => 
             });
             setLoaded(!loaded);
             setOpenModal(false);
-        
+            setWelcomeWords("Welcome to Devbud!")
+            setOpenSuccessModal(true)
           })
           .catch((err) => {
             console.log(err);
@@ -127,7 +128,6 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken }) => 
         });
         setConfirmPass('');
         setCurrentStepIndex(0);
-        setOpenModal(false);
       }}
       className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
     >
@@ -135,7 +135,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken }) => 
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white'
+        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-1 sm:p-4 my-4 rounded-lg bg-white'
       >
         <form onSubmit={onSubmit}>
           {/* This is the page number and close button  */}

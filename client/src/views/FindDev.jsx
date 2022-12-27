@@ -5,6 +5,7 @@ import { NavBar3 } from '../components/NavBar3';
 import FormModal from '../components/FormModal';
 import LoginModal from '../components/LoginModal';
 import EditProfileModal from '../components/EditProfileModal';
+import SuccessModal from '../components/SuccessModal';
 
 const FindDev = () => {
   const [devs, setDevs] = useState([]);
@@ -12,7 +13,9 @@ const FindDev = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false)
   const [loginToken, setLoginToken] = useState("");
+  const [welcomeWords, setWelcomeWords] = useState("");
 
   useEffect(() => {
     setLoginToken(localStorage.getItem('jwt'));
@@ -47,6 +50,8 @@ const FindDev = () => {
         loaded={loaded}
         setLoaded={setLoaded}
         setLoginToken={setLoginToken}
+        setOpenSuccessModal={setOpenSuccessModal}
+        setWelcomeWords={setWelcomeWords}
       />
       <LoginModal
         openLoginModal={openLoginModal}
@@ -54,13 +59,23 @@ const FindDev = () => {
         loaded={loaded}
         setLoaded={setLoaded}
         setLoginToken={setLoginToken}
+        setOpenSuccessModal={setOpenSuccessModal}
+        setWelcomeWords={setWelcomeWords}
       />
       <EditProfileModal
         openEditProfileModal={openEditProfileModal}
         setOpenEditProfileModal={setOpenEditProfileModal}
         loginToken={loginToken}
         setLoginToken={setLoginToken}
+        setOpenSuccessModal={setOpenSuccessModal}
+        setWelcomeWords={setWelcomeWords}
       />
+      {openSuccessModal &&
+      <SuccessModal
+        openSuccessModal={openSuccessModal}
+        setOpenSuccessModal={setOpenSuccessModal}
+        welcomeWords={welcomeWords}
+      />}
     </div>
   );
 };

@@ -24,12 +24,12 @@ const DevForm = ({
       {/* Form inputs */}
       <div className='flex space-x-4 mb-3'>
         <div className='w-1/2'>
-          <label className='font-normal text-gray-600' for='firstName'>
+          <label className='text-sm sm:text-base font-normal text-gray-600' for='firstName'>
             First Name
           </label>
           <input
             required
-            className='border border-grey-400 block py-2 px-4 w-full rounded'
+            className='border border-grey-400 block py-1 sm:py-2 px-4 w-full rounded'
             type='text'
             name='firstName'
             value={firstName}
@@ -37,12 +37,12 @@ const DevForm = ({
           />
         </div>
         <div className='w-1/2'>
-          <label className='font-normal text-gray-600' for='lastName'>
+          <label className='text-sm sm:text-base font-normal text-gray-600' for='lastName'>
             Last Name
           </label>
           <input
             required
-            className='border border-grey-400 block py-2 px-4 w-full rounded'
+            className='border border-grey-400 block py-1 sm:py-2 px-4 w-full rounded'
             type='text'
             name='lastName'
             value={lastName}
@@ -53,11 +53,11 @@ const DevForm = ({
 
       <div className='flex space-x-4 mb-3'>
         <div className='w-1/2'>
-          <label className='font-normal text-gray-600' for='education'>
+          <label className='text-sm sm:text-base font-normal text-gray-600' for='education'>
             Education
           </label>
           <input
-            className='border border-grey-400 block py-2 px-4 w-full rounded'
+            className='border border-grey-400 block py-1 sm:py-2 px-4 w-full rounded'
             type='text'
             name='education'
             value={education}
@@ -67,13 +67,13 @@ const DevForm = ({
         <div className='w-1/2'>
           <label
             for='yearsOfExp'
-            className='text-sm md:text-base font-normal text-gray-600'
+            className='text-[0.7rem] sm:text-base font-normal text-gray-600'
           >
             Years of Experience
           </label>
           <input
             required
-            className='border border-grey-400 block py-2 px-4 w-full rounded'
+            className='border border-grey-400 block py-1 sm:py-2 px-4 w-full rounded'
             type='number'
             min='0'
             name='yearsOfExp'
@@ -84,11 +84,11 @@ const DevForm = ({
       </div>
 
       <div className='mb-3'>
-        <label className='font-normal text-gray-600' for='profilePic'>
+        <label className='text-sm sm:text-base font-normal text-gray-600' for='profilePic'>
           Profile Picture Link
         </label>
         <input
-          className='border border-grey-400 block py-2 px-4 w-full rounded'
+          className='border border-grey-400 block py-1 sm:py-2 px-4 w-full rounded'
           type='text'
           name='profilePic'
           value={profilePic}
@@ -97,7 +97,7 @@ const DevForm = ({
       </div>
 
       <div className='mb-3'>
-        <p className='mb-1 font-normal text-gray-600'>
+        <p className='text-sm sm:text-base mb-1 font-normal text-gray-600'>
           Select your prefered languages:
         </p>
         <div className='flex justify-start gap-4'>
@@ -105,10 +105,11 @@ const DevForm = ({
             <input
               type='checkbox'
               name='javaScript'
+              className='w-2 h-2 md:w-3 md:h-3'
               checked={javaScript}
               onChange={(e) => updateFields({ javaScript: e.target.checked })}
             />
-            <label for='javeScript' className='ml-1'>
+            <label for='javeScript' className='ml-0.5 text-sm md:ml-1'>
               JavaScript
             </label>
           </div>
@@ -116,10 +117,11 @@ const DevForm = ({
             <input
               type='checkbox'
               name='python'
+              className='w-2 h-2 md:w-3 md:h-3'
               checked={python}
               onChange={(e) => updateFields({ python: e.target.checked })}
             />
-            <label for='python' className='ml-1'>
+            <label for='python' className='ml-0.5 text-sm md:ml-1'>
               Python
             </label>
           </div>
@@ -127,10 +129,11 @@ const DevForm = ({
             <input
               type='checkbox'
               name='java'
+              className='w-2 h-2 md:w-3 md:h-3'
               checked={java}
               onChange={(e) => updateFields({ java: e.target.checked })}
             />
-            <label for='java' className='ml-1'>
+            <label for='java' className='ml-0.5 text-sm md:ml-1'>
               Java
             </label>
           </div>
@@ -149,12 +152,12 @@ const DevForm = ({
       </div>
 
       <div>
-        <label className='font-normal text-gray-600' for='bio'>
+        <label className='text-sm sm:text-base font-normal text-gray-600' for='bio'>
           Short Bio
         </label>
         <textarea
           required
-          className='border border-grey-400 block py-2 px-4 w-full rounded'
+          className='border border-grey-400 block py-1 sm:py-2 px-4 w-full h-[100px] md:h-[200px] rounded'
           name='bio'
           rows='6'
           value={bio}

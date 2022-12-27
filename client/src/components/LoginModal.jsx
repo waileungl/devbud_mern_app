@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
-const LoginModal = ({ openLoginModal, setOpenLoginModal, loaded, setLoaded, setLoginToken }) => {
+const LoginModal = ({ openLoginModal, setOpenLoginModal, loaded, setLoaded, setLoginToken, setOpenSuccessModal, setWelcomeWords }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidWarning, setInvalidWarning] = useState("")
@@ -29,10 +29,11 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal, loaded, setLoaded, setL
           setInvalidWarning(res.data.error)
           return
         }
-
+        setWelcomeWords(`Welcome Back! ${res.data.userName}`)
         setLoaded(!loaded);
         // createDev(res.data);
         setOpenLoginModal(false);
+        setOpenSuccessModal(true)
       })
       .catch((err) => {
         console.log(err);
