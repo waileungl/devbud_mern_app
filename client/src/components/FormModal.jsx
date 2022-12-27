@@ -111,24 +111,6 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOp
 
   return (
     <div
-      onClick={() => {
-        updateFields({
-          email: '',
-          password: '',
-          firstName: '',
-          lastName: '',
-          profilePic: '',
-          education: '',
-          yearsOfExp: '',
-          bio: '',
-          javaScript: false,
-          python: false,
-          java: false,
-          //   cSharp: false,
-        });
-        setConfirmPass('');
-        setCurrentStepIndex(0);
-      }}
       className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
     >
       <div
