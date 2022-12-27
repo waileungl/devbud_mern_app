@@ -30,6 +30,7 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal, loaded, setLoaded, setL
         setLoginToken(localStorage.getItem('jwt'));
         setWelcomeWords(`Welcome Back! ${res.data.userName}`)
         setLoaded(!loaded);
+        setInvalidWarning("")
         // createDev(res.data);
         setOpenLoginModal(false);
         setOpenSuccessModal(true)

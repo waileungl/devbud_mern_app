@@ -14,14 +14,10 @@ const DevForm = ({
 }) => {
   return (
     <div>
-      {/* <form> */}
       <h2 className='text-2xl md:text-3xl font-bold text-center py-4'>
         Tell Us About Yourself!
       </h2>
 
-      {/* <hr className='mb-4' /> */}
-
-      {/* Form inputs */}
       <div className='flex space-x-4 mb-3'>
         <div className='w-1/2'>
           <label className='text-sm sm:text-base font-normal text-gray-600' for='firstName'>
@@ -85,11 +81,16 @@ const DevForm = ({
 
       <div className='mb-3'>
         <label className='text-sm sm:text-base font-normal text-gray-600' for='profilePic'>
-          Profile Picture Link
+          Profile Picture
         </label>
         <input
-          className='border border-grey-400 block py-1 sm:py-2 px-4 w-full rounded'
-          type='text'
+          className='block w-full text-sm text-slate-500
+          file:mr-4 file:py-2 file:px-4
+          file:rounded-full file:border-0
+          file:text-sm file:font-semibold
+          file:bg-violet-50 file:text-violet-700
+          hover:file:bg-violet-100'
+          type='file'
           name='profilePic'
           value={profilePic}
           onChange={(e) => updateFields({ profilePic: e.target.value })}
@@ -137,17 +138,6 @@ const DevForm = ({
               Java
             </label>
           </div>
-          {/* <div>
-            <input
-              type='checkbox'
-              name='cSharp'
-              checked={cSharp}
-              onChange={(e) => updateFields({ cSharp: e.target.checked })}
-            />
-            <label for='cSharp' className='ml-1'>
-              C#
-            </label>
-          </div> */}
         </div>
       </div>
 

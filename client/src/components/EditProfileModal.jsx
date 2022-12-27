@@ -17,7 +17,7 @@ const USER_DATA = {
 const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOpenSuccessModal, setLoginToken, setWelcomeWords }) => {
   const [userData, setUserData] = useState(USER_DATA)
   const userId = localStorage.getItem('userId');
-  
+
 
   //   This fucntion will help us update the variables form the inputs, like setState
   const updateFields = (fields) => {
@@ -165,11 +165,16 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
 
             <div className='mb-3'>
               <label className='text-sm sm:text-base font-normal text-gray-600' for='profilePic'>
-                Profile Picture Link
+                Profile Picture
               </label>
               <input
-                className='border border-grey-400 block py-2 px-4 w-full rounded'
-                type='text'
+                className='block w-full text-sm text-slate-500
+                  file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-violet-50 file:text-violet-700
+                  hover:file:bg-violet-100'
+                type='file'
                 name='profilePic'
                 value={userData.profilePic}
                 onChange={(e) => updateFields({ profilePic: e.target.value })}
