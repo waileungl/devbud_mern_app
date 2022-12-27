@@ -7,7 +7,6 @@ const DevCard = (props) => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  console.log("onedevhere", oneDev);
   return (
     <>
       <div className=' md:w-[700px] w-[100%] bg-white mx-auto my-6 p-10 rounded-xl shadow-xl relative md:pl-60 pt-52 md:pt-10 mt-14 md:mt-6 hover:scale-105 ease-out duration-500 '>
@@ -19,16 +18,15 @@ const DevCard = (props) => {
           //   src={oneDev.profilePic}
           />
         </div>
-        <div>
+        <div className='md:w-[400px]'>
           <h1 className='md:text-4xl text-3xl font-semibold'>
             {oneDev.firstName + ' ' + oneDev.lastName}
           </h1>
 
           <p className='text-gray-500 my-3'>
             <span className='font-extrabold text-black'>Languages:</span>{' '}
-            {oneDev.javaScript ? 'JavaScript |' : ''}{' '}
-            {oneDev.python ? 'Python |' : ''} {oneDev.java ? 'Java |' : ''}{' '}
-            {oneDev.cSharp ? 'C#' : ''}
+            {oneDev.javaScript ? <span className="bg-slate-200 px-2 py-0.5 rounded-lg text-xs">JavaScript</span> : ''}{' '}
+            {oneDev.python ? <span className="bg-slate-200 px-2 py-0.5 rounded-lg text-xs">Python</span> : ''} {oneDev.java ? <span className="bg-slate-200 px-2 py-0.5 rounded-lg text-xs">Java</span> : ''}
           </p>
 
           <p className='text-gray-500 my-3'>

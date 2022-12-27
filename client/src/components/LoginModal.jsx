@@ -21,14 +21,13 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal, loaded, setLoaded, setL
       .post('http://localhost:8000/api/login', data)
       .then((res) => {
         console.log("response here>>>>>>>>>>>", res);
-        localStorage.setItem('jwt', res.data.token);
-        localStorage.setItem('userId', res.data.userId);
-        setLoginToken(localStorage.getItem('jwt'));
-
         if(res.data.error){
           setInvalidWarning(res.data.error)
           return
         }
+        localStorage.setItem('jwt', res.data.token);
+        localStorage.setItem('userId', res.data.userId);
+        setLoginToken(localStorage.getItem('jwt'));
         setWelcomeWords(`Welcome Back! ${res.data.userName}`)
         setLoaded(!loaded);
         // createDev(res.data);

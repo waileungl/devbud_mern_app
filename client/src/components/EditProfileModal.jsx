@@ -185,11 +185,11 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
                   <input
                     type='checkbox'
                     name='javaScript'
-                    className='w-3 h-3'
+                    className='w-2 h-2 md:w-3 md:h-3'
                     checked={userData.javaScript}
                     onChange={(e) => updateFields({ javaScript: e.target.checked })}
                   />
-                  <label for='javeScript' className='ml-1'>
+                  <label for='javeScript' className='ml-0.5 text-sm md:ml-1'>
                     JavaScript
                   </label>
                 </div>
@@ -197,11 +197,11 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
                   <input
                     type='checkbox'
                     name='python'
-                    className='w-3 h-3'
+                    className='w-2 h-2 md:w-3 md:h-3'
                     checked={userData.python}
                     onChange={(e) => updateFields({ python: e.target.checked })}
                   />
-                  <label for='python' className='ml-1'>
+                  <label for='python' className='ml-0.5 text-sm md:ml-1'>
                     Python
                   </label>
                 </div>
@@ -209,11 +209,11 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
                   <input
                     type='checkbox'
                     name='java'
-                    className='w-3 h-3'
+                    className='w-2 h-2 md:w-3 md:h-3'
                     checked={userData.java}
                     onChange={(e) => updateFields({ java: e.target.checked })}
                   />
-                  <label for='java' className='ml-1'>
+                  <label for='java' className='ml-0.5 text-sm md:ml-1'>
                     Java
                   </label>
                 </div>
@@ -243,7 +243,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
             <input
               type='button'
               onClick={() => selfDestroy()}
-              className='rounded-md px-4 sm:px-8 py-1 sm:py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black cursor-pointer'
+              className='rounded-md px-4 sm:px-8 py-1 sm:py-2 text-white bg-red-600 transparent hover:bg-red-400 hover:text-white hover:border-red-600 cursor-pointer'
               value="Delete Account"
             />
             <button className='rounded-md px-4 sm:px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black' type='submit'>

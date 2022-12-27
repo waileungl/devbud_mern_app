@@ -73,11 +73,12 @@ const Features = () => {
             </div>
           </div>
         </div>
-        <Link to='/room'>
-          <button className='mx-auto md:flex rounded-md  mt-10 px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
+
+        <div className='flex justify-between items-center'>
+          <Link to='/room' className='mx-auto md:flex rounded-md  mt-10 px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
             Try it now
-          </button>
-        </Link>
+          </Link>
+          </div>
       </div>
     </div>
   );

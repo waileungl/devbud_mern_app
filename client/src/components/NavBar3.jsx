@@ -23,7 +23,7 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
               onClick={() => {
                 setOpenModal(!openModal);
               }}
-              className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black '
+              className='rounded-md px-8 py-2 text-white bg-slate-800 border border-black transparent hover:bg-[#F0F0F0] hover:text-black hover:border-black'
             >
               Become a Tutor
             </button>
@@ -44,7 +44,7 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
               onClick={() => {
                 setOpenEditProfileModal(!openEditProfileModal);
               }}
-              className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black '
+              className='rounded-md px-8 py-2 text-white bg-slate-800 border border-black transparent hover:bg-[#F0F0F0] hover:text-black hover:border-black'
             >
               My Profile
             </button>
@@ -71,8 +71,8 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
               : 'fixed left-[-100%]'
           }
         >
-          <Link className='text-3xl font-bold mr-4 sm:text-4xl m-4 mb-2' to='/'>
-            DEVBUD.
+          <Link to='/'>
+            <h2 className='text-3xl font-bold mr-4 sm:text-4xl m-4 mb-2'>DEVBUD.</h2>
           </Link>
           {
             loginToken &&

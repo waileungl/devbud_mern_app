@@ -47,7 +47,7 @@ const SignupForm = ({
           <input
             required
             minLength={5}
-            placeholder='Enter your email address here'
+            placeholder='Email address here'
             className='border border-grey-400 block py-2 px-4 w-full rounded '
             type='text'
             name='email'
@@ -73,7 +73,7 @@ const SignupForm = ({
           <input
             required
             minLength={6}
-            placeholder='6+ characters'
+            placeholder='Require 6+ characters'
             className='border border-grey-400 block py-2 px-4 w-full rounded'
             type='password'
             name='password'
@@ -88,7 +88,7 @@ const SignupForm = ({
           </label>
           <input
             required
-            placeholder='6+ characters'
+            placeholder='Require 6+ characters'
             className='border border-grey-400 block py-2 px-4 w-full rounded '
             type='password'
             name='confirmPassword'
