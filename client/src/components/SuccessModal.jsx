@@ -4,11 +4,9 @@ import success from "../assets/success-animation.gif"
 const SuccessModal = ({ openSuccessModal, setOpenSuccessModal, welcomeWords }) => {
 
   useEffect(() => {
-
     const successAnimation = setTimeout(() => {
-      console.log("yeah");
       setOpenSuccessModal(false);
-    }, 1600);
+    }, 1700);
     return () => clearTimeout(successAnimation);
   }, [])
 

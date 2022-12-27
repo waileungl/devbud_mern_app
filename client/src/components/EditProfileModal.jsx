@@ -248,7 +248,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
             <input
               type='button'
               onClick={() => selfDestroy()}
-              className='rounded-md px-4 sm:px-8 py-1 sm:py-2 text-white bg-red-600 transparent hover:bg-red-400 hover:text-white hover:border-red-600 cursor-pointer'
+              className='rounded-md px-4 sm:px-8 py-1 sm:py-2 text-black bg-white border border-black transparent hover:bg-red-600 hover:text-white hover:border-red-600 cursor-pointer'
               value="Delete Account"
             />
             <button className='rounded-md px-4 sm:px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black' type='submit'>
