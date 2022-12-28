@@ -5,12 +5,13 @@ import { storage } from '../firebase';
 import { ref, getDownloadURL  } from 'firebase/storage';
 
 const DevCard = (props) => {
-  const { oneDev } = props;
+  const { oneDev, loaded } = props;
 
   const [openModal, setOpenModal] = useState(false);
   const [profilePic, setProfilePic] = useState("")
 
   useEffect(() => {
+    console.log("Onedev profilepic here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", oneDev.profilePic);
     getDownloadURL(ref(storage, `user-profile-pic/${oneDev.profilePic}`))
       .then((url) => {
         // `url` is the download URL for 'images/stars.jpg'
@@ -21,7 +22,7 @@ const DevCard = (props) => {
         console.log(error)
         // alert("error occur!")
       });
-  }, [])
+  }, [loaded])
 
 
   return (

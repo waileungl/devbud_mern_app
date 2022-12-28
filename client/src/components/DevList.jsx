@@ -4,7 +4,7 @@ import DevCard from './DevCard';
 import { Link } from 'react-router-dom'
 
 
-const DevList = ({ devs }) => {
+const DevList = ({ devs, loaded }) => {
   return (
     <div>
       <div className='flex justify-between items-end h-14 max-w-[1240px] mx-auto px-4 bg-[#F0F0F0] mb-[-50px]'>
@@ -21,7 +21,7 @@ const DevList = ({ devs }) => {
           id='cards-container'
         >
           {devs.map((oneDev, idx) => (
-            <DevCard oneDev={oneDev} key={idx} />
+            <DevCard oneDev={oneDev} key={idx} loaded={loaded}/>
           ))}
         </div>
       </div>

@@ -11,7 +11,8 @@ const DevForm = ({
   python,
   java,
   updateFields,
-  setImgFile
+  setImgFile,
+  imgFirebaseName
 }) => {
 
 
@@ -96,6 +97,7 @@ const DevForm = ({
           hover:file:bg-violet-100'
           type='file'
           onChange={(e) => {
+            updateFields({profilePic: imgFirebaseName})
             setImgFile(e.target.files[0])
           }}
         />

@@ -35,9 +35,11 @@ const FormModal = ({
   const [confirmPass, setConfirmPass] = useState('');
   const [formValid, setFormValid] = useState(true)
   const [imgFile, setImgFile] = useState("")
+  const [imgFirebaseName, setImgFirebaseName] = useState(uuid())
 
   //   This fucntion will help us update the variables form the inputs, like setState
   function updateFields(fields) {
+
     setData((prev) => {
       return { ...prev, ...fields };
     });
@@ -61,21 +63,23 @@ const FormModal = ({
       setConfirmPass={setConfirmPass}
       setFormValid={setFormValid}
     />,
-    <DevForm {...data} updateFields={updateFields} setImgFile={setImgFile}/>,
+    <DevForm {...data} updateFields={updateFields} imgFile={imgFile} setImgFile={setImgFile} imgFirebaseName={imgFirebaseName}/>,
   ]);
 
   const uploadImage = () => {
     if(imgFile == null) return
 
     // Make ref to firebase
-    const imgFirebaseName = imgFile.name + uuid()
-    updateFields({ profilePic: imgFirebaseName })
+    console.log("Here is the image file name!!!!!!!!!!!!!!!!>>>>>", imgFirebaseName);
+
     const imageRef = ref(storage, `user-profile-pic/${imgFirebaseName}`);
 
     //Upload img to firebase
     uploadBytes(imageRef ,imgFile).then(() => {
       console.log("Image uploaded to firebase!")
+      setLoaded(!loaded)
     })
+
   }
 
   const onSubmit = (e) => {

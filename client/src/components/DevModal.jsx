@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import defaultPic from '../assets/default-profile-icon.png';
+import { storage } from '../firebase';
+import { ref, getDownloadURL  } from 'firebase/storage';
 
 const DevModal = ({ handleClose, oneDev }) => {
   // console.log('HERE IS ID:', theDevId);
+  const [profilePic, setProfilePic] = useState("")
+
+  useEffect(() => {
+    console.log("Onedev profilepic here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", oneDev.profilePic);
+    getDownloadURL(ref(storage, `user-profile-pic/${oneDev.profilePic}`))
+      .then((url) => {
+        // `url` is the download URL for 'images/stars.jpg'
+        console.log("firebase img url here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", url);
+        setProfilePic(url)
+      })
+      .catch((error) => {
+        console.log(error)
+        // alert("error occur!")
+      });
+  }, [])
+
 
   return (
     <div
@@ -17,7 +35,7 @@ const DevModal = ({ handleClose, oneDev }) => {
       >
         <img
           className='w-40 mx-auto mt-[-3rem] rounded-xl object-cover'
-          src={oneDev.profilePic === '' ? defaultPic : oneDev.profilePic}
+          src={profilePic === '' ? defaultPic : profilePic}
           alt='profile-pic'
         />
         <h2 className='text-3xl font-bold text-center py-4 mt-4'>

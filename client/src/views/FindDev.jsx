@@ -43,7 +43,7 @@ const FindDev = () => {
         openEditProfileModal={openEditProfileModal}
         setOpenEditProfileModal={setOpenEditProfileModal}
       />
-      <DevList devs={devs} />
+      <DevList devs={devs} loaded={loaded}/>
       <FormModal
         open={openModal}
         setOpenModal={setOpenModal}

@@ -80,7 +80,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
       className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
     >
       <div
-        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-1 sm:p-4 my-4 rounded-lg bg-white'
+        className=' w-full md:w-3/4 xl:w-1/3 lg:w-2/3 shadow-xl flex flex-col p-1 sm:p-4 my-4 rounded-lg bg-white'
       >
         <form onSubmit={onSubmit}>
           {/* This is the page number and close button  */}
@@ -165,7 +165,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
 
             <div className='mb-3'>
               <label className='text-sm sm:text-base font-normal text-gray-600' for='profilePic'>
-                Profile Picture
+                Update Profile Picture
               </label>
               <input
                 className='block w-full text-sm text-slate-500
@@ -175,9 +175,9 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
                   file:bg-violet-50 file:text-violet-700
                   hover:file:bg-violet-100'
                 type='file'
-                name='profilePic'
-                value={userData.profilePic}
-                onChange={(e) => updateFields({ profilePic: e.target.value })}
+                // name='profilePic'
+                // value={userData.profilePic}
+                // onChange={(e) => updateFields({ profilePic: e.target.value })}
               />
             </div>
 
@@ -244,14 +244,14 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
 
 
           {/* These are the buttons */}
-          <div className='flex p-4 align-middle justify-center gap-2 sm:gap-10'>
+          <div className='flex p-4 align-middle justify-center gap-2 md:gap-10'>
             <input
               type='button'
               onClick={() => selfDestroy()}
-              className='rounded-md px-4 sm:px-8 py-1 sm:py-2 text-black bg-white border border-black transparent hover:bg-red-600 hover:text-white hover:border-red-600 cursor-pointer'
+              className='rounded-md px-4 md:px-8 py-1 md:py-2 text-black bg-white border border-black transparent hover:bg-red-600 hover:text-white hover:border-red-600 cursor-pointer'
               value="Delete Account"
             />
-            <button className='rounded-md px-4 sm:px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black' type='submit'>
+            <button className='rounded-md px-4 md:px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black' type='submit'>
               Save
             </button>
           </div>
