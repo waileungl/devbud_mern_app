@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const DevForm = ({
   firstName,
@@ -10,8 +10,12 @@ const DevForm = ({
   javaScript,
   python,
   java,
-  updateFields
+  updateFields,
+  setImgFile
 }) => {
+
+
+
   return (
     <div>
       <h2 className='text-2xl md:text-3xl font-bold text-center py-4'>
@@ -91,10 +95,8 @@ const DevForm = ({
           file:bg-violet-50 file:text-violet-700
           hover:file:bg-violet-100'
           type='file'
-          accept="image/*"
-          name='devImage'
           onChange={(e) => {
-            updateFields({ profilePic: e.target.files[0] })
+            setImgFile(e.target.files[0])
           }}
         />
       </div>

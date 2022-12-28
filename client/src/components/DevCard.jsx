@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import defaultPic from '../assets/default-profile-icon.png';
 import DevModal from './DevModal';
+import { storage } from '../firebase';
+import { ref, getDownloadURL  } from 'firebase/storage';
 
 const DevCard = (props) => {
   const { oneDev } = props;
 
   const [openModal, setOpenModal] = useState(false);
+  const [profilePic, setProfilePic] = useState("")
+
+  useEffect(() => {
+    getDownloadURL(ref(storage, `user-profile-pic/${oneDev.profilePic}`))
+      .then((url) => {
+        // `url` is the download URL for 'images/stars.jpg'
+        console.log("firebase img url here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", url);
+        setProfilePic(url)
+      })
+      .catch((error) => {
+        console.log(error)
+        // alert("error occur!")
+      });
+  }, [])
+
 
   return (
     <>
@@ -13,7 +30,7 @@ const DevCard = (props) => {
         <div className='absolute md:-left-8 left-0 md:h-full md:top-0 -top-8 md:w-[250px] flex items-center justify-center w-full'>
           <img
             className='w-[70%] rounded-xl shadow-lg md:w-[90%] h-52 object-cover max-h-[85%]'
-            src={oneDev.profilePic === '' ? defaultPic : oneDev.profilePic}
+            src={profilePic === '' ? defaultPic : profilePic}
             alt='profile-pic'
           //   src={oneDev.profilePic}
           />

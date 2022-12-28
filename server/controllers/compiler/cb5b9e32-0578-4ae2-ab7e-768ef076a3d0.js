@@ -1,1 +1,0 @@
-conosloe.log(2+2)

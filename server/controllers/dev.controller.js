@@ -1,8 +1,5 @@
 const Dev = require('../models/dev.model');
 
-// upload image file api - cloudinary
-const cloudinary = require('../config/cloudinary')
-
 // Login JWT authentication
 const { v4: uuid } = require('uuid');
 const jwt = require('jsonwebtoken');
@@ -45,9 +42,7 @@ module.exports.createDev = async (req, res) => {
     password: encryptedPassword,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    profilePic: {
-
-    },
+    profilePic: req.body.profilePic,
     education: req.body.education,
     yearsOfExp: req.body.yearsOfExp,
     bio: req.body.bio,

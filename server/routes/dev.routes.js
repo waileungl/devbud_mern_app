@@ -2,7 +2,6 @@
 const DevController = require('../controllers/dev.controller');
 
 
-
 module.exports = (app) => {
   app.get('/api/devs', DevController.findAllDevs);
   app.get('/api/devs/:id', DevController.findOneDev);

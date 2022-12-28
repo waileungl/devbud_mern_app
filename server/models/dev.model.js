@@ -13,8 +13,8 @@ const DevSchema = new mongoose.Schema(
       required: true,
     },
     profilePic: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      required: false,
     },
     firstName: {
       type: String,

@@ -4,6 +4,9 @@ import DevForm from './DevForm';
 import SignupForm from './SignupForm';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useMultistepForm } from './UseMultistepForm';
+import { storage } from '../firebase';
+import { ref, uploadBytes } from "firebase/storage"
+import uuid from 'react-uuid';
 
 const INITIAL_DATA = {
   email: '',
@@ -31,6 +34,7 @@ const FormModal = ({
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
   const [formValid, setFormValid] = useState(true)
+  const [imgFile, setImgFile] = useState("")
 
   //   This fucntion will help us update the variables form the inputs, like setState
   function updateFields(fields) {
@@ -57,8 +61,22 @@ const FormModal = ({
       setConfirmPass={setConfirmPass}
       setFormValid={setFormValid}
     />,
-    <DevForm {...data} updateFields={updateFields} />,
+    <DevForm {...data} updateFields={updateFields} setImgFile={setImgFile}/>,
   ]);
+
+  const uploadImage = () => {
+    if(imgFile == null) return
+
+    // Make ref to firebase
+    const imgFirebaseName = imgFile.name + uuid()
+    updateFields({ profilePic: imgFirebaseName })
+    const imageRef = ref(storage, `user-profile-pic/${imgFirebaseName}`);
+
+    //Upload img to firebase
+    uploadBytes(imageRef ,imgFile).then(() => {
+      console.log("Image uploaded to firebase!")
+    })
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -66,17 +84,22 @@ const FormModal = ({
     if (!formValid) return stay();
     if (!isLastStep) return next();
 
-    console.log("data to submit", data)
+    uploadImage()
+
+    console.log("data to submit>>>>>>>>>>", data)
+
     axios
       .post('http://localhost:8000/api/devs', data)
       .then((res) => {
-        console.log('response here>>>>>>>>>>>', res.data);
-
+        console.log('post response here>>>>>>>>>>>', res.data);
+        if(res.data.error){
+          setOpenModal(false);
+          return alert("Fail to register!")
+        }
         const loginData = {
           email: data.email,
           password: data.password,
         };
-
         axios
           .post('http://localhost:8000/api/login', loginData)
           .then((res) => {
@@ -117,7 +140,7 @@ const FormModal = ({
 
   return (
     <div
-      onClick={() => setOpenModal(false)}
+      // onClick={() => setOpenModal(false)}
       className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
     >
       <div
