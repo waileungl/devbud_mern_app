@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors');
+
 //mongoDB
 const DB = 'devBud';
 

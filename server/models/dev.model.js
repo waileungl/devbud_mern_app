@@ -13,8 +13,8 @@ const DevSchema = new mongoose.Schema(
       required: true,
     },
     profilePic: {
-      type: String,
-      required: false,
+      data: Buffer,
+      contentType: String,
     },
     firstName: {
       type: String,
@@ -50,11 +50,7 @@ const DevSchema = new mongoose.Schema(
     java: {
       type: Boolean,
       default: false,
-    },
-    // cSharp: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    }
   },
   { timestamps: true }
 );

@@ -10,7 +10,7 @@ const DevForm = ({
   javaScript,
   python,
   java,
-  updateFields,
+  updateFields
 }) => {
   return (
     <div>
@@ -80,7 +80,7 @@ const DevForm = ({
       </div>
 
       <div className='mb-3'>
-        <label className='text-sm sm:text-base font-normal text-gray-600' for='profilePic'>
+        <label className='text-sm sm:text-base font-normal text-gray-600'>
           Profile Picture
         </label>
         <input
@@ -91,9 +91,11 @@ const DevForm = ({
           file:bg-violet-50 file:text-violet-700
           hover:file:bg-violet-100'
           type='file'
-          name='profilePic'
-          value={profilePic}
-          onChange={(e) => updateFields({ profilePic: e.target.value })}
+          accept="image/*"
+          name='devImage'
+          onChange={(e) => {
+            updateFields({ profilePic: e.target.files[0] })
+          }}
         />
       </div>
 

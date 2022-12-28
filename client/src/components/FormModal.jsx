@@ -10,7 +10,7 @@ const INITIAL_DATA = {
   password: "",
   firstName: "",
   lastName: "",
-  profilePic: "",
+  profilePic: null,
   education: "",
   yearsOfExp: "",
   bio: "",
@@ -23,7 +23,6 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOp
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
   const [formValid, setFormValid] = useState(true)
-
 
   //   This fucntion will help us update the variables form the inputs, like setState
   function updateFields(fields) {
@@ -59,6 +58,7 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOp
     if (!formValid) return stay();
     if (!isLastStep) return next();
 
+    console.log("data to submit", data)
     axios
       .post('http://localhost:8000/api/devs', data)
       .then((res) => {

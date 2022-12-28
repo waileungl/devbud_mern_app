@@ -1,5 +1,8 @@
 const Dev = require('../models/dev.model');
 
+// upload image file api - cloudinary
+const cloudinary = require('../config/cloudinary')
+
 // Login JWT authentication
 const { v4: uuid } = require('uuid');
 const jwt = require('jsonwebtoken');
@@ -35,13 +38,16 @@ module.exports.findOneDev = (req, res) => {
 
 // Registration
 module.exports.createDev = async (req, res) => {
+  console.log("register request received", req.body);
   const encryptedPassword = await bcrypt.hash(req.body.password, 10)
   const newDevUser = {
     email: req.body.email,
     password: encryptedPassword,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    profilePic: req.body.profilePic,
+    profilePic: {
+
+    },
     education: req.body.education,
     yearsOfExp: req.body.yearsOfExp,
     bio: req.body.bio,
@@ -99,7 +105,7 @@ module.exports.loginOneDev = async (req, res) => {
     if (res.status(201)) {
       console.log("Login success!")
       return res.json({ status: "ok", token: token, userId: loginDev._id, userName: loginDev.firstName })
-    }else{
+    } else {
       return res.json({ error: "error", data: token })
     }
   }
