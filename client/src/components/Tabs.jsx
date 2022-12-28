@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Find from '../assets/find.jpg';
-import Chat from '../assets/chat.jpg';
-import Code from '../assets/code.jpg';
+import collaborate from '../assets/collaborate.png';
+import code from '../assets/code.png';
+import networking from '../assets/networking.png';
 
 const Tabs = () => {
   const [openTab, setOpenTab] = useState(1);
@@ -31,7 +31,7 @@ const Tabs = () => {
                 href='#link1'
                 role='tablist'
               >
-                01 PICK
+                CODE SPACE
               </a>
             </li>
             <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
@@ -47,7 +47,7 @@ const Tabs = () => {
                 href='#link2'
                 role='tablist'
               >
-                02 CHAT
+                NETWORK{' '}
               </a>
             </li>
             <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
@@ -63,7 +63,7 @@ const Tabs = () => {
                 href='#link3'
                 role='tablist'
               >
-                03 LEARN
+                LEARN
               </a>
             </li>
           </ul>
@@ -73,7 +73,11 @@ const Tabs = () => {
                 className={openTab === 1 ? 'grid md:grid-cols-2' : 'hidden'}
                 id='#link1'
               >
-                <img className='w-[300px] mx-auto my-4' src={Find} alt='/' />
+                <img
+                  className='w-[300px] mx-auto my-4'
+                  src={collaborate}
+                  alt='/'
+                />
                 <div className='flex flex-col justify-center'>
                   <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2 text-sky-500'>
                     Pick Your Instructor
@@ -88,7 +92,11 @@ const Tabs = () => {
                 className={openTab === 2 ? 'grid md:grid-cols-2' : 'hidden'}
                 id='#link2'
               >
-                <img className='w-[300px] mx-auto my-4' src={Chat} alt='/' />
+                <img
+                  className='w-[300px] mx-auto my-4'
+                  src={networking}
+                  alt='/'
+                />
                 <div className='flex flex-col justify-center'>
                   <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2 text-sky-500'>
                     Chat With Your Instructor
@@ -104,7 +112,7 @@ const Tabs = () => {
                 className={openTab === 3 ? 'grid md:grid-cols-2' : 'hidden'}
                 id='#link3'
               >
-                <img className='w-[300px] mx-auto my-4' src={Code} alt='/' />
+                <img className='w-[300px] mx-auto my-4' src={code} alt='/' />
                 <div className='flex flex-col justify-center'>
                   <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2 text-sky-500'>
                     Start Learning

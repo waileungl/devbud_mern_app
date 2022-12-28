@@ -6,20 +6,28 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useMultistepForm } from './UseMultistepForm';
 
 const INITIAL_DATA = {
-  email: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  profilePic: null,
-  education: "",
-  yearsOfExp: "",
-  bio: "",
+  email: '',
+  password: '',
+  firstName: '',
+  lastName: '',
+  profilePic: '',
+  education: '',
+  yearsOfExp: '',
+  bio: '',
   javaScript: false,
   python: false,
   java: false,
 };
 
-const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOpenSuccessModal, setWelcomeWords }) => {
+const FormModal = ({
+  open,
+  setOpenModal,
+  loaded,
+  setLoaded,
+  setLoginToken,
+  setOpenSuccessModal,
+  setWelcomeWords,
+}) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
   const [formValid, setFormValid] = useState(true)
@@ -62,13 +70,13 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOp
     axios
       .post('http://localhost:8000/api/devs', data)
       .then((res) => {
-        console.log("response here>>>>>>>>>>>", res.data);
-        
+        console.log('response here>>>>>>>>>>>', res.data);
+
         const loginData = {
           email: data.email,
-          password: data.password
-        }
-    
+          password: data.password,
+        };
+
         axios
           .post('http://localhost:8000/api/login', loginData)
           .then((res) => {
@@ -93,8 +101,8 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOp
             });
             setLoaded(!loaded);
             setOpenModal(false);
-            setWelcomeWords("Welcome to Devbud!")
-            setOpenSuccessModal(true)
+            setWelcomeWords('Welcome to Devbud!');
+            setOpenSuccessModal(true);
           })
           .catch((err) => {
             console.log(err);
@@ -103,14 +111,13 @@ const FormModal = ({ open, setOpenModal, loaded, setLoaded, setLoginToken, setOp
       .catch((err) => {
         console.log(err);
       });
-
-
   };
 
   if (!open) return null;
 
   return (
     <div
+      onClick={() => setOpenModal(false)}
       className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
     >
       <div
