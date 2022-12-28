@@ -25,18 +25,16 @@ const AboutUs = () => {
           {/* Individual Card  */}
           <div className='w-full md:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white hover:scale-105 duration-300'>
             <div className='w-48 h-48 mx-auto mt-[-3rem] rounded-xl object-cover truncate'>
-              <img
-                src={willZhan}
-                alt='profile-pic'
-              />
+              <img src={willZhan} alt='profile-pic' />
             </div>
             <h2 className='text-3xl font-bold text-center py-6'>
               William Zhan
             </h2>
             <p className='text-center text-lg mb-6'>
-              I am a full-stack developer with knowledge in HTML, CSS,
-              JavaScript, React, MongoDB, Express, Node.js, Python, Flask, SQL,
-              Bootstrap and TailwindCSS.
+              I am a driven and dedicated full-stack developer with knowledge in
+              HTML, CSS, JavaScript, React, MongoDB, Express, Node.js, Python,
+              Flask, SQL, Bootstrap and TailwindCSS. I enjoy working with others
+              to build web-applications that capture my curiosity.
             </p>
             <div className='flex p-4 align-middle justify-center gap-10'>
               <a href='https://www.linkedin.com/in/william-zhan/'>
@@ -54,14 +52,14 @@ const AboutUs = () => {
           {/* Individual Card  */}
           <div className='w-full md:w-1/3 shadow-xl flex flex-col p-4 my-4 rounded-lg bg-white hover:scale-105 duration-300'>
             <div className='w-48 h-48 mx-auto mt-[-3rem] rounded-xl object-cover truncate'>
-              <img
-                src={willLiu}
-                alt='profile-pic'
-              />
+              <img src={willLiu} alt='profile-pic' />
             </div>
             <h2 className='text-3xl font-bold text-center py-6'>William Liu</h2>
             <p className='text-center text-lg mb-6'>
-              I'm Will, a motivated and detail-oriented web developer with experience in building and maintaining websites and web applications. Mainly do MERN and Python Flask. I am eager to learn and develop any application that interests me.
+              I'm Will, a motivated and detail-oriented web developer with
+              experience in building and maintaining websites and web
+              applications. Mainly do MERN and Python Flask. I am eager to learn
+              and develop any application that interests me.
             </p>
             <div className='flex p-4 align-middle justify-center gap-10'>
               <a href='https://www.linkedin.com/in/willliu06'>

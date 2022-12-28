@@ -11,7 +11,7 @@ const Features = () => {
         </h2>
         <p className='text-lg md:text-2xl py-8 text-gray-600 text-center'>
           DEVBUD. is an All-In-One platform that allows instructors and students
-          to maximize thier learning effort and use their time more efficiently.
+          to maximize their learning effort and use their time more efficiently.
           Below is a list of all the features that users have access to.
         </p>
 
@@ -37,7 +37,7 @@ const Features = () => {
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
             <div>
-              <h3 className='font-bold text-lg'>Group Video Chat</h3>
+              <h3 className='font-bold text-lg'>Group Video</h3>
               <p className='text-lg pt-2 pb-4'>
                 Get to know your instructor or students through video calls that
                 supports one-on-one or groups.
@@ -65,20 +65,23 @@ const Features = () => {
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
             <div>
-              <h3 className='font-bold text-lg'>Collaboration</h3>
-              <p className='text-lg pt-2 pb-4'>
-                All the features listed above are done in real-time
-                communication, allowing for optimal collaboration between users.
+              <h3 className='font-bold text-lg'>Share Screen</h3>
+              <p className='text-lg pt-2 pb-4 mr-1'>
+                Share your screen with colleagues to enhance your communication
+                and collaboration.
               </p>
             </div>
           </div>
         </div>
 
         <div className='flex justify-between items-center'>
-          <Link to='/room' className='mx-auto md:flex rounded-md  mt-10 px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
+          <Link
+            to='/room'
+            className='mx-auto md:flex rounded-md  mt-10 px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'
+          >
             Try it now
           </Link>
-          </div>
+        </div>
       </div>
     </div>
   );

@@ -13,12 +13,7 @@ const Navbar2 = () => {
   return (
     <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 bg-[#F0F0F0] shadow-md sticky top-0 z-50'>
       <Link className='text-3xl font-bold mr-4 sm:text-4xl' to='/'>
-        <LinkScroll
-          to='home'
-          smooth={true}
-          offset={0}
-          duration={500}
-        >
+        <LinkScroll to='home' smooth={true} offset={0} duration={500}>
           DEVBUD.
         </LinkScroll>
       </Link>
@@ -73,12 +68,7 @@ const Navbar2 = () => {
             : 'fixed left-[-100%]'
         }
       >
-        <LinkScroll
-          to='home'
-          smooth={true}
-          offset={0}
-          duration={500}
-        >
+        <LinkScroll to='home' smooth={true} offset={0} duration={500}>
           <h1 className='text-3xl font-bold mr-4 sm:text-4xl m-4 mb-2'>
             DEVBUD.
           </h1>
@@ -103,7 +93,7 @@ const Navbar2 = () => {
             {/* <li className='p-4 border-b nav-link'>Code Space</li> */}
             <div className='w-[100%] flex justify-center items-center'>
               <button className='my-4 md:flex rounded-md px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
-                Code Space
+                Create Code Space
               </button>
             </div>
           </Link>

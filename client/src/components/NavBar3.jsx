@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
-export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginModal, loginToken, setLoginToken, openEditProfileModal, setOpenEditProfileModal }) => {
-
+export const NavBar3 = ({
+  openModal,
+  setOpenModal,
+  openLoginModal,
+  setOpenLoginModal,
+  loginToken,
+  setLoginToken,
+  openEditProfileModal,
+  setOpenEditProfileModal,
+}) => {
   const [nav, setNav] = useState(true);
 
   const handleNav = () => {
     setNav(!nav);
   };
-
 
   return (
     <>
@@ -17,13 +24,13 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
         <Link className='text-3xl font-bold mr-4 sm:text-4xl' to='/'>
           DEVBUD.
         </Link>
-        {!loginToken &&
+        {!loginToken && (
           <ul className='hidden md:flex'>
             <button
               onClick={() => {
                 setOpenModal(!openModal);
               }}
-              className='rounded-md px-8 py-2 text-white bg-slate-800 border border-black transparent hover:bg-[#F0F0F0] hover:text-black hover:border-black'
+              className='rounded-md px-8 py-2 text-white bg-black border border-black transparent hover:bg-[#F0F0F0] hover:text-black hover:border-black'
             >
               Become a Tutor
             </button>
@@ -36,9 +43,8 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
               Login
             </button>
           </ul>
-        }
-        {
-          loginToken &&
+        )}
+        {loginToken && (
           <ul className='hidden md:flex'>
             <button
               onClick={() => {
@@ -51,14 +57,14 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
             <button
               onClick={() => {
                 localStorage.removeItem('jwt');
-                setLoginToken("");
+                setLoginToken('');
               }}
               className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black ml-2'
             >
               Logout
             </button>
           </ul>
-        }
+        )}
 
         <div onClick={handleNav} className='block md:hidden'>
           {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
@@ -72,37 +78,41 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
           }
         >
           <Link to='/'>
-            <h2 className='text-3xl font-bold mr-4 sm:text-4xl m-4 mb-2'>DEVBUD.</h2>
+            <h2 className='text-3xl font-bold mr-4 sm:text-4xl m-4 mb-2'>
+              DEVBUD.
+            </h2>
           </Link>
-          {
-            loginToken &&
+          {loginToken && (
             <ul>
               <li
                 onClick={() => {
                   setOpenEditProfileModal(!openEditProfileModal);
                 }}
-                className='p-4 border-b nav-link'>
+                className='p-4 border-b nav-link'
+              >
                 My Profile
               </li>
 
               <li
                 onClick={() => {
                   localStorage.removeItem('jwt');
-                  setLoginToken("");
+                  setLoginToken('');
                 }}
-                className='p-4 border-b nav-link'>
+                className='p-4 border-b nav-link'
+              >
                 Logout
               </li>
-            </ul>}
+            </ul>
+          )}
 
-          {
-            !loginToken &&
+          {!loginToken && (
             <ul>
               <li
                 onClick={() => {
                   setOpenModal(!openModal);
                 }}
-                className='p-4 border-b nav-link'>
+                className='p-4 border-b nav-link'
+              >
                 Become a Tutor
               </li>
 
@@ -110,13 +120,14 @@ export const NavBar3 = ({ openModal, setOpenModal, openLoginModal, setOpenLoginM
                 onClick={() => {
                   setOpenLoginModal(!openLoginModal);
                 }}
-                className='p-4 border-b nav-link'>
+                className='p-4 border-b nav-link'
+              >
                 Login
               </li>
-            </ul>}
+            </ul>
+          )}
         </div>
       </div>
-
     </>
   );
 };
