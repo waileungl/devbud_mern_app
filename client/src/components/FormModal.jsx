@@ -30,6 +30,8 @@ const FormModal = ({
   setLoginToken,
   setOpenSuccessModal,
   setWelcomeWords,
+  uploadingNotify,
+  completeNotify
 }) => {
   const [data, setData] = useState(INITIAL_DATA);
   const [confirmPass, setConfirmPass] = useState('');
@@ -70,14 +72,13 @@ const FormModal = ({
     if(imgFile == null) return
 
     // Make ref to firebase
-    console.log("Here is the image file name!!!!!!!!!!!!!!!!>>>>>", imgFirebaseName);
-
     const imageRef = ref(storage, `user-profile-pic/${imgFirebaseName}`);
-
+    uploadingNotify();
     //Upload img to firebase
     uploadBytes(imageRef ,imgFile).then(() => {
       console.log("Image uploaded to firebase!")
-      setLoaded(!loaded)
+      setLoaded(!loaded);
+      completeNotify();
     })
 
   }
@@ -98,7 +99,7 @@ const FormModal = ({
         console.log('post response here>>>>>>>>>>>', res.data);
         if(res.data.error){
           setOpenModal(false);
-          return alert("Fail to register!")
+          return alert("Something went wrong, fail to register!")
         }
         const loginData = {
           email: data.email,
@@ -126,7 +127,6 @@ const FormModal = ({
               java: false,
               //   cSharp: false,
             });
-            setLoaded(!loaded);
             setOpenModal(false);
             setWelcomeWords('Welcome to Devbud!');
             setOpenSuccessModal(true);

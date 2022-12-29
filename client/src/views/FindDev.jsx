@@ -7,6 +7,10 @@ import LoginModal from '../components/LoginModal';
 import EditProfileModal from '../components/EditProfileModal';
 import SuccessModal from '../components/SuccessModal';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const FindDev = () => {
   const [devs, setDevs] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -24,10 +28,36 @@ const FindDev = () => {
       .get('http://localhost:8000/api/devs')
       .then((res) => {
         setDevs(res.data);
-        // console.log(res.data);
+        console.log("all devs here", res.data);
       })
       .catch((err) => console.error(err));
   }, [loaded, openEditProfileModal]);
+
+  const uploadingNotify = () => {
+    toast('Uploading picture...', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+
+  const completeNotify = () => {
+    toast.success('Uploaded!', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
 
   return (
     <div>
@@ -43,7 +73,7 @@ const FindDev = () => {
         openEditProfileModal={openEditProfileModal}
         setOpenEditProfileModal={setOpenEditProfileModal}
       />
-      <DevList devs={devs} loaded={loaded}/>
+      <DevList devs={devs} loaded={loaded} />
       <FormModal
         open={openModal}
         setOpenModal={setOpenModal}
@@ -52,6 +82,8 @@ const FindDev = () => {
         setLoginToken={setLoginToken}
         setOpenSuccessModal={setOpenSuccessModal}
         setWelcomeWords={setWelcomeWords}
+        uploadingNotify={uploadingNotify}
+        completeNotify={completeNotify}
       />
       <LoginModal
         openLoginModal={openLoginModal}
@@ -69,13 +101,29 @@ const FindDev = () => {
         setLoginToken={setLoginToken}
         setOpenSuccessModal={setOpenSuccessModal}
         setWelcomeWords={setWelcomeWords}
+        uploadingNotify={uploadingNotify}
+        completeNotify={completeNotify}
+        setLoaded={setLoaded}
+        loaded={loaded}
       />
       {openSuccessModal &&
-      <SuccessModal
-        openSuccessModal={openSuccessModal}
-        setOpenSuccessModal={setOpenSuccessModal}
-        welcomeWords={welcomeWords}
-      />}
+        <SuccessModal
+          openSuccessModal={openSuccessModal}
+          setOpenSuccessModal={setOpenSuccessModal}
+          welcomeWords={welcomeWords}
+        />}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

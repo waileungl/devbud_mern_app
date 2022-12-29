@@ -19,6 +19,9 @@ module.exports.findAllDevs = (req, res) => {
   Dev.find()
     .then((allDevs) => {
       // IMPORTANT what we return here is what we will receive in REACT!
+      for(let i = 0; i < allDevs.length; i++){
+        allDevs[i].password = "Stop trying to hack this website!"
+      }
       res.json(allDevs); // returns an []
     })
     .catch((err) =>

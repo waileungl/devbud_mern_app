@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
+import { storage } from '../firebase';
+import { ref, deleteObject, uploadBytes } from "firebase/storage"
+import uuid from 'react-uuid';
 
 const USER_DATA = {
   firstName: "",
@@ -14,8 +17,11 @@ const USER_DATA = {
   java: false,
 };
 
-const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOpenSuccessModal, setLoginToken, setWelcomeWords }) => {
+const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOpenSuccessModal, setLoginToken, setWelcomeWords, uploadingNotify, completeNotify, setLoaded, loaded }) => {
   const [userData, setUserData] = useState(USER_DATA)
+  const [imgFile, setImgFile] = useState("")
+  const [imgFirebaseName, setImgFirebaseName] = useState(uuid())
+  const [imgOriginalName, setImgOriginalName] = useState("")
   const userId = localStorage.getItem('userId');
 
 
@@ -30,7 +36,7 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
     axios
       .get(`http://localhost:8000/api/devs/${userId}`)
       .then((res) => {
-        console.log(res);
+        setImgOriginalName(res.data.dev.profilePic)
         updateFields({
           firstName: res.data.dev.firstName,
           lastName: res.data.dev.lastName,
@@ -48,6 +54,28 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // If there is new img from user, delete the old one from firebase -> save the new one in firebase and its route into our database
+    if (imgFile) {
+      // Delete the file in firebase
+      const desertRef = ref(storage, `user-profile-pic/${imgOriginalName}`);
+      deleteObject(desertRef).then(() => {
+        console.log("The old profile pic is deleted!")
+      }).catch((err) => {
+        console.log(err)
+      });
+
+      const imageRef = ref(storage, `user-profile-pic/${imgFirebaseName}`);
+      uploadingNotify();
+      //Upload img to firebase
+      uploadBytes(imageRef, imgFile).then(() => {
+        console.log("Image uploaded to firebase!")
+        completeNotify();
+        setLoaded(!loaded)
+      })
+    }
+
+    console.log("user data to update>>>>", userData)
+
     axios
       .put(`http://localhost:8000/api/devs/${userId}`, userData)
       .then(() => {
@@ -61,12 +89,21 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
   };
 
   const selfDestroy = () => {
+    if (imgOriginalName) {
+      // Delete the file in firebase
+      const desertRef = ref(storage, `user-profile-pic/${imgOriginalName}`);
+      deleteObject(desertRef).then(() => {
+        console.log("The old profile pic is deleted!")
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
     axios
       .delete(`http://localhost:8000/api/devs/${userId}`)
       .then(() => {
         localStorage.removeItem('jwt');
         setLoginToken("");
-        setWelcomeWords("Your account has been deleted!");
+        setWelcomeWords("Account has been deleted");
         setOpenEditProfileModal(!openEditProfileModal)
         setOpenSuccessModal(true)
       })
@@ -177,9 +214,10 @@ const EditProfileModal = ({ openEditProfileModal, setOpenEditProfileModal, setOp
                   file:bg-violet-50 file:text-violet-700
                   hover:file:bg-violet-100'
                 type='file'
-                // name='profilePic'
-                // value={userData.profilePic}
-                // onChange={(e) => updateFields({ profilePic: e.target.value })}
+                onChange={(e) => {
+                  setImgFile(e.target.files[0])
+                  updateFields({ profilePic: imgFirebaseName })
+                }}
               />
             </div>
 
