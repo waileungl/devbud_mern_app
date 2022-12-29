@@ -1071,7 +1071,7 @@ body.dark .btn-close-right {
         font-size: 12px;
     }
 
-    .full-screen-btn {
+    #share-screen {
         display: none;
     }
 
