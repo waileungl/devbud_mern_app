@@ -39,7 +39,10 @@ module.exports.findOneDev = (req, res) => {
 // FIND ALL BY LANGUAGE
 module.exports.findDevsByLanguage = (req, res) => {
   Dev.find({ [req.params.language]: true })
-  .then((devs) => res.json(devs))
+  .then((devs) => {
+    // console.log(`all developer with ${req.params.language} is here`, devs);
+    res.json(devs)
+  })
   .catch((err) => res.json({ message: 'fail to find devs by language', error: err }));
 } 
 

@@ -27,6 +27,7 @@ const FindDev = () => {
       .get('http://localhost:8000/api/devs')
       .then((res) => {
         setDevs(res.data);
+        setLoaded(!loaded);
         console.log("all devs here", res.data);
       })
       .catch((err) => console.error(err));
@@ -37,7 +38,7 @@ const FindDev = () => {
 
     showAllDevs();
 
-  }, [loaded, openEditProfileModal]);
+  }, []);
 
   const uploadingNotify = () => {
     toast('Uploading picture...', {
@@ -71,6 +72,7 @@ const FindDev = () => {
       .get(`http://localhost:8000/api/devs/filter/${language}`)
       .then((res) => {
         setDevs(res.data);
+        setLoaded(!loaded);
         console.log(`all devs know ${language} here`, res.data);
       })
       .catch((err) => console.error(err));
