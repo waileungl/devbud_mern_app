@@ -21,9 +21,8 @@ const FindDev = () => {
   const [loginToken, setLoginToken] = useState("");
   const [welcomeWords, setWelcomeWords] = useState("");
 
-  useEffect(() => {
-    setLoginToken(localStorage.getItem('jwt'));
 
+  const showAllDevs = () => {
     axios
       .get('http://localhost:8000/api/devs')
       .then((res) => {
@@ -31,6 +30,13 @@ const FindDev = () => {
         console.log("all devs here", res.data);
       })
       .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    setLoginToken(localStorage.getItem('jwt'));
+
+    showAllDevs();
+
   }, [loaded, openEditProfileModal]);
 
   const uploadingNotify = () => {
@@ -43,7 +49,7 @@ const FindDev = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   }
 
   const completeNotify = () => {
@@ -56,8 +62,20 @@ const FindDev = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   }
+
+
+  const findDevsByLanguage = (language) => {
+    axios
+      .get(`http://localhost:8000/api/devs/filter/${language}`)
+      .then((res) => {
+        setDevs(res.data);
+        console.log(`all devs know ${language} here`, res.data);
+      })
+      .catch((err) => console.error(err));
+  }
+
 
   return (
     <div>
@@ -73,7 +91,7 @@ const FindDev = () => {
         openEditProfileModal={openEditProfileModal}
         setOpenEditProfileModal={setOpenEditProfileModal}
       />
-      <DevList devs={devs} loaded={loaded} />
+      <DevList devs={devs} loaded={loaded} findDevsByLanguage={findDevsByLanguage} showAllDevs={showAllDevs}/>
       <FormModal
         open={openModal}
         setOpenModal={setOpenModal}

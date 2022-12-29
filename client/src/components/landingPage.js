@@ -86,7 +86,7 @@ const LandingPage = props => {
 
                             <div className="heading">
                                 <h3>Create a Dev room</h3>
-                                <h6>Have an invitation link?</h6>
+                                <h6>Have an invitation code?</h6>
                                 <div className="toggle" onClick={switchMode}>Join room</div>
                             </div>
 
@@ -145,7 +145,7 @@ const LandingPage = props => {
 
                             <div className="heading">
                                 <h3>Join a room</h3>
-                                <h6>No invitation link?</h6>
+                                <h6>No invitation Code?</h6>
                                 <div className="toggle" onClick={switchMode}>Create Room</div>
                             </div>
 
@@ -186,7 +186,7 @@ const LandingPage = props => {
                                         }}
                                         ref={inputInvitation}
                                     />
-                                    <label className="placeHolder">Invitation link</label>
+                                    <label className="placeHolder">Invitation Code</label>
                                 </div>
 
                                 <input type="submit" value="Join" className="sign-btn" />

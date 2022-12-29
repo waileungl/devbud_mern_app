@@ -25,7 +25,7 @@ module.exports.findAllDevs = (req, res) => {
       res.json(allDevs); // returns an []
     })
     .catch((err) =>
-      res.json({ message: 'something went wrong', serverError: err })
+      res.json({ message: 'fail to find all devs', serverError: err })
     );
 };
 
@@ -33,8 +33,16 @@ module.exports.findAllDevs = (req, res) => {
 module.exports.findOneDev = (req, res) => {
   Dev.findOne({ _id: req.params.id })
     .then((oneDev) => res.json({ dev: oneDev }))
-    .catch((err) => res.json({ message: 'Something went wrong', error: err }));
+    .catch((err) => res.json({ message: 'fail to find one dev', error: err }));
 };
+
+// FIND ALL BY LANGUAGE
+module.exports.findDevsByLanguage = (req, res) => {
+  Dev.find({ [req.params.language]: true })
+  .then((devs) => res.json(devs))
+  .catch((err) => res.json({ message: 'fail to find devs by language', error: err }));
+} 
+
 
 // Registration
 module.exports.createDev = async (req, res) => {
@@ -70,7 +78,7 @@ module.exports.createDev = async (req, res) => {
         _id: newlyCreatedDev._id
       }
     }))
-    .catch((err) => res.json({ message: 'Something went wrong', error: err }));
+    .catch((err) => res.json({ message: 'fail to create new user', error: err }));
 };
 
 // Email Validation
@@ -83,7 +91,7 @@ module.exports.emailValidation = (req, res) => {
         res.status(200).send({ exist: true });
       }
     })
-    .catch((err) => console.log("Error occur!!", err));
+    .catch((err) => console.log("emaill validation error", err));
 }
 
 // User login

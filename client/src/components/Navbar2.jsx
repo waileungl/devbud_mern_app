@@ -51,7 +51,7 @@ const Navbar2 = () => {
         <Link to='/room'>
           {/* <li className='p-4 hover:scale-105 nav-link'>Create Room</li> */}
           <button className='hidden md:flex rounded-md px-8 py-2 text-white border border-black bg-black hover:bg-transparent hover:text-black hover:border-black'>
-            Code Room
+            Code Space
           </button>
         </Link>
       </div>

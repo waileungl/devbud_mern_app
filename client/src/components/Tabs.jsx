@@ -12,7 +12,7 @@ const Tabs = () => {
 
   return (
     <>
-      <div className='flex flex-wrap mt-6 '>
+      <div className='flex flex-wrap mt-6 w-full'>
         <div className='w-9/12 mx-auto'>
           <ul
             className='flex mb-0 list-none flex-wrap pt-3 pb-4  flex-col md:flex-row'
@@ -21,7 +21,7 @@ const Tabs = () => {
             <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
               <a
                 className={
-                  'text-s font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal mb-2' +
+                  'text-s font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal mb-2 transition-bg-color duration-300' +
                   (openTab === 1
                     ? ' text-white bg-gray-600'
                     : ' text-gray-600 bg-white')
@@ -37,7 +37,7 @@ const Tabs = () => {
             <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
               <a
                 className={
-                  'text-s font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal mb-2' +
+                  'text-s font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal mb-2 transition-bg-color duration-300' +
                   (openTab === 2
                     ? ' text-white bg-gray-600'
                     : ' text-gray-600 bg-white')
@@ -47,13 +47,13 @@ const Tabs = () => {
                 href='#link2'
                 role='tablist'
               >
-                NETWORK{' '}
+                NETWORK
               </a>
             </li>
             <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
               <a
                 className={
-                  'text-s font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal mb-2' +
+                  'text-s font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal mb-2 transition-bg-color duration-300' +
                   (openTab === 3
                     ? ' bg-gray-600 text-white'
                     : ' text-gray-600 bg-white')
