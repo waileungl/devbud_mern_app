@@ -10,6 +10,8 @@ import { BiMicrophoneOff } from 'react-icons/bi';
 import { BiMicrophone } from 'react-icons/bi';
 import { RiFullscreenFill, RiLayoutRightLine } from 'react-icons/ri';
 import { RiFullscreenExitLine } from 'react-icons/ri';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import { useNavigate } from "react-router-dom";
@@ -17,6 +19,20 @@ import { useNavigate } from "react-router-dom";
 export default function VideoControl(props) {
     const { rtcClient, tracks, setJoined, videoDiv, trackState, setTrackState, leaveRTMchannel, shareScreenHandler, closeShareScreenHandler, screenShareState } = props;
     const navigate = useNavigate();
+
+    const shareScreenNotify = () => {
+        toast.warn('Not available for your device', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
 
     useEffect(() => {
         const clickMic = document.querySelector(".microphone-btn");
@@ -81,33 +97,40 @@ export default function VideoControl(props) {
     };
 
     const toggleScreenShare = async () => {
-        if (screenShareState) {
-            const shareScreenBtn = document.querySelector("#share-screen")
-            shareScreenBtn.classList.remove("btn-selected");
-            if (trackState.video === false) {
-                const clickCam = document.querySelector(".camera-btn");
-                clickCam.classList.add('btn-selected')
-                await tracks[1].setEnabled(!trackState.video);
-                setTrackState(ps => {
-                    return { ...ps, video: !ps.video };
-                });
+        shareScreenNotify();
+        try {
+            if (screenShareState) {
+                const shareScreenBtn = document.querySelector("#share-screen")
+                shareScreenBtn.classList.remove("btn-selected");
+                if (trackState.video === false) {
+                    const clickCam = document.querySelector(".camera-btn");
+                    clickCam.classList.add('btn-selected')
+                    await tracks[1].setEnabled(!trackState.video);
+                    setTrackState(ps => {
+                        return { ...ps, video: !ps.video };
+                    });
+                }
+                closeShareScreenHandler();
             }
-            closeShareScreenHandler();
-        }
-        if (!screenShareState) {
-            const shareScreenBtn = document.querySelector("#share-screen")
-            shareScreenBtn.classList.add("btn-selected");
-            if (trackState.video === false) {
-                const clickCam = document.querySelector(".camera-btn");
-                clickCam.classList.add('btn-selected')
-                await tracks[1].setEnabled(!trackState.video);
-                setTrackState(ps => {
-                    return { ...ps, video: !ps.video };
-                });
-            }
+            if (!screenShareState) {
+                const shareScreenBtn = document.querySelector("#share-screen")
+                shareScreenBtn.classList.add("btn-selected");
+                if (trackState.video === false) {
+                    const clickCam = document.querySelector(".camera-btn");
+                    clickCam.classList.add('btn-selected')
+                    await tracks[1].setEnabled(!trackState.video);
+                    setTrackState(ps => {
+                        return { ...ps, video: !ps.video };
+                    });
+                }
 
-            shareScreenHandler()
+                shareScreenHandler()
+            }
         }
+        catch {
+            shareScreenNotify();
+        }
+
     }
 
     return (
@@ -132,6 +155,18 @@ export default function VideoControl(props) {
             </div>
 
             <button className="video-action-button endcall" onClick={() => leaveChannel()}>Leave</button>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </>
     )
 } 
