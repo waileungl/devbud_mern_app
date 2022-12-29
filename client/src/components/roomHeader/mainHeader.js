@@ -51,7 +51,7 @@ const MainHeader = ({ roomNameTitle, ROOMID, setInviteBtnLoadingState }) => {
                     <div className="dropdown" data-dropdown>
                         <button className="link invite-button" data-dropdown-button>invite</button>
                         <div className="dropdown-menu">
-                            <h4>Invitation link:</h4>
+                            <h4>Invitation Code:</h4>
                             <div className='invitation-link-wrapper'>
                                 <input value={ROOMID} ref={textToCopy} />
                                 <button id='copy-btn' onClick={() => copyHandler()}></button>
