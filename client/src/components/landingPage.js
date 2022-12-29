@@ -205,9 +205,9 @@ const LandingPage = props => {
                         <div className="text-slider">
                             <div className="text-wrap">
                                 <div className="text-group">
-                                    <h2>Create your room</h2>
-                                    <h2>Practice coding</h2>
-                                    <h2>Invite friends</h2>
+                                    <h2>Collaborative Coding with Built-in IDE</h2>
+                                    <h2>Seamless Screen Sharing Experience</h2>
+                                    <h2>Face-to-face Video Conferencing</h2>
                                 </div>
                             </div>
 
