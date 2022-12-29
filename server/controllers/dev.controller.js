@@ -49,7 +49,7 @@ module.exports.findDevsByLanguage = (req, res) => {
 
 // Registration
 module.exports.createDev = async (req, res) => {
-  console.log("register request received", req.body);
+  // console.log("register request received", req.body);
   const encryptedPassword = await bcrypt.hash(req.body.password, 10)
   const newDevUser = {
     email: req.body.email,

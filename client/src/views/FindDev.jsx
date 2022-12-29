@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const FindDev = () => {
   const [devs, setDevs] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [loadImg, setLoadImg] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
@@ -36,9 +37,15 @@ const FindDev = () => {
   useEffect(() => {
     setLoginToken(localStorage.getItem('jwt'));
 
-    showAllDevs();
+    axios
+    .get('http://localhost:8000/api/devs')
+    .then((res) => {
+      setDevs(res.data);
+      console.log("all devs here", res.data);
+    })
+    .catch((err) => console.error(err));
 
-  }, []);
+  }, [loaded, openLoginModal, openEditProfileModal]);
 
   const uploadingNotify = () => {
     toast('Uploading picture...', {
@@ -72,7 +79,7 @@ const FindDev = () => {
       .get(`http://localhost:8000/api/devs/filter/${language}`)
       .then((res) => {
         setDevs(res.data);
-        setLoaded(!loaded);
+        setLoadImg(!loadImg)
         console.log(`all devs know ${language} here`, res.data);
       })
       .catch((err) => console.error(err));
@@ -93,7 +100,7 @@ const FindDev = () => {
         openEditProfileModal={openEditProfileModal}
         setOpenEditProfileModal={setOpenEditProfileModal}
       />
-      <DevList devs={devs} loaded={loaded} findDevsByLanguage={findDevsByLanguage} showAllDevs={showAllDevs}/>
+      <DevList devs={devs} loaded={loaded} findDevsByLanguage={findDevsByLanguage} showAllDevs={showAllDevs} loadImg={loadImg}/>
       <FormModal
         open={openModal}
         setOpenModal={setOpenModal}

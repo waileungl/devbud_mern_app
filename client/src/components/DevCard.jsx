@@ -5,7 +5,7 @@ import { storage } from '../firebase';
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const DevCard = (props) => {
-  const { oneDev, loaded } = props;
+  const { oneDev, loaded, loadImg } = props;
 
   const [openModal, setOpenModal] = useState(false);
   const [profilePic, setProfilePic] = useState("")
@@ -23,7 +23,7 @@ const DevCard = (props) => {
         console.log(error)
         // alert("error occur!")
       });
-  }, [loaded])
+  }, [loaded, loadImg])
 
 
   return (

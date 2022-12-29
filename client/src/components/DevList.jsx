@@ -9,7 +9,7 @@ import { SiJavascript } from 'react-icons/si';
 import { SiJava } from 'react-icons/si';
 import { IoMdArrowBack } from 'react-icons/io';
 
-const DevList = ({ devs, loaded, findDevsByLanguage, showAllDevs }) => {
+const DevList = ({ devs, loaded, findDevsByLanguage, showAllDevs, loadImg }) => {
   return (
     <div>
       <div className='flex justify-between items-end h-14 max-w-[1240px] mx-auto px-4 bg-[#F0F0F0] mb-[-50px]'>
@@ -40,7 +40,7 @@ const DevList = ({ devs, loaded, findDevsByLanguage, showAllDevs }) => {
           id='cards-container'
         >
           {devs.map((oneDev, idx) => (
-            <DevCard oneDev={oneDev} key={idx} loaded={loaded} />
+            <DevCard oneDev={oneDev} key={idx} loaded={loaded} loadImg={loadImg}/>
           ))}
         </div>
       </div>
