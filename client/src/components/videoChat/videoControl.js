@@ -97,7 +97,6 @@ export default function VideoControl(props) {
     };
 
     const toggleScreenShare = async () => {
-        shareScreenNotify();
         try {
             if (screenShareState) {
                 const shareScreenBtn = document.querySelector("#share-screen")
