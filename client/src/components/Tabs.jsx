@@ -80,11 +80,18 @@ const Tabs = () => {
                 />
                 <div className='flex flex-col justify-center'>
                   <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2 text-sky-500'>
-                    Pick Your Instructor
+                    Collaborate with others in our Code Space
                   </h1>
                   <p className=''>
-                    Find the instructors that best meet your needs. Look for the
-                    instructors that know the languages you want to learn.
+                    The Code Space allows you to work together on coding
+                    assignments and projects with your collegues. The built in
+                    complier suppoerts JavaScript, Java and Python.{' '}
+                  </p>
+                  <br />
+                  <p>
+                    Increase productivity and collaboration by using the various
+                    communication features like group video call, group chat,
+                    screen share and collaborative compiler.
                   </p>
                 </div>
               </div>
@@ -99,12 +106,18 @@ const Tabs = () => {
                 />
                 <div className='flex flex-col justify-center'>
                   <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2 text-sky-500'>
-                    Chat With Your Instructor
+                    Network with other Developers
                   </h1>
                   <p className=''>
-                    When you find an instructor you'd like to work with, send
-                    them a message right from our site. Messaging is easy and
-                    instant.
+                    New to coding? DEVBUD's social platform allows users to
+                    network with each other and find like-minded developers to
+                    collaborate with.
+                  </p>
+                  <br />
+                  <p>
+                    Find more experience developers that have the skills you
+                    desire and work with them on projects to improve your coding
+                    skills!{' '}
                   </p>
                 </div>
               </div>
@@ -119,14 +132,13 @@ const Tabs = () => {
                   </h1>
                   <p className=''>
                     Found someone you want to work with? There is nothing left
-                    to do but jump to our work room and start coding!
+                    to do but to jump into the Code Space.
                   </p>
                   <br />
                   <p>
                     DEVBUD comes with a built-in IDE where you and your
-                    instructor can work on projects or challenges together. Each
-                    work room comes with group chat and webcam features to make
-                    communication a breeze.
+                    colleagues can work on projects or challenges together.
+                    Simply create your own room and invite others!
                   </p>
                 </div>
               </div>

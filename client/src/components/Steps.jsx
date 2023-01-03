@@ -10,7 +10,8 @@ const Steps = () => {
             How It Works
           </p>
           <h1 className='md:text-2xl text-lg font-semibold text-gray-600'>
-            Start your journey and improve your skills in three simple steps.
+            Explore the many different features and opportunities at your
+            disposal.
           </h1>
         </div>
         <Tabs />
