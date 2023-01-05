@@ -1,12 +1,13 @@
 import React from 'react';
-import DefaultPic from '../assets/default-profile-icon.png';
 import willZhan from '../assets/will_zhan.jpg';
 import willLiu from '../assets/will_liu.jpg';
 import {
   AiOutlineGithub,
   AiFillLinkedin,
   AiOutlineGlobal,
+  AiOutlineArrowUp,
 } from 'react-icons/ai';
+import { Link as LinkScroll } from 'react-scroll';
 
 const AboutUs = () => {
   return (
@@ -73,6 +74,13 @@ const AboutUs = () => {
               </a>
             </div>
           </div>
+        </div>
+        <div className='flex justify-center py-12'>
+          <LinkScroll to='home' smooth={true} offset={0} duration={500}>
+            <div className='rounded-full shadow-lg shadow-gray-400 p-4 cursor-pointer hover:scale-110 ease-in duration-300 animate-bounce bg-white'>
+              <AiOutlineArrowUp className='text-black' size={25} />
+            </div>
+          </LinkScroll>
         </div>
       </div>
     </div>
