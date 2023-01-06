@@ -38,13 +38,16 @@ const AboutUs = () => {
               to build web-applications that capture my curiosity.
             </p>
             <div className='flex p-4 align-middle justify-center gap-10'>
-              <a href='https://www.linkedin.com/in/william-zhan/'>
+              <a
+                href='https://www.linkedin.com/in/william-zhan/'
+                target='_blank'
+              >
                 <AiFillLinkedin className='text-3xl' />
               </a>
-              <a href='https://github.com/williamzhanshum'>
+              <a href='https://github.com/williamzhanshum' target='_blank'>
                 <AiOutlineGithub className='text-3xl' />
               </a>
-              <a href='#'>
+              <a href='#' target='_blank'>
                 <AiOutlineGlobal className='text-3xl' />
               </a>
             </div>
@@ -63,13 +66,13 @@ const AboutUs = () => {
               and develop any application that interests me.
             </p>
             <div className='flex p-4 align-middle justify-center gap-10'>
-              <a href='https://www.linkedin.com/in/willliu06'>
+              <a href='https://www.linkedin.com/in/willliu06' target='_blank'>
                 <AiFillLinkedin className='text-3xl' />
               </a>
-              <a href='https://github.com/waileungl'>
+              <a href='https://github.com/waileungl' target='_blank'>
                 <AiOutlineGithub className='text-3xl' />
               </a>
-              <a href='#'>
+              <a href='#' target='_blank'>
                 <AiOutlineGlobal className='text-3xl' />
               </a>
             </div>

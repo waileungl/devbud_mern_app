@@ -8,23 +8,28 @@ const DevCard = (props) => {
   const { oneDev, loaded, loadImg } = props;
 
   const [openModal, setOpenModal] = useState(false);
-  const [profilePic, setProfilePic] = useState("")
+  const [profilePic, setProfilePic] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    console.log("Onedev profilepic here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", oneDev.profilePic);
+    console.log(
+      'Onedev profilepic here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
+      oneDev.profilePic
+    );
     getDownloadURL(ref(storage, `user-profile-pic/${oneDev.profilePic}`))
       .then((url) => {
         // `url` is the download URL for 'images/stars.jpg'
-        console.log("firebase img url here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", url);
-        setProfilePic(url)
+        console.log(
+          'firebase img url here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
+          url
+        );
+        setProfilePic(url);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         // alert("error occur!")
       });
-  }, [loaded, loadImg])
-
+  }, [loaded, loadImg]);
 
   return (
     <>
@@ -34,7 +39,7 @@ const DevCard = (props) => {
             className='w-[70%] rounded-xl shadow-lg md:w-[90%] h-52 object-cover max-h-[85%] '
             src={profilePic === '' ? defaultPic : profilePic}
             alt='profile-pic'
-          //   src={oneDev.profilePic}
+            //   src={oneDev.profilePic}
           />
         </div>
         <div className='w-full md:w-[400px]'>
@@ -44,15 +49,36 @@ const DevCard = (props) => {
 
           <p className='text-gray-500 my-3'>
             <span className='font-extrabold text-black'>Languages:</span>{' '}
-            {oneDev.javaScript ? <span className="bg-slate-200 px-2 py-0.5 rounded-lg text-xs">JavaScript</span> : ''}{' '}
-            {oneDev.python ? <span className="bg-slate-200 px-2 py-0.5 rounded-lg text-xs">Python</span> : ''} {oneDev.java ? <span className="bg-slate-200 px-2 py-0.5 rounded-lg text-xs">Java</span> : ''}
+            {oneDev.javaScript ? (
+              <span className='bg-slate-200 px-2 py-0.5 rounded-lg text-xs'>
+                JavaScript
+              </span>
+            ) : (
+              ''
+            )}{' '}
+            {oneDev.python ? (
+              <span className='bg-slate-200 px-2 py-0.5 rounded-lg text-xs'>
+                Python
+              </span>
+            ) : (
+              ''
+            )}{' '}
+            {oneDev.java ? (
+              <span className='bg-slate-200 px-2 py-0.5 rounded-lg text-xs'>
+                Java
+              </span>
+            ) : (
+              ''
+            )}
           </p>
 
           <p className='text-gray-500 my-3'>
             <span className='font-extrabold text-black'>Experience: </span>
             {oneDev.yearsOfExp} years
           </p>
-          <p className={`text-gray-500 my-3 ${isOpen ? 'scale-100' : 'hidden'}`}>
+          <p
+            className={`text-gray-500 my-3 ${isOpen ? 'scale-100' : 'hidden'}`}
+          >
             <span className='font-extrabold text-black'>Email: </span>
             <p className='overflow-auto'>{oneDev.email}</p>
           </p>
@@ -69,7 +95,8 @@ const DevCard = (props) => {
           </button>
           <button
             className='rounded-md px-4 py-2 border border-black bg-transparent hover:bg-black hover:text-white'
-            onClick={() => setIsOpen(!isOpen)}>
+            onClick={() => setIsOpen(!isOpen)}
+          >
             Contact
           </button>
         </div>
