@@ -11,7 +11,7 @@ import { Link as LinkScroll } from 'react-scroll';
 
 const AboutUs = () => {
   return (
-    <div name='about' className='w-full py-[9rem] px-4'>
+    <div name='about' className='w-full py-[9rem] px-4 relative'>
       <div className='max-w-[1240px] mx-auto px-2'>
         <h2 className='text-4xl md:text-5xl font-bold text-center'>
           Meet the Team
@@ -78,7 +78,7 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        <div className='flex justify-center py-12'>
+        <div className='flex justify-center py-12 lg:absolute lg:top-[83%] lg:left-[77%] lg:translate-x-[-50%] lg:translate-y-[-50%]'>
           <LinkScroll to='home' smooth={true} offset={0} duration={500}>
             <div className='rounded-full shadow-lg shadow-gray-400 p-4 cursor-pointer hover:scale-110 ease-in duration-300 animate-bounce bg-white'>
               <AiOutlineArrowUp className='text-black' size={25} />
