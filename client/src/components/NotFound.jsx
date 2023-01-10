@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import Typed from 'react-typed';
-import Navbar2 from '../components/Navbar2';
+import { NavBarNotFound } from "./NavBarNotFound";
+
 
 const NotFound = () => {
     return (
         <>
-            <Navbar2 />
+            <NavBarNotFound />
             <div className="h-[70vh] flex items-center justify-center flex-col">
                 <h2 className="md:text-5xl sm:text-4xl text-lg font-bold text-grey-400 md:pl-4 pl-2 my-10">Oops!</h2>
                 <Typed
