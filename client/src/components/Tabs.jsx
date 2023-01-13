@@ -84,14 +84,14 @@ const Tabs = () => {
                   </h1>
                   <p className=''>
                     The Code Space allows you to work together on coding
-                    assignments and projects with your collegues. The built in
-                    complier suppoerts JavaScript, Java and Python.{' '}
+                    assignments and projects with your colleagues. The built-in
+                    compiler supports JavaScript, Java and Python.{' '}
                   </p>
                   <br />
                   <p>
-                    Increase productivity and collaboration by using the various
-                    communication features like group video call, group chat,
-                    screen share and collaborative compiler.
+                    Increase productivity and collaboration by using various
+                    communication features like group video calls, group chats,
+                    screen sharing and collaborative compiler.
                   </p>
                 </div>
               </div>
@@ -115,7 +115,7 @@ const Tabs = () => {
                   </p>
                   <br />
                   <p>
-                    Find more experience developers that have the skills you
+                    Find more experienced developers that have the skills you
                     desire and work with them on projects to improve your coding
                     skills!{' '}
                   </p>
@@ -132,7 +132,7 @@ const Tabs = () => {
                   </h1>
                   <p className=''>
                     Found someone you want to work with? There is nothing left
-                    to do but to jump into the Code Space.
+                    to do but jump into the Code Space.
                   </p>
                   <br />
                   <p>

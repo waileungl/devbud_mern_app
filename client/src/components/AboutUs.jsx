@@ -11,7 +11,7 @@ import { Link as LinkScroll } from 'react-scroll';
 
 const AboutUs = () => {
   return (
-    <div name='about' className='w-full py-[9rem] px-4 relative'>
+    <div name='about' className='w-full pt-[9rem] px-4 relative'>
       <div className='max-w-[1240px] mx-auto px-2'>
         <h2 className='text-4xl md:text-5xl font-bold text-center'>
           Meet the Team
@@ -19,7 +19,7 @@ const AboutUs = () => {
         <p className='text-lg md:text-2xl py-8 text-gray-600 text-center'>
           We are a team of self-taught developers. Our goal with DEVBUD. is to
           create a space where aspiring and beginner developers can network and
-          work with experienced developers to imporve their coding skills.
+          work with experienced developers to improve their coding skills.
         </p>
         {/* <div className='grid md:grid-cols-2 gap-8 mt-10'> */}
         <div className='flex flex-col md:flex-row justify-center gap-12 mt-10'>
@@ -35,7 +35,7 @@ const AboutUs = () => {
               I am a driven and dedicated full-stack developer with knowledge in
               HTML, CSS, JavaScript, React, MongoDB, Express, Node.js, Python,
               Flask, SQL, Bootstrap and TailwindCSS. I enjoy working with others
-              to build web-applications that capture my curiosity.
+              to build web applications that capture my curiosity.
             </p>
             <div className='flex p-4 align-middle justify-center gap-10'>
               <a
@@ -47,7 +47,7 @@ const AboutUs = () => {
               <a href='https://github.com/williamzhanshum' target='_blank'>
                 <AiOutlineGithub className='text-3xl' />
               </a>
-              <a href='#' target='_blank'>
+              <a href='https://williamzhan.com' target='_blank'>
                 <AiOutlineGlobal className='text-3xl' />
               </a>
             </div>
@@ -72,13 +72,13 @@ const AboutUs = () => {
               <a href='https://github.com/waileungl' target='_blank'>
                 <AiOutlineGithub className='text-3xl' />
               </a>
-              <a href='#' target='_blank'>
+              <a href='https://wlliu.com' target='_blank'>
                 <AiOutlineGlobal className='text-3xl' />
               </a>
             </div>
           </div>
         </div>
-        <div className='flex justify-center py-12 lg:absolute lg:top-[83%] lg:left-[77%] lg:translate-x-[-50%] lg:translate-y-[-50%]'>
+        <div className='flex justify-center py-12'>
           <LinkScroll to='home' smooth={true} offset={0} duration={500}>
             <div className='rounded-full shadow-lg shadow-gray-400 p-4 cursor-pointer hover:scale-110 ease-in duration-300 animate-bounce bg-white'>
               <AiOutlineArrowUp className='text-black' size={25} />

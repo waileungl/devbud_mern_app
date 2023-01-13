@@ -23,7 +23,7 @@ const Features = () => {
               <AiOutlineCheck className='w-7 mr-4 text-green-600 font-bold text-2xl' />
             </div>
             <div>
-              <h3 className='font-bold text-lg'>Built in IDE</h3>
+              <h3 className='font-bold text-lg'>Built-in IDE</h3>
               <p className='text-lg pt-2 pb-4 pr-4'>
                 Practice your coding skills or work together with others on our
                 built-in IDE, which supports JavaScript, Python and Java.{' '}
@@ -40,7 +40,7 @@ const Features = () => {
               <h3 className='font-bold text-lg'>Group Video</h3>
               <p className='text-lg pt-2 pb-4'>
                 Get to know your instructor or students through video calls that
-                supports one-on-one or groups.
+                support one-on-one or groups.
               </p>
             </div>
           </div>
@@ -54,7 +54,7 @@ const Features = () => {
               <h3 className='font-bold text-lg'>Group Chat App</h3>
               <p className='text-lg pt-2 pb-4'>
                 Not a fan of video chat? No problem, communicate with your
-                instructor or students through the chat app in the work rooms.
+                instructor or students through the chat app in the code space.
               </p>
             </div>
           </div>
