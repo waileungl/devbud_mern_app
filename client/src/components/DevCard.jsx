@@ -16,19 +16,21 @@ const DevCard = (props) => {
       'Onedev profilepic here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
       oneDev.profilePic
     );
-    getDownloadURL(ref(storage, `user-profile-pic/${oneDev.profilePic}`))
-      .then((url) => {
-        // `url` is the download URL for 'images/stars.jpg'
-        console.log(
-          'firebase img url here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
-          url
-        );
-        setProfilePic(url);
-      })
-      .catch((error) => {
-        console.log(error);
-        // alert("error occur!")
-      });
+    if (oneDev.profilePic !== "") {
+      getDownloadURL(ref(storage, `user-profile-pic/${oneDev.profilePic}`))
+        .then((url) => {
+          // `url` is the download URL for 'images/stars.jpg'
+          console.log(
+            'firebase img url here>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
+            url
+          );
+          setProfilePic(url);
+        })
+        .catch((error) => {
+          console.log(error);
+          // alert("error occur!")
+        });
+    }
   }, [loaded, loadImg]);
 
   return (
@@ -39,7 +41,7 @@ const DevCard = (props) => {
             className='w-[70%] rounded-xl shadow-lg md:w-[90%] h-52 object-cover max-h-[85%] '
             src={profilePic === '' ? defaultPic : profilePic}
             alt='profile-pic'
-            //   src={oneDev.profilePic}
+          //   src={oneDev.profilePic}
           />
         </div>
         <div className='w-full md:w-[400px]'>
