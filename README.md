@@ -17,23 +17,61 @@ This application was deployed using AWS.
 
 # Features and Highlights
 
+* [Landing Page](#examples)
+  - [Login/Registration](#Login/Registration)
+  - [Full CRUD for registered users](#FullCRUDforregisteredusers)
+  - [Image Uploading with Firebase ](#ImageUploadingwithFirebase)
+  - [Mobile-First Design](#MobileFirstDesign)
+
+* [Code Space](#templates)
+  - [Create Room Page](#CreateRoomPage)
+  - [Collaborative Code Editor](#CollaborativeCodeEditor)
+  - [Live Group Call](#LiveGroupCall)
+  - [Screen Sharing](#ScreenSharing)
+  - [Live Chat Messaging](#LiveChatMessaging)
+
+<a name='Login/Registration'></a>
 ## Login/Registration
+![registration_gif](https://user-images.githubusercontent.com/110699040/213883194-a41f8b07-f96f-46bd-8507-b16d01d22c6f.gif)
 
 The login and registration were created as a multi-step form. The first page asks for the user's email and password, while the second form asks for additional infromation like full name, education, years of experience, a short description and preferred coding languages. 
 
 In order for a user to become a tutor, he/she must first create an account. This will also allow them to edit their profile information. 
 
+<a name='FullCRUDforregisteredusers'></a>
 ## Full CRUD for registered users
+![crud_gif](https://user-images.githubusercontent.com/110699040/213883962-c58d8f73-f540-4d16-a2e0-621fdee445cf.gif)
 
 Registered users have access to full CRUD features regarding their profile. A regular user can only browse through the list of developers and use the code space. However, registered users can edit their profile information, update their profile picture and delete their account. 
 
+<a name='ImageUploadingwithFirebase'></a>
 ## Image Uploading with Firebase 
+![upload_pic_gif](https://user-images.githubusercontent.com/110699040/213883936-82ca21d2-d3e4-4ffc-a1e9-9715368864e6.gif)
 
 DEVBUD uses Firebase to allow users to upload an image from their local computer to add as their profile picture. The image is then stored in Firebase.
 
+<a name='MobileFirstDesign'></a>
 ## Mobile-First Design
+![responsive_video_gif](https://user-images.githubusercontent.com/110699040/213885906-50bf8974-2600-4a5c-9fd8-f7ce621986b6.gif)
 
 DEVBUD was created with the mobile-first design approach. This means that users can still use and enjoy the application on any type of device. This application is responsive, so it will fit any screen size from an iPhone to a larger desktop.
 
+<a name='CreateRoomPage'></a>
+## Create Room Page
+![create_room_gif](https://user-images.githubusercontent.com/110699040/213889096-34fa4fd5-693d-473a-a04d-f52310734749.gif)
 
+Includes a toggleable & animated create and join room section
 
+Includes carousel with indicators that allows users to easily navigate through a collection of images and description.
+
+<a name='CollaborativeCodeEditor'></a>
+## Collaborative Code Editor
+
+<a name='LiveGroupCall'></a>
+## Live Group Call
+
+<a name='ScreenSharing'></a>
+## Screen Sharing
+
+<a name='LiveChatMessaging'></a>
+## Live Chat Messaging
