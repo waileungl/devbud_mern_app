@@ -3,9 +3,8 @@
 
 #### Check it Out!
 
-[Live Demo](https://devbud.wlliu.com/){:target="_blank"} and
-[Video Demo](https://vimeo.com/793111024){:target="_blank"}
-
+[Live Demo](https://external.ink?to=https://devbud.wlliu.com/) and
+[Video Demo](https://external.ink?to=https://vimeo.com/793111024)
 DEVBUD. is a full-stack application built with React, MongoDB, Firebase, TailwindCSS, and WebRTC. This is a social networking app for software developers that also has a collaborative code space. In this app, aspiring developers are able to network with experienced developers to improve their coding skills. The collaborative code space has group live chat messaging, live group video calls, screen sharing, and a collaborative code editor that supports JavaScript, Python, and Java. Check it out!
 
 # Technologies Used
