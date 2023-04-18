@@ -33,7 +33,6 @@ This application was deployed using AWS.
   - [Live Chat Messaging](#LiveChatMessaging)
   
 * Conclusion and Next Steps
-  - [What I've Learned](#WhatIveLearned)
   - [Next Steps](#NextSteps)
 
 
@@ -104,20 +103,6 @@ The screen-sharing feature was also implemented using webRTC. Users are allowed 
 
 The Code Space comes with live group chat messaging, that was integrated using webRTC. The top right corner of the chat box has a participant counter that keeps track of the number of users in the room. Any time a new user joins the room, all the other users will be notified through a notification in the chat box. This is another mode that users can use to stay in communication with each other. 
 
-<a name='WhatIveLearned'></a>
-## What I've Learned
-
-After 16 weeks as a Full Stack Software Engineering student at Coding Dojo, this capstone project gave me the opportunity to apply and demonstrate what I have learned: 
-
-- Set up a backend server with user authentication and error handling.
-- Designed a frontend application with React components and connected it to the backend.
-- Implemented full CRUD features.
-
-This project has given me the opportunity to explore:
-
-- Implement the image upload feature and use Firebase to store the images. 
-- Use Augora's webRTC to implement live group chat messaging, live video calls, and screen sharing.
-- Designed the application to be responsive by using the mobile-first design approach.
 
 <a name='NextSteps'></a>
 ## Next Steps
